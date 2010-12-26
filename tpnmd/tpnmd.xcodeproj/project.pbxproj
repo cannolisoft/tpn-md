@@ -23,6 +23,7 @@
 		537DA6BE1108F8460045D54C /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 537DA6BC1108F8460045D54C /* DetailViewController.xib */; };
 		537DA6F81108FC480045D54C /* GoldenGate.png in Resources */ = {isa = PBXBuildFile; fileRef = 537DA6F71108FC480045D54C /* GoldenGate.png */; };
 		53F2F476110E4DD30069881A /* flag.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F2F475110E4DD30069881A /* flag.png */; };
+		C6E7F14112C72CE9009F58D7 /* WakeForest454.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C6E7F14012C72CE9009F58D7 /* WakeForest454.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		537DA6BD1108F8460045D54C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController.xib; sourceTree = "<group>"; };
 		537DA6F71108FC480045D54C /* GoldenGate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GoldenGate.png; sourceTree = "<group>"; };
 		53F2F475110E4DD30069881A /* flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flag.png; sourceTree = "<group>"; };
+		C6E7F14012C72CE9009F58D7 /* WakeForest454.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = WakeForest454.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C6E7F14012C72CE9009F58D7 /* WakeForest454.jpg */,
 				53F2F475110E4DD30069881A /* flag.png */,
 				537DA6F71108FC480045D54C /* GoldenGate.png */,
 				530C8629110903A800BA0E6D /* SFIcon.png */,
@@ -159,6 +162,7 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "tpnmd" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -187,6 +191,7 @@
 				537DA6F81108FC480045D54C /* GoldenGate.png in Resources */,
 				530C862A110903A800BA0E6D /* SFIcon.png in Resources */,
 				53F2F476110E4DD30069881A /* flag.png in Resources */,
+				C6E7F14112C72CE9009F58D7 /* WakeForest454.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

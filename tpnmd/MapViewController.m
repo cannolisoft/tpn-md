@@ -401,7 +401,7 @@ enum
 		
 		// the detail view does not want a toolbar so hide it
 		[self.navigationController setToolbarHidden:YES animated:NO];
-		
+		self.detailViewController.annotation = officeAnnotation;
 		[self.navigationController pushViewController:self.detailViewController animated:YES];
 	}
 	

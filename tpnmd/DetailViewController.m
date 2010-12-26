@@ -48,14 +48,23 @@
 #import "DetailViewController.h"
 
 @implementation DetailViewController
-@synthesize table, image;
+@synthesize table, image, annotation;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib
 - (void)viewDidLoad
 {
-    table = [[UITableView alloc] init];
-    image = [[UIImageView alloc] init];
-    [super viewDidLoad];
+    [super viewDidLoad];	
+	
+	//Initialize the array.
+	listOfItems = [[NSMutableArray alloc] init];
+	
+	NSArray *addressParts = [annotation.subtitle componentsSeparatedByString: @","];
+	[listOfItems addObject:addressParts];
+	
+	NSArray *phoneNumbers = [NSArray arrayWithObjects:@"123-456-7890", nil];
+	[listOfItems addObject:phoneNumbers];
+
+	self.navigationItem.title =  [self.annotation title];
 }
 
 
@@ -63,11 +72,7 @@
 {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
-}
-
-- (void)initWithAnnotation: (id <MKAnnotation>) annotation
-{
-
+	
 }
 
 
@@ -76,5 +81,60 @@
     [super dealloc];
 }
 
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return FALSE;
+}
+
+#pragma mark -
+#pragma mark UITableViewDataSource
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	
+	if(section == 0)
+		return @"Address";
+	else {
+		return @"Phone";
+	}
+
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	static NSString *CellIdentifier = @"Cell";
+	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil) {
+		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+	}
+	
+	
+	NSArray *array = [listOfItems objectAtIndex:indexPath.section];
+	NSString *cellValue = [array objectAtIndex:indexPath.row];
+	//trim the value before displaying
+	cell.textLabel.text = [cellValue stringByTrimmingCharactersInSet:
+									 [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	
+	return cell;
+	
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	//Number of sections is based on the data
+	return [listOfItems count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	//Number of rows it should expect should be based on the section
+	NSArray *array = [listOfItems objectAtIndex:section];
+	return [array count];
+	
+}
 
 @end
