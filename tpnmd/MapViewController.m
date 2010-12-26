@@ -72,8 +72,43 @@ enum
     return 40.0f;
 }
 
+
+
+-(void)zoomToFitMapAnnotations:(NSArray *)annotations
+{
+    if([annotations count] == 0)
+        return;
+	
+    CLLocationCoordinate2D topLeftCoord;
+    topLeftCoord.latitude = -90;
+    topLeftCoord.longitude = 180;
+	
+    CLLocationCoordinate2D bottomRightCoord;
+    bottomRightCoord.latitude = 90;
+    bottomRightCoord.longitude = -180;
+	
+    for(NSObject<MKAnnotation>* annotation in annotations)
+    {
+        topLeftCoord.longitude = fmin(topLeftCoord.longitude, annotation.coordinate.longitude);
+        topLeftCoord.latitude = fmax(topLeftCoord.latitude, annotation.coordinate.latitude);
+		
+        bottomRightCoord.longitude = fmax(bottomRightCoord.longitude, annotation.coordinate.longitude);
+        bottomRightCoord.latitude = fmin(bottomRightCoord.latitude, annotation.coordinate.latitude);
+    }
+	
+    MKCoordinateRegion region;
+    region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5;
+    region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5;
+    region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.1; // Add a little extra space on the sides
+    region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.1; // Add a little extra space on the sides
+	
+    region = [self.mapView regionThatFits:region];
+    [self.mapView setRegion:region animated:YES];
+}
+
 - (void)gotoLocation
 {
+	
     // start off by default in San Francisco
     MKCoordinateRegion newRegion;
     //newRegion.center.latitude = 37.786996;
@@ -84,7 +119,7 @@ enum
 	
     newRegion.span.latitudeDelta = 0.112872;
     newRegion.span.longitudeDelta = 0.109863;
-
+	
     [self.mapView setRegion:newRegion animated:YES];
 }
 
@@ -97,6 +132,7 @@ enum
 - (void)viewDidLoad
 {
     self.mapView.mapType = MKMapTypeStandard;   // also MKMapTypeSatellite or MKMapTypeHybrid
+	self.mapView.showsUserLocation = TRUE;
 
     // create a custom navigation bar button and set it to always says "Back"
 	UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
@@ -112,6 +148,7 @@ enum
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Chapel Hill North Medical Center";
+	officeAnnotation.subtitle = @"1838 Martin Luther King, Jr. Blvd., Chapel Hill, NC 27514";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.964467];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.058385];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -120,6 +157,7 @@ enum
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Chatham Crossing";
+	officeAnnotation.subtitle = @"11312 US 15-501N, Suite 308, Chapel Hill, NC 27517";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.84619];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.09073];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -128,6 +166,7 @@ enum
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Chatham Primary Care";
+	officeAnnotation.subtitle = @"311 N. Fir Avenue, Siler City, NC 27344";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.722466];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.470778];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -135,6 +174,7 @@ enum
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Executive Health (The Carolina Clinic)";
+	officeAnnotation.subtitle = @"315 Meadowmont Village Circle, Chapel Hill, NC 27517";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.904847];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.010439];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -142,6 +182,7 @@ enum
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Highgate Family Medical Center";
+	officeAnnotation.subtitle = @"5317 Highgate Drive, Suite 117, Durham, NC 27713";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.910117];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.941535];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -149,6 +190,7 @@ enum
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Pittsboro Family Medicine";
+	officeAnnotation.subtitle = @"855 East Street, Pittsboro, NC 27312";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.719903];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.162602];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -156,6 +198,7 @@ enum
 
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Sanford Hematology Oncology";
+	officeAnnotation.subtitle = @"1212 Central Drive, Suite 201, Sanford, NC 27330";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.467442];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.186845];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -163,6 +206,7 @@ enum
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Sanford Specialty Clinics";
+	officeAnnotation.subtitle = @"1301 Central Drive, Sanford, NC 27330";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.466466];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.185844];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -170,6 +214,7 @@ enum
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"UNC Family Medicine at Hillsborough";
+	officeAnnotation.subtitle = @"2201 Old N.C. Highway 86, Hillsborough, NC 27278";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:36.053007];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.103842];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -178,6 +223,7 @@ enum
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"University Pediatrics at Highgate";
+	officeAnnotation.subtitle = @"5322 Highgate Dr., Suite 144, Durham, NC 27713";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.909862];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.941376];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -185,6 +231,7 @@ enum
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Rex Family Practice of Knightdale";
+	officeAnnotation.subtitle = @"6602 Knightdale Blvd., Suite 202, Knightdale, NC 27545";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.795562];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.510993];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -192,6 +239,7 @@ enum
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Rex Family Practice of Wakefield";
+	officeAnnotation.subtitle = @"11200 Governor Manly Way, Suite 205, Raleigh, NC 27614";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.942431];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.599759];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -199,6 +247,7 @@ enum
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Rex Primary Care of Holly Springs";
+	officeAnnotation.subtitle = @"208 Village Walk Drive, Holly Springs, NC 27540";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.639555];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.833773];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -206,6 +255,7 @@ enum
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Rex Senior Health Center";
+	officeAnnotation.subtitle = @"512 E. Davie Street, Raleigh, NC 27601";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.775227];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.631606];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -213,6 +263,7 @@ enum
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Rex/UNC Family Practice of Panther Creek ";
+	officeAnnotation.subtitle = @"10030 Green Level Church Road, Suite 808, Cary, NC 27519";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.819609];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.902204];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -220,6 +271,7 @@ enum
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Boylan Healthcare (Browning Place)";
+	officeAnnotation.subtitle = @"3900 Browning Place, Suite 101, Raleigh, North Carolina 27609";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.830793];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.633088];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -227,16 +279,15 @@ enum
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Boylan Healthcare (Health Park)";
+	officeAnnotation.subtitle = @"8300 Health Park, Suite 309, Raleigh, North Carolina 27615";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.894875];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.659756];
 	[self.mapAnnotations addObject: officeAnnotation];
 	[officeAnnotation release];
-	
 
-	
-	
-	
-    [self gotoLocation];    // finally goto San Francisco
+    //[self gotoLocation];
+	[self zoomToFitMapAnnotations:self.mapAnnotations];	
+	[self.mapView addAnnotations:self.mapAnnotations];
 }
 
 - (void)viewDidUnload
@@ -337,56 +388,7 @@ enum
             pinView.annotation = annotation;
         }
         return pinView;
-    }
-    else if ([annotation isKindOfClass:[OfficeAnnotation class]])   // for City of San Francisco
-    {
-		return nil;
-		
-        static NSString* SFAnnotationIdentifier = @"SFAnnotationIdentifier";
-        MKPinAnnotationView* pinView =
-            (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:SFAnnotationIdentifier];
-        if (!pinView)
-        {
-            MKAnnotationView *annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation
-                                                                             reuseIdentifier:SFAnnotationIdentifier] autorelease];
-            annotationView.canShowCallout = YES;
-           
-            UIImage *flagImage = [UIImage imageNamed:@"flag.png"];
-            
-            CGRect resizeRect;
-            
-            resizeRect.size = flagImage.size;
-            CGSize maxSize = CGRectInset(self.view.bounds,
-                                         [MapViewController annotationPadding],
-                                         [MapViewController annotationPadding]).size;
-            maxSize.height -= self.navigationController.navigationBar.frame.size.height + [MapViewController calloutHeight];
-            if (resizeRect.size.width > maxSize.width)
-                resizeRect.size = CGSizeMake(maxSize.width, resizeRect.size.height / resizeRect.size.width * maxSize.width);
-            if (resizeRect.size.height > maxSize.height)
-                resizeRect.size = CGSizeMake(resizeRect.size.width / resizeRect.size.height * maxSize.height, maxSize.height);
-            
-            resizeRect.origin = (CGPoint){0.0f, 0.0f};
-            UIGraphicsBeginImageContext(resizeRect.size);
-            [flagImage drawInRect:resizeRect];
-            UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            
-            annotationView.image = resizedImage;
-            annotationView.opaque = NO;
-             
-            UIImageView *sfIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SFIcon.png"]];
-            annotationView.leftCalloutAccessoryView = sfIconView;
-            [sfIconView release];
-            
-            return annotationView;
-        }
-        else
-        {
-            pinView.annotation = annotation;
-        }
-        return pinView;
-    }
-    
+    }    
     return nil;
 }
 

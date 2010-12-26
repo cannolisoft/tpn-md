@@ -51,6 +51,7 @@
 
 @synthesize image;
 @synthesize title;
+@synthesize subtitle;
 @synthesize latitude;
 @synthesize longitude;
 
@@ -77,7 +78,7 @@
 // optional
 - (NSString *)subtitle
 {
-    return @"Founded: June 29, 1776";
+    return subtitle;
 }
 
 @end

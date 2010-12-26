@@ -51,12 +51,14 @@
 {
     UIImage *image;
 	NSString *title;
+	NSString *subtitle;
     NSNumber *latitude;
     NSNumber *longitude;
 }
 
 @property (nonatomic, retain) UIImage *image;
 @property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSString *subtitle;
 @property (nonatomic, retain) NSNumber *latitude;
 @property (nonatomic, retain) NSNumber *longitude;
 
