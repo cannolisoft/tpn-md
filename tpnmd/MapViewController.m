@@ -149,6 +149,7 @@ enum
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Chapel Hill North Medical Center";
 	officeAnnotation.subtitle = @"1838 Martin Luther King, Jr. Blvd., Chapel Hill, NC 27514";
+        officeAnnotation.phone = @"tel:919-960-7461";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.964467];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.058385];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -158,6 +159,7 @@ enum
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Chatham Crossing";
 	officeAnnotation.subtitle = @"11312 US 15-501N, Suite 308, Chapel Hill, NC 27517";
+        officeAnnotation.phone = @"tel:919-960-6094";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.84619];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.09073];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -167,6 +169,7 @@ enum
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Chatham Primary Care";
 	officeAnnotation.subtitle = @"311 N. Fir Avenue, Siler City, NC 27344";
+        officeAnnotation.phone = @"tel:919-742-6032";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.722466];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.470778];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -175,6 +178,7 @@ enum
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Executive Health (The Carolina Clinic)";
 	officeAnnotation.subtitle = @"315 Meadowmont Village Circle, Chapel Hill, NC 27517";
+        officeAnnotation.phone = @"tel:919-962-2862";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.904847];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.010439];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -183,6 +187,7 @@ enum
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Highgate Family Medical Center";
 	officeAnnotation.subtitle = @"5317 Highgate Drive, Suite 117, Durham, NC 27713";
+        officeAnnotation.phone = @"tel:919-361-2644";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.910117];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.941535];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -191,6 +196,7 @@ enum
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Pittsboro Family Medicine";
 	officeAnnotation.subtitle = @"855 East Street, Pittsboro, NC 27312";
+        officeAnnotation.phone = @"tel:919-545-0911";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.719903];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.162602];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -199,6 +205,7 @@ enum
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Sanford Hematology Oncology";
 	officeAnnotation.subtitle = @"1212 Central Drive, Suite 201, Sanford, NC 27330";
+        officeAnnotation.phone = @"tel:919-775-8183";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.467442];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.186845];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -207,6 +214,7 @@ enum
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Sanford Specialty Clinics";
 	officeAnnotation.subtitle = @"1301 Central Drive, Sanford, NC 27330";
+        officeAnnotation.phone = @"tel:919-718-9512";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.466466];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.185844];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -215,6 +223,7 @@ enum
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"UNC Family Medicine at Hillsborough";
 	officeAnnotation.subtitle = @"2201 Old N.C. Highway 86, Hillsborough, NC 27278";
+        officeAnnotation.phone = @"tel:919-732-2909";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:36.053007];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.103842];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -224,6 +233,7 @@ enum
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"University Pediatrics at Highgate";
 	officeAnnotation.subtitle = @"5322 Highgate Dr., Suite 144, Durham, NC 27713";
+        officeAnnotation.phone = @"tel:919-806-3335";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.909862];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.941376];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -232,6 +242,7 @@ enum
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Rex Family Practice of Knightdale";
 	officeAnnotation.subtitle = @"6602 Knightdale Blvd., Suite 202, Knightdale, NC 27545";
+        officeAnnotation.phone = @"tel:919-747-5270";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.795562];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.510993];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -240,6 +251,7 @@ enum
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Rex Family Practice of Wakefield";
 	officeAnnotation.subtitle = @"11200 Governor Manly Way, Suite 205, Raleigh, NC 27614";
+        officeAnnotation.phone = @"tel:919-570-7700";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.942431];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.599759];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -248,6 +260,7 @@ enum
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Rex Primary Care of Holly Springs";
 	officeAnnotation.subtitle = @"208 Village Walk Drive, Holly Springs, NC 27540";
+        officeAnnotation.phone = @"tel:919-552-8911";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.639555];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.833773];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -256,6 +269,7 @@ enum
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Rex Senior Health Center";
 	officeAnnotation.subtitle = @"512 E. Davie Street, Raleigh, NC 27601";
+        officeAnnotation.phone = @"tel:919-832-2400";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.775227];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.631606];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -264,6 +278,7 @@ enum
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Rex/UNC Family Practice of Panther Creek ";
 	officeAnnotation.subtitle = @"10030 Green Level Church Road, Suite 808, Cary, NC 27519";
+        officeAnnotation.phone = @"tel:919-481-4997";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.819609];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.902204];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -272,6 +287,7 @@ enum
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Boylan Healthcare (Browning Place)";
 	officeAnnotation.subtitle = @"3900 Browning Place, Suite 101, Raleigh, North Carolina 27609";
+        officeAnnotation.phone = @"tel:919-781-9650";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.830793];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.633088];
 	[self.mapAnnotations addObject: officeAnnotation];
@@ -280,6 +296,7 @@ enum
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.title = @"Boylan Healthcare (Health Park)";
 	officeAnnotation.subtitle = @"8300 Health Park, Suite 309, Raleigh, North Carolina 27615";
+        officeAnnotation.phone = @"tel:919-781-9650";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.894875];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.659756];
 	[self.mapAnnotations addObject: officeAnnotation];

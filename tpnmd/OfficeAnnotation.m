@@ -52,6 +52,7 @@
 @synthesize image;
 @synthesize title;
 @synthesize subtitle;
+@synthesize phone;
 @synthesize latitude;
 @synthesize longitude;
 
@@ -81,4 +82,9 @@
     return subtitle;
 }
 
+// optional
+- (NSString *)phone
+{
+    return phone;
+}
 @end

@@ -46,6 +46,7 @@
  */
 
 #import "DetailViewController.h"
+#import "OfficeAnnotation.h"
 
 @implementation DetailViewController
 @synthesize table, image, annotation;
@@ -85,7 +86,8 @@
 	NSArray *addressParts = [annotation.subtitle componentsSeparatedByString: @","];
 	[listOfItems addObject:addressParts];
 	
-	NSArray *phoneNumbers = [NSArray arrayWithObjects:@"123-456-7890", nil];
+
+        NSArray *phoneNumbers = [NSArray arrayWithObject: [annotation phone]];
 	[listOfItems addObject:phoneNumbers];
 	
 	
@@ -100,8 +102,23 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return FALSE;
+  // Make non-address (ie. phone) rows selectable
+  if ( indexPath.section != 0 ) 
+  {
+    return indexPath;
+  }
+  return nil;
 }
+
+- (void) tableView: (UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if ( indexPath.section != 0 )
+  {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[annotation phone]]];
+  }
+}
+
+
 
 #pragma mark -
 #pragma mark UITableViewDataSource
@@ -128,7 +145,7 @@
 	
 	NSArray *array = [listOfItems objectAtIndex:indexPath.section];
 	NSString *cellValue = [array objectAtIndex:indexPath.row];
-	//trim the value before displaying
+	// Trim the value before displaying
 	cell.textLabel.text = [cellValue stringByTrimmingCharactersInSet:
 									 [NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	
@@ -138,13 +155,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	//Number of sections is based on the data
+	// Number of sections is based on the data
 	return [listOfItems count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	//Number of rows it should expect should be based on the section
+	// Number of rows it should expect should be based on the section
 	NSArray *array = [listOfItems objectAtIndex:section];
 	return [array count];
 	

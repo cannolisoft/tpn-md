@@ -50,8 +50,9 @@
 @interface OfficeAnnotation : NSObject <MKAnnotation>
 {
     UIImage *image;
-	NSString *title;
-	NSString *subtitle;
+    NSString *title;
+    NSString *subtitle;
+    NSString *phone;
     NSNumber *latitude;
     NSNumber *longitude;
 }
@@ -59,6 +60,7 @@
 @property (nonatomic, retain) UIImage *image;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *subtitle;
+@property (nonatomic, retain) NSString *phone;
 @property (nonatomic, retain) NSNumber *latitude;
 @property (nonatomic, retain) NSNumber *longitude;
 

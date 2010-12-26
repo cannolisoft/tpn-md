@@ -54,7 +54,7 @@
   UITableView* table;
   UIImageView* image;
 
-	id<MKAnnotation> annotation;	
+  id<MKAnnotation> annotation;	
 	
 	
   NSMutableArray *listOfItems;
@@ -62,8 +62,6 @@
 
 @property (nonatomic, retain) IBOutlet UITableView* table;
 @property (nonatomic, retain) IBOutlet UIImageView* image;
-
 @property (nonatomic, retain) id<MKAnnotation> annotation;
-
 
 @end
