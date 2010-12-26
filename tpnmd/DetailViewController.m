@@ -54,17 +54,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];	
-	
-	//Initialize the array.
-	listOfItems = [[NSMutableArray alloc] init];
-	
-	NSArray *addressParts = [annotation.subtitle componentsSeparatedByString: @","];
-	[listOfItems addObject:addressParts];
-	
-	NSArray *phoneNumbers = [NSArray arrayWithObjects:@"123-456-7890", nil];
-	[listOfItems addObject:phoneNumbers];
-
-	self.navigationItem.title =  [self.annotation title];
 }
 
 
@@ -79,6 +68,30 @@
 - (void)dealloc
 {
     [super dealloc];
+}
+
+- (void)setAnnotation:(id <MKAnnotation>)newAnnotation
+{
+	annotation = newAnnotation;
+	
+	if(!listOfItems){
+		//Initialize the array.
+		listOfItems = [[NSMutableArray alloc] init];
+	}
+	
+	
+	[listOfItems removeAllObjects];
+	
+	NSArray *addressParts = [annotation.subtitle componentsSeparatedByString: @","];
+	[listOfItems addObject:addressParts];
+	
+	NSArray *phoneNumbers = [NSArray arrayWithObjects:@"123-456-7890", nil];
+	[listOfItems addObject:phoneNumbers];
+	
+	
+	[table reloadData];
+	
+	self.navigationItem.title =  [self.annotation title];
 }
 
 
