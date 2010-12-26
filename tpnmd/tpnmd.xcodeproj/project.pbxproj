@@ -14,7 +14,7 @@
 		530C862A110903A800BA0E6D /* SFIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 530C8629110903A800BA0E6D /* SFIcon.png */; };
 		5321F1870F7AE57A00EC9E3A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5321F1840F7AE57A00EC9E3A /* AppDelegate.m */; };
 		5321F18F0F7AE5BA00EC9E3A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5321F18D0F7AE5BA00EC9E3A /* MainWindow.xib */; };
-		533D375B10B329010057E53B /* SFAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 533D375A10B329010057E53B /* SFAnnotation.m */; };
+		533D375B10B329010057E53B /* OfficeAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 533D375A10B329010057E53B /* OfficeAnnotation.m */; };
 		533D37F410B32D500057E53B /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533D37F210B32D500057E53B /* MapViewController.xib */; };
 		534BB35210B4A47500C8BE22 /* BridgeAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 534BB35110B4A47500C8BE22 /* BridgeAnnotation.m */; };
 		536EE47A10B358610080A190 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 536EE47910B358610080A190 /* MapViewController.m */; };
@@ -27,7 +27,7 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* MapCallouts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapCallouts.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* TpnMd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TpnMd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -37,8 +37,8 @@
 		5321F1880F7AE58700EC9E3A /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		5321F18E0F7AE5BA00EC9E3A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		5321F1900F7AE5BE00EC9E3A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		533D375910B329010057E53B /* SFAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFAnnotation.h; sourceTree = "<group>"; };
-		533D375A10B329010057E53B /* SFAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFAnnotation.m; sourceTree = "<group>"; };
+		533D375910B329010057E53B /* OfficeAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfficeAnnotation.h; sourceTree = "<group>"; };
+		533D375A10B329010057E53B /* OfficeAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfficeAnnotation.m; sourceTree = "<group>"; };
 		533D37F310B32D500057E53B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MapViewController.xib; sourceTree = "<group>"; };
 		533D38CB10B352230057E53B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		534BB35010B4A47500C8BE22 /* BridgeAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgeAnnotation.h; sourceTree = "<group>"; };
@@ -71,7 +71,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* MapCallouts.app */,
+				1D6058910D05DD3D006BFB54 /* TpnMd.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,8 +98,8 @@
 				536EE47910B358610080A190 /* MapViewController.m */,
 				537DA6B81108F80B0045D54C /* DetailViewController.h */,
 				537DA6B91108F80B0045D54C /* DetailViewController.m */,
-				533D375910B329010057E53B /* SFAnnotation.h */,
-				533D375A10B329010057E53B /* SFAnnotation.m */,
+				533D375910B329010057E53B /* OfficeAnnotation.h */,
+				533D375A10B329010057E53B /* OfficeAnnotation.m */,
 				534BB35010B4A47500C8BE22 /* BridgeAnnotation.h */,
 				534BB35110B4A47500C8BE22 /* BridgeAnnotation.m */,
 			);
@@ -149,7 +149,7 @@
 			);
 			name = MapCallouts;
 			productName = CPView;
-			productReference = 1D6058910D05DD3D006BFB54 /* MapCallouts.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* TpnMd.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -200,7 +200,7 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				5321F1870F7AE57A00EC9E3A /* AppDelegate.m in Sources */,
-				533D375B10B329010057E53B /* SFAnnotation.m in Sources */,
+				533D375B10B329010057E53B /* OfficeAnnotation.m in Sources */,
 				536EE47A10B358610080A190 /* MapViewController.m in Sources */,
 				534BB35210B4A47500C8BE22 /* BridgeAnnotation.m in Sources */,
 				537DA6BA1108F80B0045D54C /* DetailViewController.m in Sources */,
@@ -248,7 +248,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = MapCallouts;
+				PRODUCT_NAME = TpnMd;
 			};
 			name = Debug;
 		};
@@ -261,7 +261,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = MapCallouts;
+				PRODUCT_NAME = TpnMd;
 			};
 			name = Release;
 		};
@@ -275,6 +275,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
+				PRODUCT_NAME = "TPM Md";
 				SDKROOT = iphonesimulator4.0;
 			};
 			name = Debug;
@@ -288,6 +289,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
+				PRODUCT_NAME = "TPM Md";
 				SDKROOT = iphonesimulator4.0;
 			};
 			name = Release;

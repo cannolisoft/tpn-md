@@ -1,5 +1,5 @@
 /*
-     File: SFAnnotation.h 
+     File: SFAnnotation.m 
  Abstract: The custom MKAnnotation object representing the city of San Francisco. 
   Version: 1.0 
   
@@ -45,19 +45,39 @@
   
  */
 
-#import <MapKit/MapKit.h>
+#import "OfficeAnnotation.h"
 
-@interface SFAnnotation : NSObject <MKAnnotation>
+@implementation OfficeAnnotation 
+
+@synthesize image;
+@synthesize title;
+@synthesize latitude;
+@synthesize longitude;
+
+
+- (CLLocationCoordinate2D)coordinate;
 {
-    UIImage *image;
-    NSNumber *latitude;
-    NSNumber *longitude;
+    CLLocationCoordinate2D theCoordinate;
+    theCoordinate.latitude = [latitude doubleValue];
+    theCoordinate.longitude = [longitude doubleValue];
+    return theCoordinate; 
 }
 
-@property (nonatomic, retain) UIImage *image;
-@property (nonatomic, retain) NSNumber *latitude;
-@property (nonatomic, retain) NSNumber *longitude;
+- (void)dealloc
+{
+    [image release];
+    [super dealloc];
+}
+
+- (NSString *)title
+{
+    return title;
+}
+
+// optional
+- (NSString *)subtitle
+{
+    return @"Founded: June 29, 1776";
+}
 
 @end
-
-

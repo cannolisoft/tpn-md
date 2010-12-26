@@ -47,7 +47,7 @@
 
 #import "MapViewController.h"
 #import "DetailViewController.h"
-#import "SFAnnotation.h"
+#import "OfficeAnnotation.h"
 #import "BridgeAnnotation.h"
 
 enum
@@ -76,8 +76,12 @@ enum
 {
     // start off by default in San Francisco
     MKCoordinateRegion newRegion;
-    newRegion.center.latitude = 37.786996;
-    newRegion.center.longitude = -122.440100;
+    //newRegion.center.latitude = 37.786996;
+    //newRegion.center.longitude = -122.440100;
+	
+	newRegion.center.latitude = 35.467442;
+    newRegion.center.longitude = -79.186845;
+	
     newRegion.span.latitudeDelta = 0.112872;
     newRegion.span.longitudeDelta = 0.109863;
 
@@ -100,19 +104,138 @@ enum
 	self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
 	[temporaryBarButtonItem release];
     
-    // create out annotations array (in this example only 2)
-    self.mapAnnotations = [[NSMutableArray alloc] initWithCapacity:2];
-    
-    // annotation for the City of San Francisco
-    SFAnnotation *sfAnnotation = [[SFAnnotation alloc] init];
-    [self.mapAnnotations insertObject:sfAnnotation atIndex:kCityAnnotationIndex];
-    [sfAnnotation release];
-    
-    // annotation for Golden Gate Bridge
-    BridgeAnnotation *bridgeAnnotation = [[BridgeAnnotation alloc] init];
-    [self.mapAnnotations insertObject:bridgeAnnotation atIndex:kBridgeAnnotationIndex];
-    [bridgeAnnotation release];
-    
+    // create out annotations array
+    self.mapAnnotations = [[NSMutableArray alloc] initWithCapacity:20];
+	
+	
+	OfficeAnnotation *officeAnnotation = nil;
+	
+	officeAnnotation = [[OfficeAnnotation alloc] init];
+	officeAnnotation.title = @"Chapel Hill North Medical Center";
+	officeAnnotation.latitude = [NSNumber numberWithFloat:35.964467];
+	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.058385];
+	[self.mapAnnotations addObject: officeAnnotation];
+	[officeAnnotation release];
+	
+	
+	officeAnnotation = [[OfficeAnnotation alloc] init];
+	officeAnnotation.title = @"Chatham Crossing";
+	officeAnnotation.latitude = [NSNumber numberWithFloat:35.84619];
+	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.09073];
+	[self.mapAnnotations addObject: officeAnnotation];
+	[officeAnnotation release];
+	
+	
+	officeAnnotation = [[OfficeAnnotation alloc] init];
+	officeAnnotation.title = @"Chatham Primary Care";
+	officeAnnotation.latitude = [NSNumber numberWithFloat:35.722466];
+	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.470778];
+	[self.mapAnnotations addObject: officeAnnotation];
+	[officeAnnotation release];
+	
+	officeAnnotation = [[OfficeAnnotation alloc] init];
+	officeAnnotation.title = @"Executive Health (The Carolina Clinic)";
+	officeAnnotation.latitude = [NSNumber numberWithFloat:35.904847];
+	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.010439];
+	[self.mapAnnotations addObject: officeAnnotation];
+	[officeAnnotation release];
+	
+	officeAnnotation = [[OfficeAnnotation alloc] init];
+	officeAnnotation.title = @"Highgate Family Medical Center";
+	officeAnnotation.latitude = [NSNumber numberWithFloat:35.910117];
+	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.941535];
+	[self.mapAnnotations addObject: officeAnnotation];
+	[officeAnnotation release];
+	
+	officeAnnotation = [[OfficeAnnotation alloc] init];
+	officeAnnotation.title = @"Pittsboro Family Medicine";
+	officeAnnotation.latitude = [NSNumber numberWithFloat:35.719903];
+	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.162602];
+	[self.mapAnnotations addObject: officeAnnotation];
+	[officeAnnotation release];
+
+	officeAnnotation = [[OfficeAnnotation alloc] init];
+	officeAnnotation.title = @"Sanford Hematology Oncology";
+	officeAnnotation.latitude = [NSNumber numberWithFloat:35.467442];
+	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.186845];
+	[self.mapAnnotations addObject: officeAnnotation];
+	[officeAnnotation release];
+	
+	officeAnnotation = [[OfficeAnnotation alloc] init];
+	officeAnnotation.title = @"Sanford Specialty Clinics";
+	officeAnnotation.latitude = [NSNumber numberWithFloat:35.466466];
+	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.185844];
+	[self.mapAnnotations addObject: officeAnnotation];
+	[officeAnnotation release];
+	
+	officeAnnotation = [[OfficeAnnotation alloc] init];
+	officeAnnotation.title = @"UNC Family Medicine at Hillsborough";
+	officeAnnotation.latitude = [NSNumber numberWithFloat:36.053007];
+	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.103842];
+	[self.mapAnnotations addObject: officeAnnotation];
+	[officeAnnotation release];
+	
+	
+	officeAnnotation = [[OfficeAnnotation alloc] init];
+	officeAnnotation.title = @"University Pediatrics at Highgate";
+	officeAnnotation.latitude = [NSNumber numberWithFloat:35.909862];
+	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.941376];
+	[self.mapAnnotations addObject: officeAnnotation];
+	[officeAnnotation release];
+	
+	officeAnnotation = [[OfficeAnnotation alloc] init];
+	officeAnnotation.title = @"Rex Family Practice of Knightdale";
+	officeAnnotation.latitude = [NSNumber numberWithFloat:35.795562];
+	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.510993];
+	[self.mapAnnotations addObject: officeAnnotation];
+	[officeAnnotation release];
+	
+	officeAnnotation = [[OfficeAnnotation alloc] init];
+	officeAnnotation.title = @"Rex Family Practice of Wakefield";
+	officeAnnotation.latitude = [NSNumber numberWithFloat:35.942431];
+	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.599759];
+	[self.mapAnnotations addObject: officeAnnotation];
+	[officeAnnotation release];
+	
+	officeAnnotation = [[OfficeAnnotation alloc] init];
+	officeAnnotation.title = @"Rex Primary Care of Holly Springs";
+	officeAnnotation.latitude = [NSNumber numberWithFloat:35.639555];
+	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.833773];
+	[self.mapAnnotations addObject: officeAnnotation];
+	[officeAnnotation release];
+	
+	officeAnnotation = [[OfficeAnnotation alloc] init];
+	officeAnnotation.title = @"Rex Senior Health Center";
+	officeAnnotation.latitude = [NSNumber numberWithFloat:35.775227];
+	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.631606];
+	[self.mapAnnotations addObject: officeAnnotation];
+	[officeAnnotation release];
+	
+	officeAnnotation = [[OfficeAnnotation alloc] init];
+	officeAnnotation.title = @"Rex/UNC Family Practice of Panther Creek ";
+	officeAnnotation.latitude = [NSNumber numberWithFloat:35.819609];
+	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.902204];
+	[self.mapAnnotations addObject: officeAnnotation];
+	[officeAnnotation release];
+	
+	officeAnnotation = [[OfficeAnnotation alloc] init];
+	officeAnnotation.title = @"Boylan Healthcare (Browning Place)";
+	officeAnnotation.latitude = [NSNumber numberWithFloat:35.830793];
+	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.633088];
+	[self.mapAnnotations addObject: officeAnnotation];
+	[officeAnnotation release];
+	
+	officeAnnotation = [[OfficeAnnotation alloc] init];
+	officeAnnotation.title = @"Boylan Healthcare (Health Park)";
+	officeAnnotation.latitude = [NSNumber numberWithFloat:35.894875];
+	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.659756];
+	[self.mapAnnotations addObject: officeAnnotation];
+	[officeAnnotation release];
+	
+
+	
+	
+	
     [self gotoLocation];    // finally goto San Francisco
 }
 
@@ -180,7 +303,7 @@ enum
     
     // handle our two custom annotations
     //
-    if ([annotation isKindOfClass:[BridgeAnnotation class]]) // for Golden Gate Bridge
+    if ([annotation isKindOfClass:[OfficeAnnotation class]]) // for Golden Gate Bridge
     {
         // try to dequeue an existing pin view first
         static NSString* BridgeAnnotationIdentifier = @"bridgeAnnotationIdentifier";
@@ -200,10 +323,11 @@ enum
             // note: you can assign a specific call out accessory view, or as MKMapViewDelegate you can implement:
             //  - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control;
             //
+			
             UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-            [rightButton addTarget:self
-                            action:@selector(showDetails:)
-                  forControlEvents:UIControlEventTouchUpInside];
+            //[rightButton addTarget:self
+            //                action:@selector(showDetails:)
+            //      forControlEvents:UIControlEventTouchUpInside];
             customPinView.rightCalloutAccessoryView = rightButton;
 
             return customPinView;
@@ -214,8 +338,10 @@ enum
         }
         return pinView;
     }
-    else if ([annotation isKindOfClass:[SFAnnotation class]])   // for City of San Francisco
+    else if ([annotation isKindOfClass:[OfficeAnnotation class]])   // for City of San Francisco
     {
+		return nil;
+		
         static NSString* SFAnnotationIdentifier = @"SFAnnotationIdentifier";
         MKPinAnnotationView* pinView =
             (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:SFAnnotationIdentifier];
@@ -262,6 +388,22 @@ enum
     }
     
     return nil;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+	
+	//MKAnnotation annotation = view.annotation;
+	if ([view.annotation isKindOfClass:[OfficeAnnotation class]]){
+		OfficeAnnotation *officeAnnotation = (OfficeAnnotation*)view.annotation;
+		
+		// the detail view does not want a toolbar so hide it
+		[self.navigationController setToolbarHidden:YES animated:NO];
+		
+		[self.navigationController pushViewController:self.detailViewController animated:YES];
+	}
+	
+	
 }
 
 @end
