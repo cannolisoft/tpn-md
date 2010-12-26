@@ -48,18 +48,28 @@
 #import "DetailViewController.h"
 
 @implementation DetailViewController
+@synthesize table, image;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib
 - (void)viewDidLoad
 {
+    table = [[UITableView alloc] init];
+    image = [[UIImageView alloc] init];
     [super viewDidLoad];
 }
+
 
 - (void)viewDidUnload
 {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 }
+
+- (void)initWithAnnotation: (id <MKAnnotation>) annotation
+{
+
+}
+
 
 - (void)dealloc
 {

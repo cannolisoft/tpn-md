@@ -46,10 +46,17 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
 @interface DetailViewController : UIViewController
 {
 
+  UITableView* table;
+  UIImageView* image;
 }
+
+@property (nonatomic, retain) IBOutlet UITableView* table;
+@property (nonatomic, retain) IBOutlet UIImageView* image;
+
 
 @end
