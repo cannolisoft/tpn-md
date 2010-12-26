@@ -11,7 +11,6 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
-		530C862A110903A800BA0E6D /* SFIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 530C8629110903A800BA0E6D /* SFIcon.png */; };
 		5321F1870F7AE57A00EC9E3A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5321F1840F7AE57A00EC9E3A /* AppDelegate.m */; };
 		5321F18F0F7AE5BA00EC9E3A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5321F18D0F7AE5BA00EC9E3A /* MainWindow.xib */; };
 		533D375B10B329010057E53B /* OfficeAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 533D375A10B329010057E53B /* OfficeAnnotation.m */; };
@@ -21,8 +20,7 @@
 		5376EF070F7AE77A005C5273 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5376EF060F7AE77A005C5273 /* MapKit.framework */; };
 		537DA6BA1108F80B0045D54C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 537DA6B91108F80B0045D54C /* DetailViewController.m */; };
 		537DA6BE1108F8460045D54C /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 537DA6BC1108F8460045D54C /* DetailViewController.xib */; };
-		537DA6F81108FC480045D54C /* GoldenGate.png in Resources */ = {isa = PBXBuildFile; fileRef = 537DA6F71108FC480045D54C /* GoldenGate.png */; };
-		53F2F476110E4DD30069881A /* flag.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F2F475110E4DD30069881A /* flag.png */; };
+		C098272312C72CCA00306F3B /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C098272212C72CCA00306F3B /* logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +29,6 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		530C8629110903A800BA0E6D /* SFIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SFIcon.png; sourceTree = "<group>"; };
 		5321F1840F7AE57A00EC9E3A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		5321F1850F7AE57A00EC9E3A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5321F1880F7AE58700EC9E3A /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
@@ -49,8 +46,7 @@
 		537DA6B81108F80B0045D54C /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		537DA6B91108F80B0045D54C /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		537DA6BD1108F8460045D54C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController.xib; sourceTree = "<group>"; };
-		537DA6F71108FC480045D54C /* GoldenGate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GoldenGate.png; sourceTree = "<group>"; };
-		53F2F475110E4DD30069881A /* flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flag.png; sourceTree = "<group>"; };
+		C098272212C72CCA00306F3B /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,9 +105,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				53F2F475110E4DD30069881A /* flag.png */,
-				537DA6F71108FC480045D54C /* GoldenGate.png */,
-				530C8629110903A800BA0E6D /* SFIcon.png */,
+				C098272212C72CCA00306F3B /* logo.png */,
 				5321F1900F7AE5BE00EC9E3A /* Info.plist */,
 				5321F18D0F7AE5BA00EC9E3A /* MainWindow.xib */,
 				533D37F210B32D500057E53B /* MapViewController.xib */,
@@ -184,9 +178,7 @@
 				5321F18F0F7AE5BA00EC9E3A /* MainWindow.xib in Resources */,
 				533D37F410B32D500057E53B /* MapViewController.xib in Resources */,
 				537DA6BE1108F8460045D54C /* DetailViewController.xib in Resources */,
-				537DA6F81108FC480045D54C /* GoldenGate.png in Resources */,
-				530C862A110903A800BA0E6D /* SFIcon.png in Resources */,
-				53F2F476110E4DD30069881A /* flag.png in Resources */,
+				C098272312C72CCA00306F3B /* logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
