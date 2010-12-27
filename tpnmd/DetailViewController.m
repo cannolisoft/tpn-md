@@ -86,21 +86,27 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  // Make non-address (ie. phone) rows selectable
-  if ( indexPath.section != 0 ) 
-  {
-    return indexPath;
-  }
-  return nil;
+  return indexPath;
 }
 
 - (void) tableView: (UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if ( indexPath.section != 0 )
   {
-	NSString* uri = [[NSString alloc] initWithFormat:@"tel:%@", [annotation phone]];
-	NSURL *url = [NSURL URLWithString:uri];
+    NSString* uri = [[NSString alloc] initWithFormat:@"tel:%@", [annotation phone]];
+    NSURL *url = [NSURL URLWithString:uri];
     [[UIApplication sharedApplication] openURL:url];	 
+  }
+  else
+  {
+
+    NSString* startAddr = [NSString stringWithFormat:@"%@,%@", [annotation address], [annotation address2]];
+    NSString* urlAddr = [NSString stringWithFormat:@"http://maps.google.com/maps?saddr=Current Location&daddr=%@", startAddr];
+
+    NSURL* url = [[NSURL alloc] initWithString:[urlAddr stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
+
+    [[UIApplication sharedApplication] openURL:url];
+    [url release];
   }
 }
 
