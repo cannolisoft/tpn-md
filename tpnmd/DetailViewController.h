@@ -48,20 +48,19 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+#import "OfficeAnnotation.h"
+
 @interface DetailViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 {
 
   UITableView* table;
   UIImageView* image;
 
-  id<MKAnnotation> annotation;	
-	
-	
-  NSMutableArray *listOfItems;
+  OfficeAnnotation* annotation;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* table;
 @property (nonatomic, retain) IBOutlet UIImageView* image;
-@property (nonatomic, retain) id<MKAnnotation> annotation;
+@property (nonatomic, retain) OfficeAnnotation* annotation;
 
 @end

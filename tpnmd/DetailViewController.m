@@ -74,23 +74,7 @@
 - (void)setAnnotation:(id <MKAnnotation>)newAnnotation
 {
 	annotation = newAnnotation;
-	
-	if(!listOfItems){
-		//Initialize the array.
-		listOfItems = [[NSMutableArray alloc] init];
-	}
-	
-	
-	[listOfItems removeAllObjects];
-	
-	NSArray *addressParts = [annotation.subtitle componentsSeparatedByString: @","];
-	[listOfItems addObject:addressParts];
-	
 
-        NSArray *phoneNumbers = [NSArray arrayWithObject: [annotation phone]];
-	[listOfItems addObject:phoneNumbers];
-	
-	
 	[table reloadData];
 	
 	self.navigationItem.title =  [self.annotation title];
@@ -114,8 +98,19 @@
 {
   if ( indexPath.section != 0 )
   {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[annotation phone]]];
+	NSString* uri = [[NSString alloc] initWithFormat:@"tel:%@", [annotation phone]];
+	NSURL *url = [NSURL URLWithString:uri];
+    [[UIApplication sharedApplication] openURL:url];	 
   }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if (indexPath.section == 0) {
+		return 80;
+	}
+	
+	return [tableView rowHeight];
 }
 
 
@@ -123,31 +118,34 @@
 #pragma mark -
 #pragma mark UITableViewDataSource
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	
-	if(section == 0)
-		return @"Address";
-	else {
-		return @"Phone";
-	}
-
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	static NSString *CellIdentifier = @"Cell";
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+		//cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
 	}
 	
+
 	
-	NSArray *array = [listOfItems objectAtIndex:indexPath.section];
-	NSString *cellValue = [array objectAtIndex:indexPath.row];
-	// Trim the value before displaying
-	cell.textLabel.text = [cellValue stringByTrimmingCharactersInSet:
-									 [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	
+	switch (indexPath.section) {
+		case 0:
+			cell.textLabel.text = @"Address";
+			cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
+			cell.detailTextLabel.numberOfLines = 5;
+			cell.detailTextLabel.text = annotation.subtitle;
+			break;
+		case 1:
+			cell.textLabel.text = @"Telephone";
+			cell.detailTextLabel.text = annotation.phone;
+			break;
+		default:
+			break;
+	}
+	
 	
 	return cell;
 	
@@ -156,15 +154,12 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 	// Number of sections is based on the data
-	return [listOfItems count];
+	return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	// Number of rows it should expect should be based on the section
-	NSArray *array = [listOfItems objectAtIndex:section];
-	return [array count];
-	
+	return 1;
 }
 
 @end

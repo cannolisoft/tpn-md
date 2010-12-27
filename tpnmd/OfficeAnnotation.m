@@ -50,8 +50,12 @@
 @implementation OfficeAnnotation 
 
 @synthesize image;
-@synthesize title;
-@synthesize subtitle;
+//@synthesize title;
+//@synthesize subtitle;
+
+@synthesize name;
+@synthesize address;
+@synthesize address2;
 @synthesize phone;
 @synthesize latitude;
 @synthesize longitude;
@@ -73,13 +77,13 @@
 
 - (NSString *)title
 {
-    return title;
+    return name;
 }
 
 // optional
 - (NSString *)subtitle
 {
-    return subtitle;
+    return [address stringByAppendingFormat:@"\n%@", address2];
 }
 
 // optional
