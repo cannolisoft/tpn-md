@@ -100,22 +100,25 @@
 
 - (void) tableView: (UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
+  //deselect the chosen row, making it more like a button
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
   if ( indexPath.section != 0 )
   {
-    NSString* uri = [[NSString alloc] initWithFormat:@"tel:%@", [annotation phone]];
+    NSString* uri = [NSString stringWithFormat:@"tel:%@", [annotation phone]];
     NSURL *url = [NSURL URLWithString:uri];
     [[UIApplication sharedApplication] openURL:url];	 
   }
   else
   {
 
-    NSString* startAddr = [NSString stringWithFormat:@"%@,%@[%@]", [annotation address], [annotation address2], [annotation name]];
+    NSString* startAddr = [NSString stringWithFormat:@"%@,%@", [annotation address], [annotation address2]];
     NSString* urlAddr = [NSString stringWithFormat:@"http://maps.google.com/maps?saddr=Current Location&daddr=%@", startAddr];
 
-    NSURL* url = [[NSURL alloc] initWithString:[urlAddr stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
+    NSURL* url = [NSURL URLWithString:[urlAddr stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
 
     [[UIApplication sharedApplication] openURL:url];
-    [url release];
   }
 }
 
