@@ -48,7 +48,6 @@
 #import "MapViewController.h"
 #import "DetailViewController.h"
 #import "OfficeAnnotation.h"
-#import "BridgeAnnotation.h"
 
 enum
 {
