@@ -20,6 +20,8 @@
 		5376EF070F7AE77A005C5273 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5376EF060F7AE77A005C5273 /* MapKit.framework */; };
 		537DA6BA1108F80B0045D54C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 537DA6B91108F80B0045D54C /* DetailViewController.m */; };
 		537DA6BE1108F8460045D54C /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 537DA6BC1108F8460045D54C /* DetailViewController.xib */; };
+		C0567C2312C98B0000F53824 /* default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C0567C2212C98B0000F53824 /* default.jpg */; };
+		C0686C2B12C970BD00787B83 /* knightdale_HC.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C0686C2A12C970BD00787B83 /* knightdale_HC.jpg */; };
 		C098272312C72CCA00306F3B /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C098272212C72CCA00306F3B /* logo.png */; };
 		C6E7F17212C73073009F58D7 /* WakeForest454.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C6E7F17112C73073009F58D7 /* WakeForest454.jpg */; };
 /* End PBXBuildFile section */
@@ -47,6 +49,8 @@
 		537DA6B81108F80B0045D54C /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		537DA6B91108F80B0045D54C /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		537DA6BD1108F8460045D54C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController.xib; sourceTree = "<group>"; };
+		C0567C2212C98B0000F53824 /* default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default.jpg; sourceTree = "<group>"; };
+		C0686C2A12C970BD00787B83 /* knightdale_HC.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = knightdale_HC.jpg; sourceTree = "<group>"; };
 		C098272212C72CCA00306F3B /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = SOURCE_ROOT; };
 		C6E7F17112C73073009F58D7 /* WakeForest454.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = WakeForest454.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,6 +111,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C0567C2212C98B0000F53824 /* default.jpg */,
+				C0686C2A12C970BD00787B83 /* knightdale_HC.jpg */,
 				C6E7F17112C73073009F58D7 /* WakeForest454.jpg */,
 				C098272212C72CCA00306F3B /* logo.png */,
 				5321F1900F7AE5BE00EC9E3A /* Info.plist */,
@@ -156,7 +162,6 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "tpnmd" */;
 			compatibilityVersion = "Xcode 3.1";
-			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -184,6 +189,8 @@
 				537DA6BE1108F8460045D54C /* DetailViewController.xib in Resources */,
 				C098272312C72CCA00306F3B /* logo.png in Resources */,
 				C6E7F17212C73073009F58D7 /* WakeForest454.jpg in Resources */,
+				C0686C2B12C970BD00787B83 /* knightdale_HC.jpg in Resources */,
+				C0567C2312C98B0000F53824 /* default.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

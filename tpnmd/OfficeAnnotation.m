@@ -46,12 +46,11 @@
  */
 
 #import "OfficeAnnotation.h"
+#import <UIKit/UIKit.h>
 
 @implementation OfficeAnnotation 
 
-@synthesize image;
-//@synthesize title;
-//@synthesize subtitle;
+@synthesize imagePath;
 
 @synthesize name;
 @synthesize address;
@@ -71,7 +70,6 @@
 
 - (void)dealloc
 {
-    [image release];
     [super dealloc];
 }
 
@@ -84,6 +82,11 @@
 - (NSString *)subtitle
 {
     return [address stringByAppendingFormat:@"\n%@", address2];
+}
+
+- (UIImage *) getUIImage 
+{
+  return [UIImage imageNamed: imagePath ];
 }
 
 // optional
