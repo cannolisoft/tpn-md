@@ -54,6 +54,7 @@
     //NSString *subtitle;
 	
 	NSString *name;
+	NSString *type;
 	
 	NSString *address;
 	NSString *address2;
@@ -68,6 +69,7 @@
 //@property (nonatomic, retain) NSString *subtitle;
 
 @property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *type;
 @property (nonatomic, retain) NSString *address;
 @property (nonatomic, retain) NSString *address2;
 

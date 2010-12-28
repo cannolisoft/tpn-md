@@ -58,7 +58,7 @@ enum
 
 @implementation MapViewController
 
-@synthesize mapView, detailViewController, mapAnnotations;
+@synthesize mapView, detailViewController, urgentCareAnnotations, practiceAnnotations;
 
 
 #pragma mark -
@@ -74,7 +74,7 @@ enum
 
 
 
--(void)zoomToFitMapAnnotations:(NSArray *)annotations
+-(void)zoomToFitpracticeAnnotations:(NSArray *)annotations
 {
     if([annotations count] == 0)
         return;
@@ -123,6 +123,33 @@ enum
     [self.mapView setRegion:newRegion animated:YES];
 }
 
+- (void)plotAll
+{
+	[self.mapView removeAnnotations:self.mapView.annotations];
+	//[self.mapView addAnnotations:self.practiceAnnotations];
+	
+	[self.mapView addAnnotations:urgentCareAnnotations];
+	[self.mapView addAnnotations:practiceAnnotations];
+	
+	//[self.mapView selectAnnotation:[self.urgentCareAnnotations objectAtIndex:0] animated:YES];
+}
+
+- (void)plotUrgentCare
+{
+	[self.mapView removeAnnotations:self.mapView.annotations];
+	[self.mapView addAnnotations:urgentCareAnnotations];
+	
+	//[self.mapView selectAnnotation:[self.urgentCareAnnotations objectAtIndex:0] animated:YES];
+}
+
+- (void)plotPractices
+{
+	[self.mapView removeAnnotations:self.mapView.annotations];
+	[self.mapView addAnnotations:practiceAnnotations];
+	
+	//[self.mapView selectAnnotation:[self.practiceAnnotations objectAtIndex:0] animated:YES];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     // bring back the toolbar
@@ -141,7 +168,7 @@ enum
 	[temporaryBarButtonItem release];
     
     // create out annotations array
-    self.mapAnnotations = [[NSMutableArray alloc] initWithCapacity:20];
+    self.practiceAnnotations = [[NSMutableArray alloc] initWithCapacity:20];
 	
 	
 	OfficeAnnotation *officeAnnotation = nil;
@@ -149,184 +176,210 @@ enum
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.name = @"Chapel Hill North Medical Center";
 	officeAnnotation.address = @"1838 Martin Luther King, Jr. Blvd.";
-	officeAnnotation.address2 = @"Chapel Hill, North Carolina 27514";
+	officeAnnotation.address2 = @"Chapel Hill, NC 27514";
 	officeAnnotation.phone = @"919-960-7461";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.964467];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.058385];
-	[self.mapAnnotations addObject: officeAnnotation];
+	[self.practiceAnnotations addObject: officeAnnotation];
 	[officeAnnotation release];
 	
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.name = @"Chatham Crossing";
 	officeAnnotation.address = @"11312 US 15-501N, Suite 308";
-	officeAnnotation.address2 = @"Chapel Hill, North Carolina 27517";
+	officeAnnotation.address2 = @"Chapel Hill, NC 27517";
 	officeAnnotation.phone = @"919-960-6094";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.84619];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.09073];
-	[self.mapAnnotations addObject: officeAnnotation];
+	[self.practiceAnnotations addObject: officeAnnotation];
 	[officeAnnotation release];
 	
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.name = @"Chatham Primary Care";
 	officeAnnotation.address = @"311 N. Fir Avenue";
-	officeAnnotation.address2 = @"Siler City, North Carolina 27344";
+	officeAnnotation.address2 = @"Siler City, NC 27344";
 	officeAnnotation.phone = @"919-742-6032";	
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.722466];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.470778];
-	[self.mapAnnotations addObject: officeAnnotation];
+	[self.practiceAnnotations addObject: officeAnnotation];
 	[officeAnnotation release];
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.name = @"Executive Health (The Carolina Clinic)";
 	officeAnnotation.address = @"315 Meadowmont Village Circle";
-	officeAnnotation.address2 = @"Chapel Hill, North Carolina 27517";
+	officeAnnotation.address2 = @"Chapel Hill, NC 27517";
 	officeAnnotation.phone = @"919-962-2862";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.904847];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.010439];
-	[self.mapAnnotations addObject: officeAnnotation];
+	[self.practiceAnnotations addObject: officeAnnotation];
 	[officeAnnotation release];
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.name = @"Highgate Family Medical Center";
 	officeAnnotation.address = @"5317 Highgate Drive, Suite 117";
-	officeAnnotation.address2 = @"Durham, North Carolina 27713";
+	officeAnnotation.address2 = @"Durham, NC 27713";
 	officeAnnotation.phone = @"919-361-2644";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.910117];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.941535];
-	[self.mapAnnotations addObject: officeAnnotation];
+	[self.practiceAnnotations addObject: officeAnnotation];
 	[officeAnnotation release];
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.name = @"Pittsboro Family Medicine";
 	officeAnnotation.address = @"855 East Street";
-	officeAnnotation.address2 = @"Pittsboro, North Carolina 27312";
+	officeAnnotation.address2 = @"Pittsboro, NC 27312";
 	officeAnnotation.phone = @"919-545-0911";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.719903];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.162602];
-	[self.mapAnnotations addObject: officeAnnotation];
+	[self.practiceAnnotations addObject: officeAnnotation];
 	[officeAnnotation release];
 
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.name = @"Sanford Hematology Oncology";
 	officeAnnotation.address = @"1212 Central Drive, Suite 201";
-	officeAnnotation.address2 = @"Sanford, North Carolina 27330";
+	officeAnnotation.address2 = @"Sanford, NC 27330";
 	officeAnnotation.phone = @"919-775-8183";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.467442];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.186845];
-	[self.mapAnnotations addObject: officeAnnotation];
+	[self.practiceAnnotations addObject: officeAnnotation];
 	[officeAnnotation release];
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.name = @"Sanford Specialty Clinics";
 	officeAnnotation.address = @"1301 Central Drive";
-	officeAnnotation.address2 = @"Sanford, North Carolina 27330";	
+	officeAnnotation.address2 = @"Sanford, NC 27330";	
 	officeAnnotation.phone = @"919-718-9512";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.466466];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.185844];
-	[self.mapAnnotations addObject: officeAnnotation];
+	[self.practiceAnnotations addObject: officeAnnotation];
 	[officeAnnotation release];
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.name = @"UNC Family Medicine at Hillsborough";
 	officeAnnotation.address = @"2201 Old N.C. Highway 86";
-	officeAnnotation.address2 = @"Hillsborough, North Carolina 27278";
+	officeAnnotation.address2 = @"Hillsborough, NC 27278";
 	officeAnnotation.phone = @"919-732-2909";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:36.053007];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.103842];
-	[self.mapAnnotations addObject: officeAnnotation];
+	[self.practiceAnnotations addObject: officeAnnotation];
 	[officeAnnotation release];
 	
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.name = @"University Pediatrics at Highgate";
 	officeAnnotation.address = @"5322 Highgate Dr., Suite 144";
-	officeAnnotation.address2 = @"Durham, North Carolina 27713";
+	officeAnnotation.address2 = @"Durham, NC 27713";
 	officeAnnotation.phone = @"919-806-3335";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.909862];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.941376];
-	[self.mapAnnotations addObject: officeAnnotation];
+	[self.practiceAnnotations addObject: officeAnnotation];
 	[officeAnnotation release];
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.name = @"Rex Family Practice of Knightdale";
 	officeAnnotation.address = @"6602 Knightdale Blvd., Suite 202";
-	officeAnnotation.address2 = @"Knightdale, North Carolina 27545";
+	officeAnnotation.address2 = @"Knightdale, NC 27545";
 	officeAnnotation.phone = @"919-747-5270";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.795562];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.510993];
-	[self.mapAnnotations addObject: officeAnnotation];
+	[self.practiceAnnotations addObject: officeAnnotation];
 	[officeAnnotation release];
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.name = @"Rex Family Practice of Wakefield";
 	officeAnnotation.address = @"11200 Governor Manly Way, Suite 205";
-	officeAnnotation.address2 = @"Raleigh, North Carolina 27614";
+	officeAnnotation.address2 = @"Raleigh, NC 27614";
 	officeAnnotation.phone = @"919-570-7700";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.942431];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.599759];
-	[self.mapAnnotations addObject: officeAnnotation];
+	[self.practiceAnnotations addObject: officeAnnotation];
 	[officeAnnotation release];
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.name = @"Rex Primary Care of Holly Springs";
 	officeAnnotation.address = @"208 Village Walk Drive";
-	officeAnnotation.address2 = @"Holly Springs, North Carolina 27540";
+	officeAnnotation.address2 = @"Holly Springs, NC 27540";
 	officeAnnotation.phone = @"919-552-8911";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.639555];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.833773];
-	[self.mapAnnotations addObject: officeAnnotation];
+	[self.practiceAnnotations addObject: officeAnnotation];
 	[officeAnnotation release];
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.name = @"Rex Senior Health Center";
 	officeAnnotation.address = @"512 E. Davie Street";
-	officeAnnotation.address2 = @"Raleigh, North Carolina 27601";
+	officeAnnotation.address2 = @"Raleigh, NC 27601";
 	officeAnnotation.phone = @"919-832-2400";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.775227];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.631606];
-	[self.mapAnnotations addObject: officeAnnotation];
+	[self.practiceAnnotations addObject: officeAnnotation];
 	[officeAnnotation release];
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.name = @"Rex/UNC Family Practice of Panther Creek ";
 	officeAnnotation.address = @"10030 Green Level Church Road, Suite 808";
-	officeAnnotation.address2 = @"Cary, North Carolina 27519";
+	officeAnnotation.address2 = @"Cary, NC 27519";
 	officeAnnotation.phone = @"919-481-4997";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.819609];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.902204];
-	[self.mapAnnotations addObject: officeAnnotation];
+	[self.practiceAnnotations addObject: officeAnnotation];
 	[officeAnnotation release];
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.name = @"Boylan Healthcare (Browning Place)";
 	officeAnnotation.address = @"3900 Browning Place, Suite 101";
-	officeAnnotation.address2 = @"Raleigh, North Carolina 27609";
+	officeAnnotation.address2 = @"Raleigh, NC 27609";
 	officeAnnotation.phone = @"919-781-9650";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.830793];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.633088];
-	[self.mapAnnotations addObject: officeAnnotation];
+	[self.practiceAnnotations addObject: officeAnnotation];
 	[officeAnnotation release];
 	
 	officeAnnotation = [[OfficeAnnotation alloc] init];
 	officeAnnotation.name = @"Boylan Healthcare (Health Park)";
 	officeAnnotation.address = @"8300 Health Park, Suite 309";
-	officeAnnotation.address2 = @"Raleigh, North Carolina 27615";
+	officeAnnotation.address2 = @"Raleigh, NC 27615";
 	officeAnnotation.phone = @"919-781-9650";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.894875];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.659756];
-	[self.mapAnnotations addObject: officeAnnotation];
+	[self.practiceAnnotations addObject: officeAnnotation];
 	[officeAnnotation release];
+	
+	
+	self.urgentCareAnnotations = [[NSMutableArray alloc] initWithCapacity:20];
+	
+	officeAnnotation = [[OfficeAnnotation alloc] init];
+	officeAnnotation.type = @"Urgent Care";
+	officeAnnotation.name = @"Rex Urgent Care of Cary";
+	officeAnnotation.address = @"1515 Southwest Cary Parkway, Suite 130";
+	officeAnnotation.address2 = @"Cary, NC 27511";
+	officeAnnotation.phone = @"919-387-3180";
+	officeAnnotation.latitude = [NSNumber numberWithFloat:35.755050];
+	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.809045];
+	[self.urgentCareAnnotations addObject: officeAnnotation];
+	[officeAnnotation release];
+	
+	officeAnnotation = [[OfficeAnnotation alloc] init];
+	officeAnnotation.type = @"Urgent Care";
+	officeAnnotation.name = @"Rex Urgent Care of Wakefield";
+	officeAnnotation.address = @"4420 Lake Boone Trail";
+	officeAnnotation.address2 = @"Raleigh, NC 27607";
+	officeAnnotation.phone = @"919-784-3419";
+	officeAnnotation.latitude = [NSNumber numberWithFloat:35.815467];
+	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.704067];
+	[self.urgentCareAnnotations addObject: officeAnnotation];
+	[officeAnnotation release];
+	
+	
 
-    //[self gotoLocation];
-	[self zoomToFitMapAnnotations:self.mapAnnotations];	
-	[self.mapView addAnnotations:self.mapAnnotations];
+	[self zoomToFitpracticeAnnotations:self.practiceAnnotations];
+	[self plotAll];
 }
 
 - (void)viewDidUnload
 {
-    self.mapAnnotations = nil;
+    self.practiceAnnotations = nil;
     self.detailViewController = nil;
     self.mapView = nil;
 }
@@ -335,7 +388,7 @@ enum
 {
     [mapView release];
     [detailViewController release];
-    [mapAnnotations release];
+    [practiceAnnotations release];
     
     [super dealloc];
 }
@@ -344,29 +397,43 @@ enum
 #pragma mark -
 #pragma mark ButtonActions
 
-- (IBAction)cityAction:(id)sender
+- (IBAction)filterAction:(id)sender
 {
-    [self gotoLocation];//•• avoid this by checking its region from ours??
-    
-    [self.mapView removeAnnotations:self.mapView.annotations];  // remove any annotations that exist
-    
-    [self.mapView addAnnotation:[self.mapAnnotations objectAtIndex:kCityAnnotationIndex]];
+	
+	UIActionSheet *filterAlert = [[UIActionSheet alloc] initWithTitle:@"Choose care centers to display:"
+												delegate:self cancelButtonTitle:@"Cancel"
+												destructiveButtonTitle:nil
+												otherButtonTitles:	@"All",
+																	@"Urgent Care",		
+																	@"Practices",
+												nil,
+												nil];
+	
+	filterAlert.actionSheetStyle = 	self.parentViewController.navigationController.navigationBar.barStyle;
+	[filterAlert showInView:self.mapView.superview];
+	[filterAlert release];
 }
 
-- (IBAction)bridgeAction:(id)sender
-{
-    [self gotoLocation];
-    [self.mapView removeAnnotations:self.mapView.annotations];  // remove any annotations that exist
-    
-    [self.mapView addAnnotation:[self.mapAnnotations objectAtIndex:kBridgeAnnotationIndex]];
-}
 
-- (IBAction)allAction:(id)sender
+#pragma mark -
+#pragma mark UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [self gotoLocation];
-    [self.mapView removeAnnotations:self.mapView.annotations];  // remove any annotations that exist
-    
-    [self.mapView addAnnotations:self.mapAnnotations];
+	switch (buttonIndex) {
+		case 0:
+			//Display All
+			[self plotAll];
+			break;
+		case 1:
+			//Display Urgent Care
+			[self plotUrgentCare];
+			break;
+		case 2:
+			//Display Practices
+			[self plotPractices];
+		default:
+			break;
+	}
 }
 
 #pragma mark -
@@ -397,11 +464,14 @@ enum
         if (!pinView)
         {
             // if an existing pin view was not available, create one
-            MKPinAnnotationView* customPinView = [[[MKPinAnnotationView alloc]
+            pinView = [[[MKPinAnnotationView alloc]
                                              initWithAnnotation:annotation reuseIdentifier:BridgeAnnotationIdentifier] autorelease];
-            customPinView.pinColor = MKPinAnnotationColorPurple;
-            customPinView.animatesDrop = YES;
-            customPinView.canShowCallout = YES;
+            //pinView.pinColor = MKPinAnnotationColorPurple;
+            pinView.animatesDrop = YES;
+            pinView.canShowCallout = YES;
+			
+
+			
             
             // add a detail disclosure button to the callout which will open a new view controller page
             //
@@ -413,14 +483,18 @@ enum
             //[rightButton addTarget:self
             //                action:@selector(showDetails:)
             //      forControlEvents:UIControlEventTouchUpInside];
-            customPinView.rightCalloutAccessoryView = rightButton;
+            pinView.rightCalloutAccessoryView = rightButton;
 
-            return customPinView;
+            //return customPinView;
         }
-        else
-        {
-            pinView.annotation = annotation;
-        }
+
+		OfficeAnnotation *office = annotation;
+		if([office.type isEqualToString:@"Urgent Care"]){
+			pinView.pinColor = MKPinAnnotationColorRed;	
+		}else{
+			pinView.pinColor = MKPinAnnotationColorPurple;
+		}			
+        pinView.annotation = annotation;
         return pinView;
     }    
     return nil;

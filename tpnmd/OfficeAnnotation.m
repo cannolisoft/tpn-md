@@ -54,6 +54,7 @@
 //@synthesize subtitle;
 
 @synthesize name;
+@synthesize type;
 @synthesize address;
 @synthesize address2;
 @synthesize phone;
