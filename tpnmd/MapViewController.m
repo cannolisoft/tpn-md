@@ -74,7 +74,7 @@ enum
 
 
 
--(void)zoomToFitpracticeAnnotations:(NSArray *)annotations
+-(void)zoomToFitMapAnnotations:(NSArray *)annotations
 {
     if([annotations count] == 0)
         return;
@@ -167,8 +167,8 @@ enum
 	self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
 	[temporaryBarButtonItem release];
     
-    // create out annotations array
-    self.practiceAnnotations = [[NSMutableArray alloc] initWithCapacity:20];
+        // create out annotations array
+        self.practiceAnnotations = [[NSMutableArray alloc] initWithCapacity:20];
 	
 	
 	OfficeAnnotation *officeAnnotation = nil;
@@ -178,6 +178,7 @@ enum
 	officeAnnotation.address = @"1838 Martin Luther King, Jr. Blvd.";
 	officeAnnotation.address2 = @"Chapel Hill, NC 27514";
 	officeAnnotation.phone = @"919-960-7461";
+        officeAnnotation.imagePath = @"default.jpg";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.964467];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.058385];
 	[self.practiceAnnotations addObject: officeAnnotation];
@@ -189,6 +190,7 @@ enum
 	officeAnnotation.address = @"11312 US 15-501N, Suite 308";
 	officeAnnotation.address2 = @"Chapel Hill, NC 27517";
 	officeAnnotation.phone = @"919-960-6094";
+        officeAnnotation.imagePath = @"default.jpg";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.84619];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.09073];
 	[self.practiceAnnotations addObject: officeAnnotation];
@@ -200,6 +202,7 @@ enum
 	officeAnnotation.address = @"311 N. Fir Avenue";
 	officeAnnotation.address2 = @"Siler City, NC 27344";
 	officeAnnotation.phone = @"919-742-6032";	
+        officeAnnotation.imagePath = @"default.jpg";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.722466];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.470778];
 	[self.practiceAnnotations addObject: officeAnnotation];
@@ -210,6 +213,7 @@ enum
 	officeAnnotation.address = @"315 Meadowmont Village Circle";
 	officeAnnotation.address2 = @"Chapel Hill, NC 27517";
 	officeAnnotation.phone = @"919-962-2862";
+        officeAnnotation.imagePath = @"default.jpg";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.904847];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.010439];
 	[self.practiceAnnotations addObject: officeAnnotation];
@@ -220,6 +224,7 @@ enum
 	officeAnnotation.address = @"5317 Highgate Drive, Suite 117";
 	officeAnnotation.address2 = @"Durham, NC 27713";
 	officeAnnotation.phone = @"919-361-2644";
+        officeAnnotation.imagePath = @"default.jpg";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.910117];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.941535];
 	[self.practiceAnnotations addObject: officeAnnotation];
@@ -230,6 +235,7 @@ enum
 	officeAnnotation.address = @"855 East Street";
 	officeAnnotation.address2 = @"Pittsboro, NC 27312";
 	officeAnnotation.phone = @"919-545-0911";
+        officeAnnotation.imagePath = @"default.jpg";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.719903];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.162602];
 	[self.practiceAnnotations addObject: officeAnnotation];
@@ -240,6 +246,7 @@ enum
 	officeAnnotation.address = @"1212 Central Drive, Suite 201";
 	officeAnnotation.address2 = @"Sanford, NC 27330";
 	officeAnnotation.phone = @"919-775-8183";
+        officeAnnotation.imagePath = @"default.jpg";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.467442];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.186845];
 	[self.practiceAnnotations addObject: officeAnnotation];
@@ -250,6 +257,7 @@ enum
 	officeAnnotation.address = @"1301 Central Drive";
 	officeAnnotation.address2 = @"Sanford, NC 27330";	
 	officeAnnotation.phone = @"919-718-9512";
+        officeAnnotation.imagePath = @"default.jpg";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.466466];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.185844];
 	[self.practiceAnnotations addObject: officeAnnotation];
@@ -260,6 +268,7 @@ enum
 	officeAnnotation.address = @"2201 Old N.C. Highway 86";
 	officeAnnotation.address2 = @"Hillsborough, NC 27278";
 	officeAnnotation.phone = @"919-732-2909";
+        officeAnnotation.imagePath = @"default.jpg";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:36.053007];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-79.103842];
 	[self.practiceAnnotations addObject: officeAnnotation];
@@ -271,6 +280,7 @@ enum
 	officeAnnotation.address = @"5322 Highgate Dr., Suite 144";
 	officeAnnotation.address2 = @"Durham, NC 27713";
 	officeAnnotation.phone = @"919-806-3335";
+        officeAnnotation.imagePath = @"default.jpg";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.909862];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.941376];
 	[self.practiceAnnotations addObject: officeAnnotation];
@@ -281,6 +291,7 @@ enum
 	officeAnnotation.address = @"6602 Knightdale Blvd., Suite 202";
 	officeAnnotation.address2 = @"Knightdale, NC 27545";
 	officeAnnotation.phone = @"919-747-5270";
+        officeAnnotation.imagePath = @"knightdale_HC.jpg";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.795562];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.510993];
 	[self.practiceAnnotations addObject: officeAnnotation];
@@ -291,6 +302,7 @@ enum
 	officeAnnotation.address = @"11200 Governor Manly Way, Suite 205";
 	officeAnnotation.address2 = @"Raleigh, NC 27614";
 	officeAnnotation.phone = @"919-570-7700";
+        officeAnnotation.imagePath = @"default.jpg";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.942431];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.599759];
 	[self.practiceAnnotations addObject: officeAnnotation];
@@ -301,6 +313,7 @@ enum
 	officeAnnotation.address = @"208 Village Walk Drive";
 	officeAnnotation.address2 = @"Holly Springs, NC 27540";
 	officeAnnotation.phone = @"919-552-8911";
+        officeAnnotation.imagePath = @"default.jpg";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.639555];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.833773];
 	[self.practiceAnnotations addObject: officeAnnotation];
@@ -311,6 +324,7 @@ enum
 	officeAnnotation.address = @"512 E. Davie Street";
 	officeAnnotation.address2 = @"Raleigh, NC 27601";
 	officeAnnotation.phone = @"919-832-2400";
+        officeAnnotation.imagePath = @"default.jpg";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.775227];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.631606];
 	[self.practiceAnnotations addObject: officeAnnotation];
@@ -321,6 +335,7 @@ enum
 	officeAnnotation.address = @"10030 Green Level Church Road, Suite 808";
 	officeAnnotation.address2 = @"Cary, NC 27519";
 	officeAnnotation.phone = @"919-481-4997";
+        officeAnnotation.imagePath = @"default.jpg";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.819609];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.902204];
 	[self.practiceAnnotations addObject: officeAnnotation];
@@ -331,6 +346,7 @@ enum
 	officeAnnotation.address = @"3900 Browning Place, Suite 101";
 	officeAnnotation.address2 = @"Raleigh, NC 27609";
 	officeAnnotation.phone = @"919-781-9650";
+        officeAnnotation.imagePath = @"default.jpg";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.830793];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.633088];
 	[self.practiceAnnotations addObject: officeAnnotation];
@@ -340,6 +356,7 @@ enum
 	officeAnnotation.name = @"Boylan Healthcare (Health Park)";
 	officeAnnotation.address = @"8300 Health Park, Suite 309";
 	officeAnnotation.address2 = @"Raleigh, NC 27615";
+        officeAnnotation.imagePath = @"default.jpg";
 	officeAnnotation.phone = @"919-781-9650";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.894875];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.659756];
@@ -373,7 +390,7 @@ enum
 	
 	
 
-	[self zoomToFitpracticeAnnotations:self.practiceAnnotations];
+	[self zoomToFitMapAnnotations:self.practiceAnnotations];
 	[self plotAll];
 }
 

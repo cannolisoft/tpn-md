@@ -49,7 +49,7 @@
 #import "OfficeAnnotation.h"
 
 @implementation DetailViewController
-@synthesize table, image, annotation;
+@synthesize table, imageView, annotation;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib
 - (void)viewDidLoad
@@ -65,6 +65,15 @@
 	
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{       
+
+  UIImage *hospitalImage = [annotation getUIImage];
+  [imageView setImage: hospitalImage];
+  [imageView setNeedsDisplay];
+}
+
+
 
 - (void)dealloc
 {
@@ -72,7 +81,7 @@
 }
 
 - (void)setAnnotation:(id <MKAnnotation>)newAnnotation
-{
+{       
 	annotation = newAnnotation;
 
 	[table reloadData];
@@ -100,7 +109,7 @@
   else
   {
 
-    NSString* startAddr = [NSString stringWithFormat:@"%@,%@", [annotation address], [annotation address2]];
+    NSString* startAddr = [NSString stringWithFormat:@"%@,%@[%@]", [annotation address], [annotation address2], [annotation name]];
     NSString* urlAddr = [NSString stringWithFormat:@"http://maps.google.com/maps?saddr=Current Location&daddr=%@", startAddr];
 
     NSURL* url = [[NSURL alloc] initWithString:[urlAddr stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];

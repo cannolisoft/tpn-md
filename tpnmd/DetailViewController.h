@@ -54,13 +54,13 @@
 {
 
   UITableView* table;
-  UIImageView* image;
+  UIImageView* imageView;
 
   OfficeAnnotation* annotation;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* table;
-@property (nonatomic, retain) IBOutlet UIImageView* image;
+@property (nonatomic, retain) IBOutlet UIImageView* imageView;
 @property (nonatomic, retain) OfficeAnnotation* annotation;
 
 @end
