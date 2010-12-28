@@ -61,7 +61,7 @@
 @synthesize longitude;
 
 
-- (CLLocationCoordinate2D)coordinate;
+- (CLLocationCoordinate2D)coordinate
 {
     CLLocationCoordinate2D theCoordinate;
     theCoordinate.latitude = [latitude doubleValue];

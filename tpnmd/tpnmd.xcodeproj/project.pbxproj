@@ -15,7 +15,6 @@
 		5321F18F0F7AE5BA00EC9E3A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5321F18D0F7AE5BA00EC9E3A /* MainWindow.xib */; };
 		533D375B10B329010057E53B /* OfficeAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 533D375A10B329010057E53B /* OfficeAnnotation.m */; };
 		533D37F410B32D500057E53B /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533D37F210B32D500057E53B /* MapViewController.xib */; };
-		534BB35210B4A47500C8BE22 /* BridgeAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 534BB35110B4A47500C8BE22 /* BridgeAnnotation.m */; };
 		536EE47A10B358610080A190 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 536EE47910B358610080A190 /* MapViewController.m */; };
 		5376EF070F7AE77A005C5273 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5376EF060F7AE77A005C5273 /* MapKit.framework */; };
 		537DA6BA1108F80B0045D54C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 537DA6B91108F80B0045D54C /* DetailViewController.m */; };
@@ -41,8 +40,6 @@
 		533D375A10B329010057E53B /* OfficeAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfficeAnnotation.m; sourceTree = "<group>"; };
 		533D37F310B32D500057E53B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MapViewController.xib; sourceTree = "<group>"; };
 		533D38CB10B352230057E53B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		534BB35010B4A47500C8BE22 /* BridgeAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgeAnnotation.h; sourceTree = "<group>"; };
-		534BB35110B4A47500C8BE22 /* BridgeAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BridgeAnnotation.m; sourceTree = "<group>"; };
 		536EE47810B358610080A190 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		536EE47910B358610080A190 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		5376EF060F7AE77A005C5273 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -102,8 +99,6 @@
 				537DA6B91108F80B0045D54C /* DetailViewController.m */,
 				533D375910B329010057E53B /* OfficeAnnotation.h */,
 				533D375A10B329010057E53B /* OfficeAnnotation.m */,
-				534BB35010B4A47500C8BE22 /* BridgeAnnotation.h */,
-				534BB35110B4A47500C8BE22 /* BridgeAnnotation.m */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -206,7 +201,6 @@
 				5321F1870F7AE57A00EC9E3A /* AppDelegate.m in Sources */,
 				533D375B10B329010057E53B /* OfficeAnnotation.m in Sources */,
 				536EE47A10B358610080A190 /* MapViewController.m in Sources */,
-				534BB35210B4A47500C8BE22 /* BridgeAnnotation.m in Sources */,
 				537DA6BA1108F80B0045D54C /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,6 +272,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
@@ -293,6 +288,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "TPM Md";

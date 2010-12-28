@@ -63,11 +63,11 @@ enum
 
 #pragma mark -
 
-+ (CGFloat)annotationPadding;
++ (CGFloat)annotationPadding
 {
     return 10.0f;
 }
-+ (CGFloat)calloutHeight;
++ (CGFloat)calloutHeight
 {
     return 40.0f;
 }
