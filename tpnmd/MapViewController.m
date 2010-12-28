@@ -372,6 +372,7 @@ enum
 	officeAnnotation.address = @"1515 Southwest Cary Parkway, Suite 130";
 	officeAnnotation.address2 = @"Cary, NC 27511";
 	officeAnnotation.phone = @"919-387-3180";
+        officeAnnotation.imagePath = @"default.jpg";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.755050];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.809045];
 	[self.urgentCareAnnotations addObject: officeAnnotation];
@@ -383,6 +384,7 @@ enum
 	officeAnnotation.address = @"4420 Lake Boone Trail";
 	officeAnnotation.address2 = @"Raleigh, NC 27607";
 	officeAnnotation.phone = @"919-784-3419";
+        officeAnnotation.imagePath = @"default.jpg";
 	officeAnnotation.latitude = [NSNumber numberWithFloat:35.815467];
 	officeAnnotation.longitude = [NSNumber numberWithFloat:-78.704067];
 	[self.urgentCareAnnotations addObject: officeAnnotation];

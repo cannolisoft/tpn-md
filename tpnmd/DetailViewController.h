@@ -57,6 +57,7 @@
   UIImageView* imageView;
 
   OfficeAnnotation* annotation;
+
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* table;

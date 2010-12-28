@@ -67,7 +67,6 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {       
-
   UIImage *hospitalImage = [annotation getUIImage];
   [imageView setImage: hospitalImage];
   [imageView setNeedsDisplay];
