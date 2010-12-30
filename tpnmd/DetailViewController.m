@@ -99,24 +99,27 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
     {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
+    NSString* imagePath;
     switch (indexPath.section) {
         case 0:
-            cell.textLabel.text = @"Address";
-            cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
-            cell.detailTextLabel.numberOfLines = 5;
-            cell.detailTextLabel.text = annotation.subtitle;
+            cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+            cell.textLabel.numberOfLines = 5;
+            cell.textLabel.text = annotation.subtitle;
+            imagePath = @"building.png";
             break;
         case 1:
-            cell.textLabel.text = @"Telephone";
-            cell.detailTextLabel.text = annotation.phone;
+            cell.textLabel.text = annotation.phone;
+            cell.textLabel.textAlignment = UITextAlignmentCenter;
+            imagePath = @"phone.png";
             break;
         default:
             break;
     }
-    
+    [cell.imageView setImage: [UIImage imageNamed: imagePath]];
+    [cell.imageView setNeedsDisplay];
     
     return cell;
 	
