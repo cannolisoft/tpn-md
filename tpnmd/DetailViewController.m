@@ -58,7 +58,7 @@
 - (void) tableView: (UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-  //deselect the chosen row, making it more like a button
+  // Deselect the chosen row, making it more like a button
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
   if ( indexPath.section != 0 )
@@ -99,7 +99,6 @@
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil) {
-		//cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
 	}
 	

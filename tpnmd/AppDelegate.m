@@ -21,7 +21,7 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
-    // create window and set up table view controller
+    // Create window and set up table view controller
     [window addSubview:myNavController.view];
     [window makeKeyAndVisible];
 }

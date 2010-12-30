@@ -37,7 +37,7 @@
     return name;
 }
 
-// optional
+// Optional
 - (NSString *)subtitle
 {
     return [address stringByAppendingFormat:@"\n%@", address2];
@@ -48,7 +48,7 @@
   return [UIImage imageNamed: imagePath ];
 }
 
-// optional
+// Optional
 - (NSString *)phone
 {
     return phone;

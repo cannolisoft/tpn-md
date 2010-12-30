@@ -68,10 +68,8 @@ enum
 - (void)gotoLocation
 {
 	
-    // start off by default in San Francisco
+    // Start off by default in San Francisco
     MKCoordinateRegion newRegion;
-    //newRegion.center.latitude = 37.786996;
-    //newRegion.center.longitude = -122.440100;
 	
 	newRegion.center.latitude = 35.467442;
     newRegion.center.longitude = -79.186845;
@@ -85,33 +83,26 @@ enum
 - (void)plotAll
 {
 	[self.mapView removeAnnotations:self.mapView.annotations];
-	//[self.mapView addAnnotations:self.practiceAnnotations];
 	
 	[self.mapView addAnnotations:urgentCareAnnotations];
 	[self.mapView addAnnotations:practiceAnnotations];
-	
-	//[self.mapView selectAnnotation:[self.urgentCareAnnotations objectAtIndex:0] animated:YES];
 }
 
 - (void)plotUrgentCare
 {
 	[self.mapView removeAnnotations:self.mapView.annotations];
 	[self.mapView addAnnotations:urgentCareAnnotations];
-	
-	//[self.mapView selectAnnotation:[self.urgentCareAnnotations objectAtIndex:0] animated:YES];
 }
 
 - (void)plotPractices
 {
 	[self.mapView removeAnnotations:self.mapView.annotations];
 	[self.mapView addAnnotations:practiceAnnotations];
-	
-	//[self.mapView selectAnnotation:[self.practiceAnnotations objectAtIndex:0] animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    // bring back the toolbar
+    // Bring back the toolbar
     [self.navigationController setToolbarHidden:NO animated:NO];
 }
 
@@ -120,13 +111,13 @@ enum
     self.mapView.mapType = MKMapTypeStandard;   // also MKMapTypeSatellite or MKMapTypeHybrid
 	self.mapView.showsUserLocation = TRUE;
 
-    // create a custom navigation bar button and set it to always says "Back"
+    // Create a custom navigation bar button and set it to always says "Back"
 	UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
 	temporaryBarButtonItem.title = @"Back";
 	self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
 	[temporaryBarButtonItem release];
     
-        // create out annotations array
+        // Create out annotations array
         self.practiceAnnotations = [[NSMutableArray alloc] initWithCapacity:20];
 	
 	
@@ -414,15 +405,15 @@ enum
 {
 	switch (buttonIndex) {
 		case 0:
-			//Display All
+			// Display All
 			[self plotAll];
 			break;
 		case 1:
-			//Display Urgent Care
+			// Display Urgent Care
 			[self plotUrgentCare];
 			break;
 		case 2:
-			//Display Practices
+			// Display Practices
 			[self plotPractices];
 		default:
 			break;
@@ -442,43 +433,37 @@ enum
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    // if it's the user location, just return nil.
+    // If it's the user location, just return nil.
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
     
-    // handle our two custom annotations
+    // Handle our two custom annotations
     //
     if ([annotation isKindOfClass:[OfficeAnnotation class]]) // for Golden Gate Bridge
     {
-        // try to dequeue an existing pin view first
+        // Try to dequeue an existing pin view first
         static NSString* BridgeAnnotationIdentifier = @"bridgeAnnotationIdentifier";
         MKPinAnnotationView* pinView = (MKPinAnnotationView *)
                                         [mapView dequeueReusableAnnotationViewWithIdentifier:BridgeAnnotationIdentifier];
         if (!pinView)
         {
-            // if an existing pin view was not available, create one
+            // If an existing pin view was not available, create one
             pinView = [[[MKPinAnnotationView alloc]
                                              initWithAnnotation:annotation reuseIdentifier:BridgeAnnotationIdentifier] autorelease];
-            //pinView.pinColor = MKPinAnnotationColorPurple;
             pinView.animatesDrop = YES;
             pinView.canShowCallout = YES;
 			
 
 			
             
-            // add a detail disclosure button to the callout which will open a new view controller page
+            // Add a detail disclosure button to the callout which will open a new view controller page
             //
             // note: you can assign a specific call out accessory view, or as MKMapViewDelegate you can implement:
             //  - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control;
             //
 			
             UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-            //[rightButton addTarget:self
-            //                action:@selector(showDetails:)
-            //      forControlEvents:UIControlEventTouchUpInside];
             pinView.rightCalloutAccessoryView = rightButton;
-
-            //return customPinView;
         }
 
 		OfficeAnnotation *office = annotation;
@@ -496,11 +481,11 @@ enum
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
 	
-	//MKAnnotation annotation = view.annotation;
+	// MKAnnotation annotation = view.annotation;
 	if ([view.annotation isKindOfClass:[OfficeAnnotation class]]){
 		OfficeAnnotation *officeAnnotation = (OfficeAnnotation*)view.annotation;
 		
-		// the detail view does not want a toolbar so hide it
+		// The detail view does not want a toolbar so hide it
 		[self.navigationController setToolbarHidden:YES animated:NO];
 		self.detailViewController.annotation = officeAnnotation;
 		[self.navigationController pushViewController:self.detailViewController animated:YES];
