@@ -13,7 +13,7 @@
 
 - (void)dealloc
 {
-	[myNavController release];
+    [myNavController release];
     [window release];
 	
     [super dealloc];

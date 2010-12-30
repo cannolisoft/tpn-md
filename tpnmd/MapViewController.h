@@ -4,7 +4,7 @@
  *              adding and removing both MKPinAnnotationViews 
  *              through its toolbar. 
  */
-
+  
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
@@ -16,7 +16,7 @@
     DetailViewController *detailViewController;
 	
     NSMutableArray *urgentCareAnnotations;
-	NSMutableArray *practiceAnnotations;
+    NSMutableArray *practiceAnnotations;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;

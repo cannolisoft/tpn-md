@@ -45,7 +45,7 @@
 
 - (UIImage *) getUIImage 
 {
-  return [UIImage imageNamed: imagePath ];
+    return [UIImage imageNamed: imagePath ];
 }
 
 // Optional
