@@ -5,6 +5,7 @@
  */
 
 #import <MapKit/MapKit.h>
+#import "WaitTime.h"
 
 @interface OfficeAnnotation : NSObject <MKAnnotation>
 {
@@ -18,6 +19,9 @@
     NSString *phone;
     NSNumber *latitude;
     NSNumber *longitude;
+    
+    NSString *waitTimeKey;
+    WaitTime *waitTime;
 }
 
 
@@ -30,6 +34,9 @@
 @property (nonatomic, retain) NSString *phone;
 @property (nonatomic, retain) NSNumber *latitude;
 @property (nonatomic, retain) NSNumber *longitude;
+
+@property (nonatomic, retain) NSString *waitTimeKey;
+@property (nonatomic, retain) WaitTime *waitTime;
 
 - (UIImage *) getUIImage;
 

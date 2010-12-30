@@ -26,6 +26,18 @@
     return 40.0f;
 }
 
+- (void)addWaitTimeData:(WaitTime *)waitTime
+{
+              
+    for(OfficeAnnotation *annotation in urgentCareAnnotations)
+    {
+        if([waitTime.name caseInsensitiveCompare:annotation.waitTimeKey] == NSOrderedSame)
+        {
+            annotation.waitTime = waitTime;
+        }
+    }
+}
+
 -(void)zoomToFitMapAnnotations:(NSArray *)annotations
 {
     if ([annotations count] == 0)
@@ -335,6 +347,7 @@
     officeAnnotation.imagePath = @"default.jpg";
     officeAnnotation.latitude = [NSNumber numberWithFloat:35.755050];
     officeAnnotation.longitude = [NSNumber numberWithFloat:-78.809045];
+    officeAnnotation.waitTimeKey = @"cary";
     [self.urgentCareAnnotations addObject: officeAnnotation];
     [officeAnnotation release];
     
@@ -347,6 +360,7 @@
     officeAnnotation.imagePath = @"default.jpg";
     officeAnnotation.latitude = [NSNumber numberWithFloat:35.815467];
     officeAnnotation.longitude = [NSNumber numberWithFloat:-78.704067];
+    officeAnnotation.waitTimeKey = @"wakefield";
     [self.urgentCareAnnotations addObject: officeAnnotation];
     [officeAnnotation release];
     

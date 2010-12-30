@@ -17,6 +17,8 @@
 @synthesize phone;
 @synthesize latitude;
 @synthesize longitude;
+@synthesize waitTimeKey;
+@synthesize waitTime;
 
 
 - (CLLocationCoordinate2D)coordinate
@@ -29,6 +31,17 @@
 
 - (void)dealloc
 {
+	[name release];
+	[type release];
+	[address release];
+	[address2 release];
+	[phone release];
+	[latitude release];
+	[longitude release];
+
+    [waitTimeKey release];
+    [waitTime release];
+	
     [super dealloc];
 }
 

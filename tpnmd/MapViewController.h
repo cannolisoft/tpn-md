@@ -7,6 +7,7 @@
   
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "WaitTime.h"
 
 @class DetailViewController;
 
@@ -27,6 +28,8 @@
 
 + (CGFloat)annotationPadding;
 + (CGFloat)calloutHeight;
+
+- (void)addWaitTimeData:(WaitTime *)waitTime;
 
 - (IBAction)filterAction:(id)sender;
 

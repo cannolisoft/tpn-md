@@ -116,6 +116,19 @@
             imagePath = @"phone.png";
             break;
         default:
+            if(annotation.waitTime)
+            {
+                //cell.textLabel.text = @"Wait Time";
+                cell.detailTextLabel.text = [annotation.waitTime relativeDateString];
+                //cell.detailTextLabel.text = [annotation.waitTime waitMsg];
+                //cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
+                cell.detailTextLabel.numberOfLines = 0;
+                cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
+            }
+            else
+            {
+                cell.hidden = true;   
+            }
             break;
     }
     [cell.imageView setImage: [UIImage imageNamed: imagePath]];
@@ -128,7 +141,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Number of sections is based on the data
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
