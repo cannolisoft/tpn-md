@@ -6,6 +6,13 @@
 #import "DetailViewController.h"
 #import "OfficeAnnotation.h"
 
+enum
+{
+  ADDRESS_CELL = 0,
+  TELEPHONE_CELL = 1, 
+  WAITTIME_CELL = 2,
+};
+
 @implementation DetailViewController
 @synthesize table, imageView, annotation;
 
@@ -60,13 +67,13 @@
     // Deselect the chosen row, making it more like a button
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
           
-    if ( indexPath.section != 0 )
+    if ( indexPath.section == TELEPHONE_CELL )
     {
         NSString* uri = [NSString stringWithFormat:@"tel:%@", [annotation phone]];
         NSURL *url = [NSURL URLWithString:uri];
         [[UIApplication sharedApplication] openURL:url];	 
     }
-    else
+    else if ( indexPath.section == ADDRESS_CELL )
     {
         NSString* startAddr = [NSString stringWithFormat:@"%@,%@", [annotation address], [annotation address2]];
         NSString* urlAddr = [NSString stringWithFormat:@"http://maps.google.com/maps?saddr=Current Location&daddr=%@", startAddr];
@@ -79,7 +86,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0)
+    if (indexPath.section == ADDRESS_CELL)
     {
         return 80;
     }
@@ -99,7 +106,7 @@
     NSString *imagePath = nil;
     
     //wait time cell
-    if(indexPath.section == 2)
+    if(indexPath.section == WAITTIME_CELL)
     {
         static NSString *SubtitleCellIdentifier = @"subtitleCell";
         
@@ -136,7 +143,7 @@
         }
         
         //address cell
-        if(indexPath.section == 0)
+        if(indexPath.section == ADDRESS_CELL)
         {
             cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
             cell.textLabel.numberOfLines = 5;
@@ -145,7 +152,7 @@
             imagePath = @"building.png"; 
         }
         //phone cell
-        else if(indexPath.section == 1)
+        else if(indexPath.section == TELEPHONE_CELL)
         {
             cell.textLabel.text = annotation.phone;
             
