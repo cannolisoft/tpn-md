@@ -102,7 +102,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    NSString* imagePath;
+    NSString* imagePath = nil;
     switch (indexPath.section) {
         case 0:
             cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
@@ -124,6 +124,8 @@
                 //cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
                 cell.detailTextLabel.numberOfLines = 0;
                 cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
+                imagePath = @"clock.png";
+
             }
             else
             {
@@ -131,9 +133,12 @@
             }
             break;
     }
-    [cell.imageView setImage: [UIImage imageNamed: imagePath]];
-    [cell.imageView setNeedsDisplay];
     
+    if ( imagePath != nil )
+    {
+        [cell.imageView setImage: [UIImage imageNamed: imagePath]];
+        [cell.imageView setNeedsDisplay];
+    }
     return cell;
 	
 }

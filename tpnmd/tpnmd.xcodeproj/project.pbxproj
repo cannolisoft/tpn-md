@@ -20,11 +20,12 @@
 		537DA6BA1108F80B0045D54C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 537DA6B91108F80B0045D54C /* DetailViewController.m */; };
 		537DA6BE1108F8460045D54C /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 537DA6BC1108F8460045D54C /* DetailViewController.xib */; };
 		C098272312C72CCA00306F3B /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C098272212C72CCA00306F3B /* logo.png */; };
-		C0C9D0D312CC186400553E16 /* building.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C9D0CE12CC186300553E16 /* building.png */; };
-		C0C9D0D412CC186400553E16 /* default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C0C9D0CF12CC186300553E16 /* default.jpg */; };
-		C0C9D0D512CC186400553E16 /* knightdale.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C0C9D0D012CC186300553E16 /* knightdale.jpg */; };
-		C0C9D0D612CC186400553E16 /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C9D0D112CC186300553E16 /* phone.png */; };
-		C0C9D0D712CC186400553E16 /* wakefield.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C0C9D0D212CC186400553E16 /* wakefield.jpg */; };
+		C0F92A8312CC81BC005B976C /* building.png in Resources */ = {isa = PBXBuildFile; fileRef = C0F92A7D12CC81BC005B976C /* building.png */; };
+		C0F92A8412CC81BC005B976C /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = C0F92A7E12CC81BC005B976C /* clock.png */; };
+		C0F92A8512CC81BC005B976C /* default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C0F92A7F12CC81BC005B976C /* default.jpg */; };
+		C0F92A8612CC81BC005B976C /* knightdale.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C0F92A8012CC81BC005B976C /* knightdale.jpg */; };
+		C0F92A8712CC81BC005B976C /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = C0F92A8112CC81BC005B976C /* phone.png */; };
+		C0F92A8812CC81BC005B976C /* wakefield.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C0F92A8212CC81BC005B976C /* wakefield.jpg */; };
 		C693F88B12CBF4D90062919D /* WaitTime.m in Sources */ = {isa = PBXBuildFile; fileRef = C693F88A12CBF4D90062919D /* WaitTime.m */; };
 		C6DD8A8912CBB92400F5A6CE /* WaitTimeImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = C6DD8A8812CBB92400F5A6CE /* WaitTimeImporter.m */; };
 		C6DD8A9912CBC53400F5A6CE /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C6DD8A9812CBC53400F5A6CE /* libxml2.dylib */; };
@@ -52,11 +53,12 @@
 		537DA6B91108F80B0045D54C /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		537DA6BD1108F8460045D54C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController.xib; sourceTree = "<group>"; };
 		C098272212C72CCA00306F3B /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = SOURCE_ROOT; };
-		C0C9D0CE12CC186300553E16 /* building.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building.png; sourceTree = "<group>"; };
-		C0C9D0CF12CC186300553E16 /* default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default.jpg; sourceTree = "<group>"; };
-		C0C9D0D012CC186300553E16 /* knightdale.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = knightdale.jpg; sourceTree = "<group>"; };
-		C0C9D0D112CC186300553E16 /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
-		C0C9D0D212CC186400553E16 /* wakefield.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wakefield.jpg; sourceTree = "<group>"; };
+		C0F92A7D12CC81BC005B976C /* building.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building.png; sourceTree = "<group>"; };
+		C0F92A7E12CC81BC005B976C /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
+		C0F92A7F12CC81BC005B976C /* default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default.jpg; sourceTree = "<group>"; };
+		C0F92A8012CC81BC005B976C /* knightdale.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = knightdale.jpg; sourceTree = "<group>"; };
+		C0F92A8112CC81BC005B976C /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
+		C0F92A8212CC81BC005B976C /* wakefield.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wakefield.jpg; sourceTree = "<group>"; };
 		C693F88912CBF4D90062919D /* WaitTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitTime.h; sourceTree = "<group>"; };
 		C693F88A12CBF4D90062919D /* WaitTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitTime.m; sourceTree = "<group>"; };
 		C6DD8A8712CBB92400F5A6CE /* WaitTimeImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitTimeImporter.h; sourceTree = "<group>"; };
@@ -123,7 +125,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C0C9D0CD12CC186300553E16 /* images */,
+				C0F92A7C12CC81BC005B976C /* images */,
 				C098272212C72CCA00306F3B /* logo.png */,
 				5321F1900F7AE5BE00EC9E3A /* Info.plist */,
 				5321F18D0F7AE5BA00EC9E3A /* MainWindow.xib */,
@@ -146,14 +148,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C0C9D0CD12CC186300553E16 /* images */ = {
+		C0F92A7C12CC81BC005B976C /* images */ = {
 			isa = PBXGroup;
 			children = (
-				C0C9D0CE12CC186300553E16 /* building.png */,
-				C0C9D0CF12CC186300553E16 /* default.jpg */,
-				C0C9D0D012CC186300553E16 /* knightdale.jpg */,
-				C0C9D0D112CC186300553E16 /* phone.png */,
-				C0C9D0D212CC186400553E16 /* wakefield.jpg */,
+				C0F92A7D12CC81BC005B976C /* building.png */,
+				C0F92A7E12CC81BC005B976C /* clock.png */,
+				C0F92A7F12CC81BC005B976C /* default.jpg */,
+				C0F92A8012CC81BC005B976C /* knightdale.jpg */,
+				C0F92A8112CC81BC005B976C /* phone.png */,
+				C0F92A8212CC81BC005B976C /* wakefield.jpg */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -211,11 +214,12 @@
 				533D37F410B32D500057E53B /* MapViewController.xib in Resources */,
 				537DA6BE1108F8460045D54C /* DetailViewController.xib in Resources */,
 				C098272312C72CCA00306F3B /* logo.png in Resources */,
-				C0C9D0D312CC186400553E16 /* building.png in Resources */,
-				C0C9D0D412CC186400553E16 /* default.jpg in Resources */,
-				C0C9D0D512CC186400553E16 /* knightdale.jpg in Resources */,
-				C0C9D0D612CC186400553E16 /* phone.png in Resources */,
-				C0C9D0D712CC186400553E16 /* wakefield.jpg in Resources */,
+				C0F92A8312CC81BC005B976C /* building.png in Resources */,
+				C0F92A8412CC81BC005B976C /* clock.png in Resources */,
+				C0F92A8512CC81BC005B976C /* default.jpg in Resources */,
+				C0F92A8612CC81BC005B976C /* knightdale.jpg in Resources */,
+				C0F92A8712CC81BC005B976C /* phone.png in Resources */,
+				C0F92A8812CC81BC005B976C /* wakefield.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +302,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -309,7 +313,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "TPM Md";
-				SDKROOT = iphoneos;
+				SDKROOT = iphonesimulator3.1.3;
 			};
 			name = Debug;
 		};
@@ -325,7 +329,7 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				PREBINDING = NO;
 				PRODUCT_NAME = "TPM Md";
-				SDKROOT = iphoneos;
+				SDKROOT = iphonesimulator3.1.3;
 			};
 			name = Release;
 		};

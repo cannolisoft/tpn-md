@@ -1,5 +1,4 @@
 /**
- *
  * File: WaitTime.m 
  * Description: The wait time for an office.
  */
@@ -20,12 +19,12 @@ static NSString *DEFAULT_MSG = @"Closed";
 
 - (void)dealloc
 {
-	[name release];
-	[type release];
-	[message release];
-	[time release];
-	[update release];
-	
+    [name release];
+    [type release];
+    [message release];
+    [time release];
+    [update release];
+    
     [super dealloc];
 }
 
@@ -34,7 +33,7 @@ static NSString *DEFAULT_MSG = @"Closed";
     
     NSString *msg = DEFAULT_MSG;
     
-    //if the type is '1' appears to be closed
+    // If the type is '1' appears to be closed
     if(message && [@"1" isEqualToString:type])
     {
         msg = [NSString stringWithString:message];
@@ -43,7 +42,7 @@ static NSString *DEFAULT_MSG = @"Closed";
     {
         msg = [NSString stringWithFormat:@"%@ minutes", time];
     }
-	return msg;
+    return msg;
 }
 
 -(NSString *)relativeDateString

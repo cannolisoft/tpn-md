@@ -1,9 +1,7 @@
-/*
-     File: WaitTimeImporter.h
- Abstract: Downloads, parses, and provides the wait times xml.
-  Version: 1.0
- 
-*/
+/**
+ *   File: WaitTimeImporter.h
+ *   Definition: Downloads, parses, and provides the wait times xml.
+ */
 
 #import <UIKit/UIKit.h>
 #import <libxml/tree.h>
@@ -37,13 +35,12 @@
 	
     NSDateFormatter *dateFormatter;
     NSURL *xmlURL;
-	NSURLConnection *xmlConnection;
+    NSURLConnection *xmlConnection;
 }
 
 @property (nonatomic, retain) NSURL *xmlURL;
 @property (nonatomic, assign) id <WaitTimeImporterDelegate> delegate;
 
 - (void)main;
-
 
 @end

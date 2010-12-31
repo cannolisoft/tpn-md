@@ -1,8 +1,6 @@
-/*
-     File: WaitTimeImporter.m
- Abstract: Downloads, parses, and provides the wait times xml.
-  Version: 1.0
-  
+/**
+ * File: WaitTimeImporter.m
+ * Description: Downloads, parses, and provides the wait times xml.
  */
 
 #import "WaitTimeImporter.h"
@@ -38,21 +36,18 @@ static xmlSAXHandler simpleSAXHandlerStruct;
     [super dealloc];
 }
 
-- (void)main {
+- (void) main
+{
     done = NO;
 	
     self.dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
     [dateFormatter setDateFormat: @"eee MMM dd yyyy hh:mm:ss a" ];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"EST"]];
-    //[dateFormatter setFormatterBehavior:1000];
-    //[dateFormatter setDateFormat:@"%a %b %d %Y %I:%M:%S %p"];
-    
-    //[dateFormatter setDateStyle:NSDateFormatterFullStyle];
-    //[dateFormatter setTimeStyle:NSDateFormatterLongStyle];
     [dateFormatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"US"] autorelease]];
 	
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:xmlURL];
-    // create the connection with the request and start loading the data
+
+    // Create the connection with the request and start loading the data
     xmlConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
 	
     context = xmlCreatePushParserCtxt(&simpleSAXHandlerStruct, self, NULL, 0, NULL);
@@ -72,7 +67,8 @@ static xmlSAXHandler simpleSAXHandlerStruct;
     }
 }
 
-- (void)forwardError:(NSError *)error {
+- (void) forwardError:(NSError *) error
+{
     if (self.delegate != nil && [self.delegate respondsToSelector:@selector(importer:didFailWithError:)]) {
         [self.delegate importer:self didFailWithError:error];
     }
@@ -81,19 +77,22 @@ static xmlSAXHandler simpleSAXHandlerStruct;
 #pragma mark NSURLConnection Delegate methods
 
 // Forward errors to the delegate.
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
     [self performSelectorOnMainThread:@selector(forwardError:) withObject:error waitUntilDone:NO];
     // Set the condition which ends the run loop.
     done = YES;
 }
 
 // Called when a chunk of data has been downloaded.
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
     // Process the downloaded chunk of data.
     xmlParseChunk(context, (const char *)[data bytes], [data length], 0);
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
     // Signal the context that parsing is complete by passing "1" as the last parameter.
     xmlParseChunk(context, NULL, 0, 1);
     context = NULL;
@@ -132,42 +131,52 @@ static void startElementSAX(void *parsingContext, const xmlChar *localname, cons
     
     WaitTimeImporter *importer = (WaitTimeImporter *)parsingContext;
 
-	if(!strcmp((const char *)localname, kName_Location)){
-		WaitTime *waitTime = [[WaitTime alloc] init];
-        
+    if(!strcmp((const char *)localname, kName_Location))
+    {
+        WaitTime *waitTime = [[WaitTime alloc] init];
+    
         NSString *name = nil;
         NSString *value = nil;
-		int valueLen = 0;
-        
-        //const xmlChar **attrPtr = attributes;
-		for (int i=0; i<nb_attributes; i++) {
+        int valueLen = 0;
+    
+        for ( int i = 0; i < nb_attributes; i++ )
+        {
             name = [NSString stringWithCString:(const char*)attributes[0] encoding:NSUTF8StringEncoding];
-            
+        
             valueLen = attributes[4] - attributes[3];
             value = [[NSString alloc] initWithBytes:attributes[3] length:valueLen encoding:NSUTF8StringEncoding];
 
-			if([name isEqualToString: kName_Name]){
-				waitTime.name = value;
-			}else if([name isEqualToString: kName_Type]){
-				waitTime.type = value;
-			}else if([name isEqualToString: kName_Message]){
-				waitTime.message = value;
-			}else if([name isEqualToString: kName_Time]){
-				waitTime.time = value;
-			}else if([name isEqualToString: kName_Update]){
+            if([name isEqualToString: kName_Name])
+            {
+                waitTime.name = value;
+            }
+            else if([name isEqualToString: kName_Type])
+            {
+                waitTime.type = value;
+            }
+            else if([name isEqualToString: kName_Message])
+            {
+                waitTime.message = value;
+            }
+            else if([name isEqualToString: kName_Time])
+            {
+                waitTime.time = value;
+            }
+            else if([name isEqualToString: kName_Update])
+            {
                 waitTime.update = [importer.dateFormatter dateFromString: value];
-			}
-            
+            }
+        
             [value release];
-            
-            //attrPtr += 5;
+        
             attributes += 5;
-		}
-		
-		if (importer.delegate != nil && [importer.delegate respondsToSelector:@selector(importerDidParseWaitTime:)]) {
-			[importer.delegate importerDidParseWaitTime:waitTime];
-		}
-	}
+        }
+            
+        if (importer.delegate != nil && [importer.delegate respondsToSelector:@selector(importerDidParseWaitTime:)])
+        {
+            [importer.delegate importerDidParseWaitTime:waitTime];
+        }
+    }
 }
 
 /*

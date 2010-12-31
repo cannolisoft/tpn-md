@@ -38,6 +38,7 @@
     }
 }
 
+// Zoom in on the annotations, use best zoom level while still showing all the data.
 -(void)zoomToFitMapAnnotations:(NSArray *)annotations
 {
     if ([annotations count] == 0)
@@ -53,6 +54,7 @@
     bottomRightCoord.latitude = 90;
     bottomRightCoord.longitude = -180;
 	
+    // Search for best bounding box of the annotation data 
     for(NSObject<MKAnnotation>* annotation in annotations)
     {
         topLeftCoord.longitude = fmin(topLeftCoord.longitude, annotation.coordinate.longitude);

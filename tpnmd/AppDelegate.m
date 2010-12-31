@@ -1,12 +1,14 @@
-/*
-     File: AppDelegate.m 
- Abstract: The application delegate class used for installing our navigation controller. 
-  Version: 1.0
+/**
+ * File: AppDelegate.m 
+ * Description: Application delegate class used for
+ *              installing our navigation controller. 
  */ 
 
 #import "AppDelegate.h"
 #import "MapViewController.h"
 #import "WaitTimeImporter.h"
+
+static const NSString* REXURL = @"http://www.rexhealth.com/_images/flash/rex_homepage_waittimes/rexwaitsettings.xml";
 
 @implementation AppDelegate
 
@@ -14,7 +16,7 @@
 
 - (void)dealloc
 {
-	[myNavController release];
+    [myNavController release];
     [window release];
 	
     [super dealloc];
@@ -26,7 +28,7 @@
     // create an importer object to retrieve, parse, and import into the CoreData store 
     self.importer = [[[WaitTimeImporter alloc] init] autorelease];
     importer.delegate = self;
-    importer.xmlURL = [NSURL URLWithString:@"http://www.rexhealth.com/_images/flash/rex_homepage_waittimes/rexwaitsettings.xml"];
+    importer.xmlURL = [NSURL URLWithString: REXURL];
 		
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         

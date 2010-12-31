@@ -1,5 +1,4 @@
 /**
- *
  * File: WaitTime.h 
  * Description: The wait time for an office.
  */
@@ -9,12 +8,11 @@
 
 @interface WaitTime : NSObject {
 
-	NSString *name;
-	NSString *type;
-	NSString *message;
-	NSString *time;
-	NSDate *update;
-	
+    NSString *name;
+    NSString *type;
+    NSString *message;
+    NSString *time;
+    NSDate *update;
 }
 
 @property(nonatomic, retain) NSString *name;
