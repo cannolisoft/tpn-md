@@ -40,7 +40,7 @@ static NSString *DEFAULT_MSG = @"Closed";
     }
     else if(time)
     {
-        msg = [NSString stringWithFormat:@"%@ minutes", time];
+        msg = [NSString stringWithFormat:@"%@ minute wait", time];
     }
     return msg;
 }
@@ -101,7 +101,7 @@ static NSString *DEFAULT_MSG = @"Closed";
         unit = [unit stringByAppendingString:@"s"];
     }
 
-    return [NSString stringWithFormat:@"%d %@ ago", magnitude, unit];
+    return [NSString stringWithFormat:@"updated %d %@ ago", magnitude, unit];
     
 }
 

@@ -94,50 +94,72 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil)
+    UITableViewCell *cell = nil;
+    NSString *imagePath = nil;
+    
+    //wait time cell
+    if(indexPath.section == 2)
     {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        static NSString *SubtitleCellIdentifier = @"subtitleCell";
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:SubtitleCellIdentifier];
+        if (cell == nil)
+        {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:SubtitleCellIdentifier] autorelease];
+        }
+        
+        if(annotation.waitTime)
+        {
+            cell.textLabel.text = [annotation.waitTime waitMsg];
+            cell.textLabel.adjustsFontSizeToFitWidth = YES;
+            
+            cell.detailTextLabel.text = [annotation.waitTime relativeDateString];
+            cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
+            
+            imagePath = @"clock.png";
+        }
+        else
+        {
+            cell.hidden = YES;
+        }
+
     }
-    
-    NSString* imagePath = nil;
-    switch (indexPath.section) {
-        case 0:
+    else
+    {
+        static NSString *DefaultCellIdentifier = @"defaultCell";
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:DefaultCellIdentifier];
+        if (cell == nil)
+        {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:DefaultCellIdentifier] autorelease];
+        }
+        
+        //address cell
+        if(indexPath.section == 0)
+        {
             cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
             cell.textLabel.numberOfLines = 5;
             cell.textLabel.text = annotation.subtitle;
-            imagePath = @"building.png";
-            break;
-        case 1:
+            
+            imagePath = @"building.png"; 
+        }
+        //phone cell
+        else if(indexPath.section == 1)
+        {
             cell.textLabel.text = annotation.phone;
-            cell.textLabel.textAlignment = UITextAlignmentCenter;
+            
             imagePath = @"phone.png";
-            break;
-        default:
-            if(annotation.waitTime)
-            {
-                //cell.textLabel.text = @"Wait Time";
-                cell.detailTextLabel.text = [annotation.waitTime relativeDateString];
-                cell.textLabel.text = [annotation.waitTime waitMsg];
-                cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
-                cell.detailTextLabel.numberOfLines = 0;
-                cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
-                imagePath = @"clock.png";
-
-            }
-            else
-            {
-                cell.hidden = true;   
-            }
-            break;
+        }
+        else
+        {
+            cell.hidden = YES;
+        }
     }
     
     if ( imagePath != nil )
     {
         [cell.imageView setImage: [UIImage imageNamed: imagePath]];
-        [cell.imageView setNeedsDisplay];
     }
     return cell;
 	
