@@ -120,8 +120,8 @@
             {
                 //cell.textLabel.text = @"Wait Time";
                 cell.detailTextLabel.text = [annotation.waitTime relativeDateString];
-                //cell.detailTextLabel.text = [annotation.waitTime waitMsg];
-                //cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
+                cell.textLabel.text = [annotation.waitTime waitMsg];
+                cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
                 cell.detailTextLabel.numberOfLines = 0;
                 cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
                 imagePath = @"clock.png";
