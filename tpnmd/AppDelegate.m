@@ -57,7 +57,6 @@ static const NSString* REXURL = @"http://www.rexhealth.com/_images/flash/rex_hom
 
 - (void)handleImportData:(WaitTime *)waitTime
 {
-    NSLog(@"in importerDidParseWaitTime: %@, %@, %@, %@, %@", waitTime.name, waitTime.type, waitTime.message, waitTime.time, waitTime.update);
     [mapViewController addWaitTimeData:waitTime];
 }
 
@@ -79,8 +78,8 @@ static const NSString* REXURL = @"http://www.rexhealth.com/_images/flash/rex_hom
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     self.importer = nil;
-    // handle errors as appropriate to your application...
-    NSAssert3(NO, @"Unhandled error in %s at line %d: %@", __FUNCTION__, __LINE__, [error localizedDescription]);
+
+    //TODO: How to handle failures retrieving wait time?
 }
 
 // This method will be called on a secondary thread. Forward to the main thread for safe handling of UIKit objects.
