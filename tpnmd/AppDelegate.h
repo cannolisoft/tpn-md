@@ -11,13 +11,15 @@
 @interface AppDelegate : NSObject <UIApplicationDelegate, WaitTimeImporterDelegate>
 {
     UIWindow *window;
+    
     UINavigationController *myNavController;
+    MapViewController *mapViewController;
     
     
     WaitTimeImporter *importer;
     NSOperationQueue *operationQueue;
     
-    MapViewController *mapViewController;
+    OfficeModel *officeModel;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -28,4 +30,5 @@
 @property (nonatomic, retain) WaitTimeImporter *importer;
 @property (nonatomic, retain, readonly) NSOperationQueue *operationQueue;
 
+@property (nonatomic, retain) OfficeModel *officeModel;
 @end

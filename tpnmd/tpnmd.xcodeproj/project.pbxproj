@@ -26,6 +26,7 @@
 		C0F92A8612CC81BC005B976C /* knightdale.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C0F92A8012CC81BC005B976C /* knightdale.jpg */; };
 		C0F92A8712CC81BC005B976C /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = C0F92A8112CC81BC005B976C /* phone.png */; };
 		C0F92A8812CC81BC005B976C /* wakefield.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C0F92A8212CC81BC005B976C /* wakefield.jpg */; };
+		C67F62A312D91833003BA16D /* OfficeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C67F62A212D91833003BA16D /* OfficeModel.m */; };
 		C693F88B12CBF4D90062919D /* WaitTime.m in Sources */ = {isa = PBXBuildFile; fileRef = C693F88A12CBF4D90062919D /* WaitTime.m */; };
 		C6DD8A8912CBB92400F5A6CE /* WaitTimeImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = C6DD8A8812CBB92400F5A6CE /* WaitTimeImporter.m */; };
 		C6DD8A9912CBC53400F5A6CE /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C6DD8A9812CBC53400F5A6CE /* libxml2.dylib */; };
@@ -59,6 +60,8 @@
 		C0F92A8012CC81BC005B976C /* knightdale.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = knightdale.jpg; sourceTree = "<group>"; };
 		C0F92A8112CC81BC005B976C /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
 		C0F92A8212CC81BC005B976C /* wakefield.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wakefield.jpg; sourceTree = "<group>"; };
+		C67F62A112D91833003BA16D /* OfficeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfficeModel.h; sourceTree = "<group>"; };
+		C67F62A212D91833003BA16D /* OfficeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfficeModel.m; sourceTree = "<group>"; };
 		C693F88912CBF4D90062919D /* WaitTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitTime.h; sourceTree = "<group>"; };
 		C693F88A12CBF4D90062919D /* WaitTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitTime.m; sourceTree = "<group>"; };
 		C6DD8A8712CBB92400F5A6CE /* WaitTimeImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitTimeImporter.h; sourceTree = "<group>"; };
@@ -104,6 +107,8 @@
 		29B97315FDCFA39411CA2CEA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C67F62A112D91833003BA16D /* OfficeModel.h */,
+				C67F62A212D91833003BA16D /* OfficeModel.m */,
 				5321F1880F7AE58700EC9E3A /* Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				5321F1850F7AE57A00EC9E3A /* AppDelegate.h */,
@@ -238,6 +243,7 @@
 				537DA6BA1108F80B0045D54C /* DetailViewController.m in Sources */,
 				C6DD8A8912CBB92400F5A6CE /* WaitTimeImporter.m in Sources */,
 				C693F88B12CBF4D90062919D /* WaitTime.m in Sources */,
+				C67F62A312D91833003BA16D /* OfficeModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

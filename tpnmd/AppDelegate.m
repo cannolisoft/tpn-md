@@ -12,19 +12,24 @@ static const NSString* REXURL = @"http://www.rexhealth.com/_images/flash/rex_hom
 
 @implementation AppDelegate
 
-@synthesize window, myNavController, mapViewController, importer;
+@synthesize window, myNavController, mapViewController, importer, officeModel;
 
 - (void)dealloc
 {
     [myNavController release];
     [window release];
+    
+    [officeModel release];
 	
     [super dealloc];
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
-{
-	
+{	
+    
+    officeModel = [[[OfficeModel alloc] init] retain];
+    mapViewController.officeModel = officeModel;
+    
     // create an importer object to retrieve, parse, and import into the CoreData store 
     self.importer = [[[WaitTimeImporter alloc] init] autorelease];
     importer.delegate = self;
@@ -57,7 +62,7 @@ static const NSString* REXURL = @"http://www.rexhealth.com/_images/flash/rex_hom
 
 - (void)handleImportData:(WaitTime *)waitTime
 {
-    [mapViewController addWaitTimeData:waitTime];
+    [officeModel addWaitTimeData:waitTime];
 }
 
 // Helper method for main-thread processing of import completion.

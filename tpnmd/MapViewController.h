@@ -7,7 +7,7 @@
   
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "WaitTime.h"
+#import "OfficeModel.h"
 
 @class DetailViewController;
 
@@ -16,20 +16,16 @@
     MKMapView *mapView;
     DetailViewController *detailViewController;
 	
-    NSMutableArray *urgentCareAnnotations;
-    NSMutableArray *practiceAnnotations;
+    OfficeModel *officeModel;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
 @property (nonatomic, retain) IBOutlet DetailViewController *detailViewController;
 
-@property (nonatomic, retain) NSMutableArray *urgentCareAnnotations;
-@property (nonatomic, retain) NSMutableArray *practiceAnnotations;
+@property (nonatomic, retain) OfficeModel *officeModel;
 
 + (CGFloat)annotationPadding;
 + (CGFloat)calloutHeight;
-
-- (void)addWaitTimeData:(WaitTime *)waitTime;
 
 - (IBAction)filterAction:(id)sender;
 
