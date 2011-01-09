@@ -8,11 +8,11 @@
 #import "MapViewController.h"
 #import "WaitTimeImporter.h"
 
-static const NSString* REXURL = @"http://www.rexhealth.com/_images/flash/rex_homepage_waittimes/rexwaitsettings.xml";
+static NSString* REXURL = @"http://www.rexhealth.com/_images/flash/rex_homepage_waittimes/rexwaitsettings.xml";
 
 @implementation AppDelegate
 
-@synthesize window, myNavController, mapViewController, importer, officeModel;
+@synthesize window, myNavController, mapViewController, tableViewController, importer, officeModel;
 
 - (void)dealloc
 {
@@ -29,6 +29,8 @@ static const NSString* REXURL = @"http://www.rexhealth.com/_images/flash/rex_hom
     
     officeModel = [[[OfficeModel alloc] init] retain];
     mapViewController.officeModel = officeModel;
+    tableViewController.officeModel = officeModel;
+    
     
     // create an importer object to retrieve, parse, and import into the CoreData store 
     self.importer = [[[WaitTimeImporter alloc] init] autorelease];
@@ -39,7 +41,7 @@ static const NSString* REXURL = @"http://www.rexhealth.com/_images/flash/rex_hom
         
     // add the importer to an operation queue for background processing
     [self.operationQueue addOperation:importer];
-	
+    
     // create window and set up table view controller
     [window addSubview:myNavController.view];
     [window makeKeyAndVisible];
@@ -50,6 +52,20 @@ static const NSString* REXURL = @"http://www.rexhealth.com/_images/flash/rex_hom
         operationQueue = [[NSOperationQueue alloc] init];
     }
     return operationQueue;
+}
+
+
+#pragma mark -
+#pragma mark ButtonActions
+
+- (IBAction)listAction:(id)sender
+{
+    [myNavController setViewControllers:[NSArray arrayWithObject:tableViewController] animated:YES];
+}
+
+- (IBAction)mapAction:(id)sender
+{
+    [myNavController setViewControllers:[NSArray arrayWithObject:mapViewController] animated:YES];
 }
 
 
