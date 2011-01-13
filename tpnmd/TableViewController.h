@@ -7,12 +7,15 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import "DetailViewController.h"
 #import "OfficeModel.h"
 
 @interface TableViewController : UITableViewController {
+    DetailViewController *detailViewController;
+    
     OfficeModel *officeModel;
 }
-
+@property (nonatomic, retain) IBOutlet DetailViewController *detailViewController;
 @property (nonatomic, retain) OfficeModel *officeModel;
 
 @end

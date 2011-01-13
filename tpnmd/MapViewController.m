@@ -102,19 +102,13 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     // Bring back the toolbar
-    [self.navigationController setToolbarHidden:NO animated:NO];
+    [self.navigationController setToolbarHidden:NO animated:YES];
 }
 
 - (void)viewDidLoad
 {
     self.mapView.mapType = MKMapTypeStandard;   // also MKMapTypeSatellite or MKMapTypeHybrid
     self.mapView.showsUserLocation = TRUE;
-
-    // Create a custom navigation bar button and set it to always says "Back"
-    UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
-    temporaryBarButtonItem.title = @"Back";
-    self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
-    [temporaryBarButtonItem release];
 
     NSArray *offices = [self.officeModel getAllOffices];
 
@@ -243,7 +237,7 @@
         OfficeAnnotation *officeAnnotation = (OfficeAnnotation*)view.annotation;
         
         // The detail view does not want a toolbar so hide it
-        [self.navigationController setToolbarHidden:YES animated:NO];
+        [self.navigationController setToolbarHidden:YES animated:YES];
         self.detailViewController.annotation = officeAnnotation;
         [self.navigationController pushViewController:self.detailViewController animated:YES];
     }

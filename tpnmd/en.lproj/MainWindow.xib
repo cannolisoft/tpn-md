@@ -2,18 +2,18 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">768</int>
-		<string key="IBDocument.SystemVersion">10H574</string>
+		<string key="IBDocument.SystemVersion">10J567</string>
 		<string key="IBDocument.InterfaceBuilderVersion">823</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
-		<string key="IBDocument.HIToolboxVersion">461.00</string>
+		<string key="IBDocument.HIToolboxVersion">462.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">132</string>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="89"/>
-			<integer value="69"/>
+			<integer value="97"/>
+			<integer value="68"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -55,9 +55,47 @@
 			<object class="IBUICustomObject" id="452452442">
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
+			<object class="IBUITableViewController" id="669109339">
+				<object class="NSMutableArray" key="IBUIToolbarItems">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="IBUIBarButtonItem" id="974283322">
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<reference key="IBUIToolbar"/>
+						<int key="IBUISystemItemIdentifier">5</int>
+					</object>
+					<object class="IBUIBarButtonItem" id="879288515">
+						<string key="IBUITitle">Map</string>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIStyle">1</int>
+						<reference key="IBUIToolbar"/>
+					</object>
+				</object>
+				<object class="IBUINavigationItem" key="IBUINavigationItem" id="377742286">
+					<reference key="IBUINavigationBar"/>
+					<string key="IBUITitle">Triangle Physicians Network</string>
+					<object class="IBUIBarButtonItem" key="IBUIBackBarButtonItem" id="832627843">
+						<string key="IBUITitle">Offices List</string>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIStyle">1</int>
+					</object>
+					<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+				</object>
+				<string key="IBUINibName">TableViewController</string>
+				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
+					<int key="IBUIBarStyle">1</int>
+					<bool key="IBUIPrompted">NO</bool>
+				</object>
+				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
+				<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
+					<int key="interfaceOrientation">1</int>
+				</object>
+				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+				<bool key="IBUIHorizontal">NO</bool>
+			</object>
 			<object class="IBUINavigationController" id="621172345">
-				<object class="IBUISimulatedToolbarMetrics" key="IBUISimulatedBottomBarMetrics">
-					<int key="IBUIBarStyle">2</int>
+				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
+					<int key="IBUIBarStyle">1</int>
+					<bool key="IBUIPrompted">NO</bool>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
@@ -68,12 +106,12 @@
 				<object class="IBUINavigationBar" key="IBUINavigationBar" id="976241729">
 					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
-					<string key="NSFrameSize">{0, 0}</string>
+					<string key="NSFrame">{{0, -44}, {0, 44}}</string>
 					<bool key="IBUIOpaque">NO</bool>
 					<bool key="IBUIClipsSubviews">YES</bool>
 					<bool key="IBUIMultipleTouchEnabled">YES</bool>
 					<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-					<int key="IBUIBarStyle">2</int>
+					<int key="IBUIBarStyle">1</int>
 				</object>
 				<object class="IBUIToolbar" key="IBUIToolbar" id="489422640">
 					<nil key="NSNextResponder"/>
@@ -89,6 +127,7 @@
 				<object class="NSMutableArray" key="IBUIViewControllers">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIViewController" id="678595881">
+						<string key="IBUITitle">Map</string>
 						<object class="NSMutableArray" key="IBUIToolbarItems">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUIBarButtonItem" id="563174915">
@@ -102,15 +141,20 @@
 								<reference key="IBUIToolbar"/>
 								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
-						</object>
-						<object class="IBUINavigationItem" key="IBUINavigationItem" id="675335232">
-							<reference key="IBUINavigationBar"/>
-							<string key="IBUITitle">Triangle Physician Network</string>
-							<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="492762027">
+							<object class="IBUIBarButtonItem" id="492762027">
 								<string key="IBUITitle">List</string>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIStyle">1</int>
-								<reference key="IBUINavigationItem" ref="675335232"/>
+								<reference key="IBUIToolbar"/>
+							</object>
+						</object>
+						<object class="IBUINavigationItem" key="IBUINavigationItem" id="675335232">
+							<reference key="IBUINavigationBar"/>
+							<string key="IBUITitle">Triangle Physicians Network</string>
+							<object class="IBUIBarButtonItem" key="IBUIBackBarButtonItem" id="489642389">
+								<string key="IBUITitle">Offices Map</string>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIStyle">1</int>
 							</object>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
@@ -125,54 +169,6 @@
 						<bool key="IBUIHorizontal">NO</bool>
 					</object>
 				</object>
-				<bool key="IBUIToolbarHidden">NO</bool>
-			</object>
-			<object class="IBUITableViewController" id="117348738">
-				<object class="IBUITableView" key="IBUIView" id="232360483">
-					<reference key="NSNextResponder"/>
-					<int key="NSvFlags">274</int>
-					<string key="NSFrameSize">{320, 372}</string>
-					<reference key="NSSuperview"/>
-					<object class="NSColor" key="IBUIBackgroundColor">
-						<int key="NSColorSpace">3</int>
-						<bytes key="NSWhite">MQA</bytes>
-					</object>
-					<bool key="IBUIOpaque">NO</bool>
-					<bool key="IBUIClipsSubviews">YES</bool>
-					<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-					<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-					<bool key="IBUIAlwaysBounceVertical">YES</bool>
-					<int key="IBUISeparatorStyle">1</int>
-					<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
-					<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
-					<float key="IBUIRowHeight">44</float>
-					<float key="IBUISectionHeaderHeight">22</float>
-					<float key="IBUISectionFooterHeight">22</float>
-				</object>
-				<object class="NSArray" key="IBUIToolbarItems">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-				</object>
-				<object class="IBUINavigationItem" key="IBUINavigationItem" id="95140411">
-					<reference key="IBUINavigationBar"/>
-					<string key="IBUITitle">Title</string>
-					<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="944697554">
-						<string key="IBUITitle">Map</string>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIStyle">1</int>
-						<reference key="IBUINavigationItem" ref="95140411"/>
-					</object>
-					<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-				</object>
-				<object class="IBUISimulatedToolbarMetrics" key="IBUISimulatedBottomBarMetrics"/>
-				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
-					<bool key="IBUIPrompted">NO</bool>
-				</object>
-				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-				<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
-					<int key="interfaceOrientation">1</int>
-				</object>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-				<bool key="IBUIHorizontal">NO</bool>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -227,36 +223,20 @@
 					<int key="connectionID">82</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">delegate</string>
-						<reference key="source" ref="232360483"/>
-						<reference key="destination" ref="117348738"/>
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">mapAction:</string>
+						<reference key="source" ref="879288515"/>
+						<reference key="destination" ref="452452442"/>
 					</object>
-					<int key="connectionID">85</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">dataSource</string>
-						<reference key="source" ref="232360483"/>
-						<reference key="destination" ref="117348738"/>
-					</object>
-					<int key="connectionID">86</int>
+					<int key="connectionID">103</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">tableViewController</string>
 						<reference key="source" ref="452452442"/>
-						<reference key="destination" ref="117348738"/>
+						<reference key="destination" ref="669109339"/>
 					</object>
-					<int key="connectionID">87</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">mapAction:</string>
-						<reference key="source" ref="944697554"/>
-						<reference key="destination" ref="452452442"/>
-					</object>
-					<int key="connectionID">90</int>
+					<int key="connectionID">104</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -312,6 +292,26 @@
 						<reference key="parent" ref="621172345"/>
 					</object>
 					<object class="IBObjectRecord">
+						<int key="objectID">97</int>
+						<reference key="object" ref="669109339"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="377742286"/>
+							<reference ref="879288515"/>
+							<reference ref="974283322"/>
+						</object>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">101</int>
+						<reference key="object" ref="377742286"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="832627843"/>
+						</object>
+						<reference key="parent" ref="669109339"/>
+					</object>
+					<object class="IBObjectRecord">
 						<int key="objectID">68</int>
 						<reference key="object" ref="678595881"/>
 						<object class="NSMutableArray" key="children">
@@ -319,6 +319,7 @@
 							<reference ref="675335232"/>
 							<reference ref="844177218"/>
 							<reference ref="563174915"/>
+							<reference ref="492762027"/>
 						</object>
 						<reference key="parent" ref="621172345"/>
 						<string key="objectName">MapViewController</string>
@@ -328,7 +329,7 @@
 						<reference key="object" ref="675335232"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="492762027"/>
+							<reference ref="489642389"/>
 						</object>
 						<reference key="parent" ref="678595881"/>
 						<string key="objectName">NavigationItem</string>
@@ -344,38 +345,29 @@
 						<reference key="parent" ref="678595881"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">81</int>
-						<reference key="object" ref="492762027"/>
+						<int key="objectID">105</int>
+						<reference key="object" ref="489642389"/>
 						<reference key="parent" ref="675335232"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">83</int>
-						<reference key="object" ref="117348738"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="232360483"/>
-							<reference ref="95140411"/>
-						</object>
-						<reference key="parent" ref="0"/>
+						<int key="objectID">106</int>
+						<reference key="object" ref="832627843"/>
+						<reference key="parent" ref="377742286"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">84</int>
-						<reference key="object" ref="232360483"/>
-						<reference key="parent" ref="117348738"/>
+						<int key="objectID">81</int>
+						<reference key="object" ref="492762027"/>
+						<reference key="parent" ref="678595881"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">89</int>
-						<reference key="object" ref="95140411"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="944697554"/>
-						</object>
-						<reference key="parent" ref="117348738"/>
+						<int key="objectID">102</int>
+						<reference key="object" ref="879288515"/>
+						<reference key="parent" ref="669109339"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">88</int>
-						<reference key="object" ref="944697554"/>
-						<reference key="parent" ref="95140411"/>
+						<int key="objectID">107</int>
+						<reference key="object" ref="974283322"/>
+						<reference key="parent" ref="669109339"/>
 					</object>
 				</object>
 			</object>
@@ -385,6 +377,9 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>-1.CustomClassName</string>
 					<string>-2.CustomClassName</string>
+					<string>101.IBPluginDependency</string>
+					<string>102.IBPluginDependency</string>
+					<string>107.IBPluginDependency</string>
 					<string>2.IBAttributePlaceholdersKey</string>
 					<string>2.IBEditorWindowLastContentRect</string>
 					<string>2.IBPluginDependency</string>
@@ -394,6 +389,7 @@
 					<string>55.IBEditorWindowLastContentRect</string>
 					<string>55.IBPluginDependency</string>
 					<string>55.IBViewEditorWindowController.showingLayoutRectangles</string>
+					<string>55.showNotes</string>
 					<string>57.IBPluginDependency</string>
 					<string>68.CustomClassName</string>
 					<string>68.IBEditorWindowLastContentRect</string>
@@ -401,17 +397,17 @@
 					<string>72.IBPluginDependency</string>
 					<string>77.IBPluginDependency</string>
 					<string>81.IBPluginDependency</string>
-					<string>83.CustomClassName</string>
-					<string>83.IBEditorWindowLastContentRect</string>
-					<string>83.IBPluginDependency</string>
-					<string>84.IBPluginDependency</string>
-					<string>88.IBPluginDependency</string>
-					<string>89.IBPluginDependency</string>
+					<string>97.CustomClassName</string>
+					<string>97.IBEditorWindowLastContentRect</string>
+					<string>97.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UIApplication</string>
 					<string>UIResponder</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSMutableDictionary">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<reference key="dict.sortedKeys" ref="0"/>
@@ -424,9 +420,10 @@
 					<integer value="1"/>
 					<string>AppDelegate</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{89, 11}, {320, 480}}</string>
+					<string>{{329, 16}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<boolean value="YES"/>
+					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>MapViewController</string>
 					<string>{{0, 515}, {320, 480}}</string>
@@ -435,10 +432,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>TableViewController</string>
-					<string>{{18, 34}, {320, 480}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>{{4, 22}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -458,7 +452,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">90</int>
+			<int key="maxID">109</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -643,6 +637,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">TableViewController</string>
 					<string key="superclassName">UITableViewController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">detailViewController</string>
+						<string key="NS.object.0">DetailViewController</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">detailViewController</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">detailViewController</string>
+							<string key="candidateClassName">DetailViewController</string>
+						</object>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">TableViewController.h</string>

@@ -29,7 +29,7 @@
 		C67F62A312D91833003BA16D /* OfficeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C67F62A212D91833003BA16D /* OfficeModel.m */; };
 		C693F88B12CBF4D90062919D /* WaitTime.m in Sources */ = {isa = PBXBuildFile; fileRef = C693F88A12CBF4D90062919D /* WaitTime.m */; };
 		C6BE3AE312D91E1800FC643B /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BE3AE212D91E1800FC643B /* TableViewController.m */; };
-		C6BE3AE612D91E2600FC643B /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6BE3AE412D91E2600FC643B /* ListViewController.xib */; };
+		C6BE3AE612D91E2600FC643B /* TableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6BE3AE412D91E2600FC643B /* TableViewController.xib */; };
 		C6DD8A8912CBB92400F5A6CE /* WaitTimeImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = C6DD8A8812CBB92400F5A6CE /* WaitTimeImporter.m */; };
 		C6DD8A9912CBC53400F5A6CE /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C6DD8A9812CBC53400F5A6CE /* libxml2.dylib */; };
 /* End PBXBuildFile section */
@@ -68,7 +68,7 @@
 		C693F88A12CBF4D90062919D /* WaitTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitTime.m; sourceTree = "<group>"; };
 		C6BE3AE112D91E1800FC643B /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		C6BE3AE212D91E1800FC643B /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
-		C6BE3AE512D91E2600FC643B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ListViewController.xib; sourceTree = "<group>"; };
+		C6BE3AE512D91E2600FC643B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TableViewController.xib; sourceTree = "<group>"; };
 		C6DD8A8712CBB92400F5A6CE /* WaitTimeImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitTimeImporter.h; sourceTree = "<group>"; };
 		C6DD8A8812CBB92400F5A6CE /* WaitTimeImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitTimeImporter.m; sourceTree = "<group>"; };
 		C6DD8A9812CBC53400F5A6CE /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -112,20 +112,20 @@
 		29B97315FDCFA39411CA2CEA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				C6BE3AE112D91E1800FC643B /* TableViewController.h */,
-				C6BE3AE212D91E1800FC643B /* TableViewController.m */,
-				C67F62A112D91833003BA16D /* OfficeModel.h */,
-				C67F62A212D91833003BA16D /* OfficeModel.m */,
 				5321F1880F7AE58700EC9E3A /* Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				5321F1850F7AE57A00EC9E3A /* AppDelegate.h */,
 				5321F1840F7AE57A00EC9E3A /* AppDelegate.m */,
-				536EE47810B358610080A190 /* MapViewController.h */,
-				536EE47910B358610080A190 /* MapViewController.m */,
 				537DA6B81108F80B0045D54C /* DetailViewController.h */,
 				537DA6B91108F80B0045D54C /* DetailViewController.m */,
+				536EE47810B358610080A190 /* MapViewController.h */,
+				536EE47910B358610080A190 /* MapViewController.m */,
 				533D375910B329010057E53B /* OfficeAnnotation.h */,
 				533D375A10B329010057E53B /* OfficeAnnotation.m */,
+				C67F62A112D91833003BA16D /* OfficeModel.h */,
+				C67F62A212D91833003BA16D /* OfficeModel.m */,
+				C6BE3AE112D91E1800FC643B /* TableViewController.h */,
+				C6BE3AE212D91E1800FC643B /* TableViewController.m */,
 				C693F88912CBF4D90062919D /* WaitTime.h */,
 				C693F88A12CBF4D90062919D /* WaitTime.m */,
 				C6DD8A8712CBB92400F5A6CE /* WaitTimeImporter.h */,
@@ -137,12 +137,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C6BE3AE412D91E2600FC643B /* ListViewController.xib */,
 				C0F92A7C12CC81BC005B976C /* images */,
 				C098272212C72CCA00306F3B /* logo.png */,
 				5321F1900F7AE5BE00EC9E3A /* Info.plist */,
 				5321F18D0F7AE5BA00EC9E3A /* MainWindow.xib */,
 				533D37F210B32D500057E53B /* MapViewController.xib */,
+				C6BE3AE412D91E2600FC643B /* TableViewController.xib */,
 				537DA6BC1108F8460045D54C /* DetailViewController.xib */,
 			);
 			name = Resources;
@@ -234,7 +234,7 @@
 				C0F92A8612CC81BC005B976C /* knightdale.jpg in Resources */,
 				C0F92A8712CC81BC005B976C /* phone.png in Resources */,
 				C0F92A8812CC81BC005B976C /* wakefield.jpg in Resources */,
-				C6BE3AE612D91E2600FC643B /* ListViewController.xib in Resources */,
+				C6BE3AE612D91E2600FC643B /* TableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,12 +284,12 @@
 			name = DetailViewController.xib;
 			sourceTree = "<group>";
 		};
-		C6BE3AE412D91E2600FC643B /* ListViewController.xib */ = {
+		C6BE3AE412D91E2600FC643B /* TableViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C6BE3AE512D91E2600FC643B /* en */,
 			);
-			name = ListViewController.xib;
+			name = TableViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
