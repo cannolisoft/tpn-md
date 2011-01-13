@@ -60,12 +60,30 @@ static NSString* REXURL = @"http://www.rexhealth.com/_images/flash/rex_homepage_
 
 - (IBAction)listAction:(id)sender
 {
-    [myNavController setViewControllers:[NSArray arrayWithObject:tableViewController] animated:YES];
+    [UIView transitionFromView:mapViewController.view
+                        toView:tableViewController.view
+                      duration:1.0
+                       options:UIViewAnimationOptionTransitionFlipFromLeft
+                    completion:^(BOOL finished){
+                        [myNavController 
+                         setViewControllers:[NSArray arrayWithObject:tableViewController]
+                         animated:NO];
+                    }
+     ];
 }
 
 - (IBAction)mapAction:(id)sender
 {
-    [myNavController setViewControllers:[NSArray arrayWithObject:mapViewController] animated:YES];
+    [UIView transitionFromView:tableViewController.view
+                        toView:mapViewController.view
+                      duration:1.0
+                       options:UIViewAnimationOptionTransitionFlipFromRight
+                    completion:^(BOOL finished){
+                        [myNavController 
+                         setViewControllers:[NSArray arrayWithObject:mapViewController]
+                         animated:NO];
+                    }
+     ];
 }
 
 

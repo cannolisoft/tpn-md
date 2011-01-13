@@ -56,6 +56,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUITableViewController" id="669109339">
+				<bool key="IBUIAutoresizesArchivedViewToFullSize">NO</bool>
 				<object class="NSMutableArray" key="IBUIToolbarItems">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIBarButtonItem" id="974283322">
@@ -127,6 +128,7 @@
 				<object class="NSMutableArray" key="IBUIViewControllers">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIViewController" id="678595881">
+						<bool key="IBUIAutoresizesArchivedViewToFullSize">NO</bool>
 						<string key="IBUITitle">Map</string>
 						<object class="NSMutableArray" key="IBUIToolbarItems">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -420,7 +422,7 @@
 					<integer value="1"/>
 					<string>AppDelegate</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{329, 16}, {320, 480}}</string>
+					<string>{{327, 22}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<boolean value="YES"/>
 					<boolean value="NO"/>
