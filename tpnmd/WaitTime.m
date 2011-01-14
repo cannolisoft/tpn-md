@@ -101,6 +101,8 @@ static NSString *DEFAULT_MSG = @"Closed";
         unit = [unit stringByAppendingString:@"s"];
     }
 
+    [gregorian release];
+    
     return [NSString stringWithFormat:@"updated %d %@ ago", magnitude, unit];
     
 }

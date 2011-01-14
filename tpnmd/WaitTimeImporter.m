@@ -171,10 +171,14 @@ static void startElementSAX(void *parsingContext, const xmlChar *localname, cons
         
             attributes += 5;
         }
-            
+        
         if (importer.delegate != nil && [importer.delegate respondsToSelector:@selector(importerDidParseWaitTime:)])
         {
             [importer.delegate importerDidParseWaitTime:waitTime];
+        }
+        else 
+        {
+            [waitTime release];
         }
     }
 }
