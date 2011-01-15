@@ -8,6 +8,13 @@
 #import "TableViewController.h"
 #import "OfficeAnnotation.h"
 
+enum
+{
+    URGETCARE_SECTION,
+    PRACTICE_SECTION,
+    SECTION_COUNT /* Must always be last entry */
+};
+
 @implementation TableViewController
 
 @synthesize officeModel, detailViewController;
@@ -22,10 +29,14 @@
 #pragma mark -
 #pragma mark UITableViewDelegate
 
+/**
+ * Handler for the UITableView, detect which office was selected and pass that
+ * office onto the DetailView UI.
+ */
 - (void) tableView: (UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     OfficeAnnotation *office = nil;
-    if (indexPath.section == 0)
+    if (indexPath.section == URGETCARE_SECTION)
     {
         office = [officeModel.urgentCareOffices objectAtIndex:indexPath.row];
     }
@@ -55,7 +66,7 @@
     }
     
     OfficeAnnotation *office = nil;
-    if (indexPath.section == 0)
+    if (indexPath.section == URGETCARE_SECTION)
     {
         office = [officeModel.urgentCareOffices objectAtIndex:indexPath.row];
     }
@@ -78,13 +89,17 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return SECTION_COUNT;
 }
 
+/**
+ * Handler for the UITableView, how many rows are in a section of the table.
+ * @return an NSInteger with the number of offices in thatsection.
+ */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    if (section == 0) {
+    if (section == URGETCARE_SECTION) {
         return [officeModel.urgentCareOffices count];
     }else{
         return [officeModel.practiceOffices count];
@@ -92,9 +107,13 @@
     
 }
 
+/**
+ * Handler for the UITableView, what is the title for a given section.
+ * @return an NSString* with the corresponding title.
+ */
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 
-    if (section == 0) {
+    if (section == URGETCARE_SECTION) {
         return @"Urgent Care";
     }else{
         return @"Practices";
