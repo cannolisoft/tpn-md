@@ -43,7 +43,7 @@
     [offices addObject: officeAnnotation];
     [officeAnnotation release];
     
-    return offices;
+    return [offices autorelease];
 }
 
 -(NSMutableArray *)getPracticeOffices
@@ -257,7 +257,7 @@
     [offices addObject: officeAnnotation];
     [officeAnnotation release];
     
-    return offices;
+    return [offices autorelease];
 }
 
 
@@ -270,11 +270,9 @@
     {
         NSMutableArray *ucOffices = [self getUCOffices];
         urgentCareOffices = [[NSArray arrayWithArray:ucOffices] retain];
-        [ucOffices dealloc];
         
         NSMutableArray *pOffices = [self getPracticeOffices];
         practiceOffices = [[NSArray arrayWithArray:pOffices] retain];
-        [pOffices dealloc];
     }
     
     return self;

@@ -175,6 +175,7 @@ static void startElementSAX(void *parsingContext, const xmlChar *localname, cons
         if (importer.delegate != nil && [importer.delegate respondsToSelector:@selector(importerDidParseWaitTime:)])
         {
             [importer.delegate importerDidParseWaitTime:waitTime];
+            [waitTime autorelease];
         }
         else 
         {
