@@ -10,7 +10,7 @@
 
 enum
 {
-    URGETCARE_SECTION,
+    URGENTCARE_SECTION,
     PRACTICE_SECTION,
     SECTION_COUNT /* Must always be last entry */
 };
@@ -36,7 +36,7 @@ enum
 - (void) tableView: (UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     OfficeAnnotation *office = nil;
-    if (indexPath.section == URGETCARE_SECTION)
+    if (indexPath.section == URGENTCARE_SECTION)
     {
         office = [officeModel.urgentCareOffices objectAtIndex:indexPath.row];
     }
@@ -66,7 +66,7 @@ enum
     }
     
     OfficeAnnotation *office = nil;
-    if (indexPath.section == URGETCARE_SECTION)
+    if (indexPath.section == URGENTCARE_SECTION)
     {
         office = [officeModel.urgentCareOffices objectAtIndex:indexPath.row];
     }
@@ -99,7 +99,7 @@ enum
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    if (section == URGETCARE_SECTION) {
+    if (section == URGENTCARE_SECTION) {
         return [officeModel.urgentCareOffices count];
     }else{
         return [officeModel.practiceOffices count];
@@ -113,7 +113,7 @@ enum
  */
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 
-    if (section == URGETCARE_SECTION) {
+    if (section == URGENTCARE_SECTION) {
         return @"Urgent Care";
     }else{
         return @"Practices";
