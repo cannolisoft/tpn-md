@@ -3,18 +3,21 @@
  * Description: The controller used for displaying a medical office. 
  */
 
+#import <QuartzCore/QuartzCore.h>
 #import "DetailViewController.h"
 #import "OfficeAnnotation.h"
 
 enum
 {
-  ADDRESS_CELL = 0,
-  TELEPHONE_CELL = 1, 
-  WAITTIME_CELL = 2,
+  WAITTIME_CELL,
+  ADDRESS_CELL,
+  TELEPHONE_CELL,
+    
+  CELL_COUNT /* Must always be last entry */
 };
 
 @implementation DetailViewController
-@synthesize table, imageView, annotation;
+@synthesize table, headerLabel, headerImageView, annotation;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib
 - (void)viewDidLoad
@@ -32,11 +35,23 @@ enum
 
 -(void)viewWillAppear:(BOOL)animated
 {       
-    UIImage *hospitalImage = [annotation getUIImage];
-    [imageView setImage: hospitalImage];
-    [imageView setNeedsDisplay];
+    //UIImage *hospitalImage = [annotation getUIImage];
+    //[imageView setImage: hospitalImage];
+    //[imageView setNeedsDisplay];
+    
+    self.headerLabel.text = [self.annotation title];
+    
+    //self.headerImageView.layer.masksToBounds = YES;
+    //self.headerImageView.layer.cornerRadius = 10.0;
+    [self.headerImageView setImage: [UIImage imageNamed:self.annotation.imagePath]];
+    
+    
+    UIBarButtonItem *actionBtn = [[UIBarButtonItem alloc]
+                          initWithBarButtonSystemItem:UIBarButtonSystemItemAction 
+                          target:self 
+                          action:@selector(showAction)];
+    self.navigationItem.rightBarButtonItem = [actionBtn autorelease];
 }
-
 
 
 - (void)dealloc
@@ -50,8 +65,80 @@ enum
 
     [table reloadData];
     
-    self.navigationItem.title =  [self.annotation title];
+    
+    if(annotation.type)
+    {
+        self.navigationItem.title = annotation.type;
+    }else {
+        self.navigationItem.title = @"Practice";
+    }
+
 }
+
+
+- (NSInteger)getTranslatedSection:(NSInteger)section
+{
+    if(!annotation.waitTime)
+    {
+        return section + 1;
+    }
+    return section;
+}
+
+
+- (void) callCenter {
+    NSString* uri = [NSString stringWithFormat:@"tel:%@", [annotation phone]];
+    NSURL *url = [NSURL URLWithString:uri];
+    [[UIApplication sharedApplication] openURL:url];
+}
+
+- (void) directionsToCenter {
+    NSString* startAddr = [NSString stringWithFormat:@"%@,%@", [annotation address], [annotation address2]];
+    NSString* urlAddr = [NSString stringWithFormat:@"http://maps.google.com/maps?saddr=Current Location&daddr=%@", startAddr];
+    NSURL* url = [NSURL URLWithString:[urlAddr stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
+    [[UIApplication sharedApplication] openURL:url];
+}
+
+#pragma mark -
+#pragma mark ButtonActions
+
+- (void)showAction
+{
+    
+    UIActionSheet *filterAlert = [[UIActionSheet alloc] initWithTitle: nil
+                                                             delegate: self
+                                                    cancelButtonTitle: @"Cancel"
+                                               destructiveButtonTitle: nil
+                                                    otherButtonTitles: @"Directions", @"Call",
+                                  nil, nil];
+    
+    
+    
+    filterAlert.actionSheetStyle = self.navigationController.navigationBar.barStyle;
+    [filterAlert showInView: self.view];
+    [filterAlert release];
+}
+
+
+#pragma mark -
+#pragma mark UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex)
+    {
+        case 0:
+            // Get Directions
+            [self directionsToCenter];
+            break;
+        case 1:
+            // Call number
+            [self callCenter];
+            break;
+        default:
+            break;
+    }
+}
+
 
 
 #pragma mark -
@@ -59,42 +146,45 @@ enum
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath;
+    switch ([self getTranslatedSection:indexPath.section]) {
+        case ADDRESS_CELL:
+        case TELEPHONE_CELL:
+            return indexPath;
+            break;
+        default:
+            return nil;
+            break;
+    }
 }
+
 
 - (void) tableView: (UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Deselect the chosen row, making it more like a button
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
           
-    if ( indexPath.section == TELEPHONE_CELL )
+    NSInteger section = [self getTranslatedSection:indexPath.section];
+    if ( section == TELEPHONE_CELL )
     {
-        NSString* uri = [NSString stringWithFormat:@"tel:%@", [annotation phone]];
-        NSURL *url = [NSURL URLWithString:uri];
-        [[UIApplication sharedApplication] openURL:url];	 
+        [self callCenter];
+	 
     }
-    else if ( indexPath.section == ADDRESS_CELL )
+    else if ( section == ADDRESS_CELL )
     {
-        NSString* startAddr = [NSString stringWithFormat:@"%@,%@", [annotation address], [annotation address2]];
-        NSString* urlAddr = [NSString stringWithFormat:@"http://maps.google.com/maps?saddr=Current Location&daddr=%@", startAddr];
-
-        NSURL* url = [NSURL URLWithString:[urlAddr stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
-
-        [[UIApplication sharedApplication] openURL:url];
+        [self directionsToCenter];
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == ADDRESS_CELL)
+    NSInteger section = [self getTranslatedSection:indexPath.section];
+    if (section == ADDRESS_CELL)
     {
-        return 80;
+        return 90;
     }
     
     return [tableView rowHeight];
 }
-
-
 
 #pragma mark -
 #pragma mark UITableViewDataSource
@@ -105,8 +195,9 @@ enum
     UITableViewCell *cell = nil;
     NSString *imagePath = nil;
     
+    NSInteger section = [self getTranslatedSection:indexPath.section];
     //wait time cell
-    if(indexPath.section == WAITTIME_CELL)
+    if(section == WAITTIME_CELL)
     {
         static NSString *SubtitleCellIdentifier = @"subtitleCell";
         
@@ -122,7 +213,7 @@ enum
             cell.textLabel.adjustsFontSizeToFitWidth = YES;
             
             cell.detailTextLabel.text = [annotation.waitTime relativeDateString];
-            cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
+            cell.detailTextLabel.font = [UIFont systemFontOfSize:[UIFont smallSystemFontSize]];
             
             imagePath = @"clock.png";
         }
@@ -139,11 +230,11 @@ enum
         cell = [tableView dequeueReusableCellWithIdentifier:DefaultCellIdentifier];
         if (cell == nil)
         {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:DefaultCellIdentifier] autorelease];
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:DefaultCellIdentifier] autorelease];
         }
         
         //address cell
-        if(indexPath.section == ADDRESS_CELL)
+        if(section == ADDRESS_CELL)
         {
             cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
             cell.textLabel.numberOfLines = 5;
@@ -152,7 +243,7 @@ enum
             imagePath = @"building.png"; 
         }
         //phone cell
-        else if(indexPath.section == TELEPHONE_CELL)
+        else if(section == TELEPHONE_CELL)
         {
             cell.textLabel.text = annotation.phone;
             
@@ -172,10 +263,27 @@ enum
 	
 }
 
+/*
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    NSInteger oSection = [self getTranslatedSection:section];
+    if(oSection == WAITTIME_CELL)
+    {
+        return [annotation.waitTime relativeDateString];
+    }
+    return nil;
+}
+*/
+
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Number of sections is based on the data
-    return 3;
+    if(!annotation.waitTime)
+    {
+        return CELL_COUNT-1;
+    }
+    return CELL_COUNT;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
