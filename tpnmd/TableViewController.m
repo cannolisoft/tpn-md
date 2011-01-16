@@ -22,6 +22,11 @@ enum
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    //work around problem with translucent toolbar which caused each display
+    //of the tableview to push the bottom content inset up by the height
+    //of the row. This is a good thing but we only need it once.
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, self.tableView.rowHeight, 0);
+    
     // Bring back the toolbar
     [self.navigationController setToolbarHidden:NO animated:YES];
 }
