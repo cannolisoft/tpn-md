@@ -21,12 +21,14 @@ static xmlSAXHandler simpleSAXHandlerStruct;
 @property (nonatomic, retain) NSURLConnection *xmlConnection;
 @property (nonatomic, retain) NSDateFormatter *dateFormatter;
 
+// The autorelease pool property is assign because autorelease pools cannot be retained.
+@property (nonatomic, assign) NSAutoreleasePool *importPool;
 
 @end
 
 @implementation WaitTimeImporter
 
-@synthesize xmlURL, delegate, done, xmlConnection, dateFormatter;
+@synthesize xmlURL, delegate, done, xmlConnection, dateFormatter, importPool;
 
 
 - (void)dealloc {
@@ -38,6 +40,7 @@ static xmlSAXHandler simpleSAXHandlerStruct;
 
 - (void) main
 {
+    self.importPool = [[NSAutoreleasePool alloc] init];
     done = NO;
 	
     self.dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
@@ -65,6 +68,9 @@ static xmlSAXHandler simpleSAXHandlerStruct;
     if (self.delegate != nil && [self.delegate respondsToSelector:@selector(importerDidFinishParsingData:)]) {
         [self.delegate importerDidFinishParsingData:self];
     }
+    
+    [importPool release];
+    self.importPool = nil;
 }
 
 - (void) forwardError:(NSError *) error
@@ -95,7 +101,7 @@ static xmlSAXHandler simpleSAXHandlerStruct;
 {
     // Signal the context that parsing is complete by passing "1" as the last parameter.
     xmlParseChunk(context, NULL, 0, 1);
-    context = NULL;
+
     // Set the condition which ends the run loop.
     done = YES; 
 }
@@ -107,17 +113,12 @@ static xmlSAXHandler simpleSAXHandlerStruct;
 // The following constants are the XML element names and their string lengths for parsing comparison.
 // The lengths include the null terminator, to ensure exact matches.
 static const char *kName_Location = "location";
-static const NSUInteger kLength_Location = 8;
 static NSString *kName_Name = @"name";
-static const NSUInteger kLength_Name = 4;
 static NSString *kName_Type = @"type";
-static const NSUInteger kLength_Type = 4;
 static NSString *kName_Message = @"message";
-static const NSUInteger kLength_Message = 7;
 static NSString *kName_Time = @"time";
-static const NSUInteger kLength_Time = 4;
 static NSString *kName_Update = @"update";
-static const NSUInteger kLength_Update = 6;
+
 
 /*
  This callback is invoked when the importer finds the beginning of a node in the XML. For this application,
