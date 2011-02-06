@@ -32,6 +32,12 @@
 		C60E42B312FEFDB4004ACC8F /* Specialty.m in Sources */ = {isa = PBXBuildFile; fileRef = C60E42B112FEFDB4004ACC8F /* Specialty.m */; };
 		C60E42B712FEFDDD004ACC8F /* tpnmd.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = C60E42B612FEFDDD004ACC8F /* tpnmd.sqlite */; };
 		C693F88B12CBF4D90062919D /* WaitTime.m in Sources */ = {isa = PBXBuildFile; fileRef = C693F88A12CBF4D90062919D /* WaitTime.m */; };
+		C6A9CEE112FF1BB1005C4F2B /* DocDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A9CEDE12FF1BB1005C4F2B /* DocDetailViewController.m */; };
+		C6A9CEE212FF1BB1005C4F2B /* DocTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A9CEE012FF1BB1005C4F2B /* DocTableViewController.m */; };
+		C6A9CEEC12FF1BF3005C4F2B /* group.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A9CEEA12FF1BF3005C4F2B /* group.png */; };
+		C6A9CEED12FF1BF3005C4F2B /* house.png in Resources */ = {isa = PBXBuildFile; fileRef = C6A9CEEB12FF1BF3005C4F2B /* house.png */; };
+		C6A9CF0512FF1C53005C4F2B /* DocDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6A9CF0112FF1C53005C4F2B /* DocDetailViewController.xib */; };
+		C6A9CF0612FF1C53005C4F2B /* DocTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6A9CF0312FF1C53005C4F2B /* DocTableViewController.xib */; };
 		C6BE3AE312D91E1800FC643B /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BE3AE212D91E1800FC643B /* TableViewController.m */; };
 		C6BE3AE612D91E2600FC643B /* TableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6BE3AE412D91E2600FC643B /* TableViewController.xib */; };
 		C6DD8A8912CBB92400F5A6CE /* WaitTimeImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = C6DD8A8812CBB92400F5A6CE /* WaitTimeImporter.m */; };
@@ -75,6 +81,14 @@
 		C60E42B612FEFDDD004ACC8F /* tpnmd.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = tpnmd.sqlite; sourceTree = "<group>"; };
 		C693F88912CBF4D90062919D /* WaitTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitTime.h; sourceTree = "<group>"; };
 		C693F88A12CBF4D90062919D /* WaitTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitTime.m; sourceTree = "<group>"; };
+		C6A9CEDD12FF1BB1005C4F2B /* DocDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocDetailViewController.h; sourceTree = "<group>"; };
+		C6A9CEDE12FF1BB1005C4F2B /* DocDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocDetailViewController.m; sourceTree = "<group>"; };
+		C6A9CEDF12FF1BB1005C4F2B /* DocTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocTableViewController.h; sourceTree = "<group>"; };
+		C6A9CEE012FF1BB1005C4F2B /* DocTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocTableViewController.m; sourceTree = "<group>"; };
+		C6A9CEEA12FF1BF3005C4F2B /* group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group.png; sourceTree = "<group>"; };
+		C6A9CEEB12FF1BF3005C4F2B /* house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = house.png; sourceTree = "<group>"; };
+		C6A9CF0212FF1C53005C4F2B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DocDetailViewController.xib; sourceTree = "<group>"; };
+		C6A9CF0412FF1C53005C4F2B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DocTableViewController.xib; sourceTree = "<group>"; };
 		C6BE3AE112D91E1800FC643B /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		C6BE3AE212D91E1800FC643B /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		C6BE3AE512D91E2600FC643B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TableViewController.xib; sourceTree = "<group>"; };
@@ -122,17 +136,12 @@
 		29B97315FDCFA39411CA2CEA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C6A9CEE312FF1BBC005C4F2B /* View Controllers */,
 				C60E42A912FEFC11004ACC8F /* Data Models */,
 				5321F1880F7AE58700EC9E3A /* Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				5321F1850F7AE57A00EC9E3A /* AppDelegate.h */,
 				5321F1840F7AE57A00EC9E3A /* AppDelegate.m */,
-				537DA6B81108F80B0045D54C /* DetailViewController.h */,
-				537DA6B91108F80B0045D54C /* DetailViewController.m */,
-				536EE47810B358610080A190 /* MapViewController.h */,
-				536EE47910B358610080A190 /* MapViewController.m */,
-				C6BE3AE112D91E1800FC643B /* TableViewController.h */,
-				C6BE3AE212D91E1800FC643B /* TableViewController.m */,
 				C693F88912CBF4D90062919D /* WaitTime.h */,
 				C693F88A12CBF4D90062919D /* WaitTime.m */,
 				C6DD8A8712CBB92400F5A6CE /* WaitTimeImporter.h */,
@@ -149,6 +158,8 @@
 				5321F1900F7AE5BE00EC9E3A /* Info.plist */,
 				C60E42B612FEFDDD004ACC8F /* tpnmd.sqlite */,
 				C60E420112FDD9B7004ACC8F /* Office.xcdatamodeld */,
+				C6A9CF0112FF1C53005C4F2B /* DocDetailViewController.xib */,
+				C6A9CF0312FF1C53005C4F2B /* DocTableViewController.xib */,
 				5321F18D0F7AE5BA00EC9E3A /* MainWindow.xib */,
 				533D37F210B32D500057E53B /* MapViewController.xib */,
 				C6BE3AE412D91E2600FC643B /* TableViewController.xib */,
@@ -174,6 +185,8 @@
 		C0F92A7C12CC81BC005B976C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C6A9CEEA12FF1BF3005C4F2B /* group.png */,
+				C6A9CEEB12FF1BF3005C4F2B /* house.png */,
 				C0F92A7D12CC81BC005B976C /* building.png */,
 				C0F92A7E12CC81BC005B976C /* clock.png */,
 				C0F92A7F12CC81BC005B976C /* default.jpg */,
@@ -195,6 +208,23 @@
 				C60E420012FDD9B7004ACC8F /* Office.m */,
 			);
 			name = "Data Models";
+			sourceTree = "<group>";
+		};
+		C6A9CEE312FF1BBC005C4F2B /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C6A9CEDD12FF1BB1005C4F2B /* DocDetailViewController.h */,
+				C6A9CEDE12FF1BB1005C4F2B /* DocDetailViewController.m */,
+				C6A9CEDF12FF1BB1005C4F2B /* DocTableViewController.h */,
+				C6A9CEE012FF1BB1005C4F2B /* DocTableViewController.m */,
+				537DA6B81108F80B0045D54C /* DetailViewController.h */,
+				537DA6B91108F80B0045D54C /* DetailViewController.m */,
+				536EE47810B358610080A190 /* MapViewController.h */,
+				536EE47910B358610080A190 /* MapViewController.m */,
+				C6BE3AE112D91E1800FC643B /* TableViewController.h */,
+				C6BE3AE212D91E1800FC643B /* TableViewController.m */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +289,10 @@
 				C0F92A8812CC81BC005B976C /* wakefield.jpg in Resources */,
 				C6BE3AE612D91E2600FC643B /* TableViewController.xib in Resources */,
 				C60E42B712FEFDDD004ACC8F /* tpnmd.sqlite in Resources */,
+				C6A9CEEC12FF1BF3005C4F2B /* group.png in Resources */,
+				C6A9CEED12FF1BF3005C4F2B /* house.png in Resources */,
+				C6A9CF0512FF1C53005C4F2B /* DocDetailViewController.xib in Resources */,
+				C6A9CF0612FF1C53005C4F2B /* DocTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +314,8 @@
 				C60E420412FDD9B7004ACC8F /* Office.xcdatamodeld in Sources */,
 				C60E42B212FEFDB4004ACC8F /* Physician.m in Sources */,
 				C60E42B312FEFDB4004ACC8F /* Specialty.m in Sources */,
+				C6A9CEE112FF1BB1005C4F2B /* DocDetailViewController.m in Sources */,
+				C6A9CEE212FF1BB1005C4F2B /* DocTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +344,22 @@
 				537DA6BD1108F8460045D54C /* en */,
 			);
 			name = DetailViewController.xib;
+			sourceTree = "<group>";
+		};
+		C6A9CF0112FF1C53005C4F2B /* DocDetailViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C6A9CF0212FF1C53005C4F2B /* en */,
+			);
+			name = DocDetailViewController.xib;
+			sourceTree = "<group>";
+		};
+		C6A9CF0312FF1C53005C4F2B /* DocTableViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C6A9CF0412FF1C53005C4F2B /* en */,
+			);
+			name = DocTableViewController.xib;
 			sourceTree = "<group>";
 		};
 		C6BE3AE412D91E2600FC643B /* TableViewController.xib */ = {

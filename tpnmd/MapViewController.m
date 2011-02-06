@@ -13,19 +13,6 @@
 @synthesize mapView, detailViewController, context = _context ;
 
 
-#pragma mark -
-
-+ (CGFloat)annotationPadding
-{
-    return 10.0f;
-}
-
-+ (CGFloat)calloutHeight
-{
-    return 40.0f;
-}
-
-
 // Zoom in on the annotations, use best zoom level while still showing all the data.
 -(void)zoomToFitMapAnnotations:(NSArray *)annotations
 {
@@ -62,22 +49,6 @@
     [self.mapView setRegion:region animated:YES];
 }
 
-- (void)gotoLocation
-{
-	
-    // Start off by default in San Francisco
-    MKCoordinateRegion newRegion;
-	
-    newRegion.center.latitude = 35.467442;
-    newRegion.center.longitude = -79.186845;
-	
-    newRegion.span.latitudeDelta = 0.112872;
-    newRegion.span.longitudeDelta = 0.109863;
-	
-    [self.mapView setRegion:newRegion animated:YES];
-}
-
- 
 - (NSArray *)getOfficesOfType:(NSString *)type
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -86,6 +57,7 @@
     {
         [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"%K = %@", @"type", type]];
     }
+    
     
     NSError *error = nil;
     NSArray *offices = [_context executeFetchRequest:fetchRequest error:&error];
@@ -128,7 +100,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     // Bring back the toolbar
-    [self.navigationController setToolbarHidden:NO animated:YES];
+    //[self.navigationController setToolbarHidden:NO animated:YES];
 }
 
 - (void)viewDidLoad
@@ -168,7 +140,9 @@
                                                         nil, nil];
     
     filterAlert.actionSheetStyle = self.parentViewController.navigationController.navigationBar.barStyle;
-    [filterAlert showInView: self.mapView.superview];
+    //[filterAlert showInView: self.mapView.superview];
+    
+    [filterAlert showFromTabBar: self.tabBarController.tabBar];
     [filterAlert release];
 }
 
@@ -217,19 +191,10 @@
         if (!pinView)
         {
             // If an existing pin view was not available, create one
-            pinView = [[[MKPinAnnotationView alloc]
-                                             initWithAnnotation:annotation reuseIdentifier:BridgeAnnotationIdentifier] autorelease];
+            pinView = [[[MKPinAnnotationView alloc]initWithAnnotation:annotation
+                                                      reuseIdentifier:BridgeAnnotationIdentifier] autorelease];
             pinView.animatesDrop = YES;
             pinView.canShowCallout = YES;
-			
-
-			
-            
-            // Add a detail disclosure button to the callout which will open a new view controller page
-            //
-            // note: you can assign a specific call out accessory view, or as MKMapViewDelegate you can implement:
-            //  - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control;
-            //
 			
             UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
             pinView.rightCalloutAccessoryView = rightButton;
@@ -259,7 +224,7 @@
         Office *officeAnnotation = (Office *)view.annotation;
         
         // The detail view does not want a toolbar so hide it
-        [self.navigationController setToolbarHidden:YES animated:YES];
+        self.detailViewController.hidesBottomBarWhenPushed = YES;
         
         self.detailViewController.office = officeAnnotation;
         [self.navigationController pushViewController:self.detailViewController animated:YES];

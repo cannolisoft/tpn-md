@@ -7,6 +7,7 @@
 #import <UIKit/UIKit.h>
 #import "MapViewController.h"
 #import "TableViewController.h"
+#import "DocTableViewController.h"
 #import "WaitTimeImporter.h"
 
 @interface AppDelegate : NSObject <UIApplicationDelegate, WaitTimeImporterDelegate>
@@ -16,7 +17,8 @@
     UINavigationController *myNavController;
     MapViewController *mapViewController;
     TableViewController *tableViewController;
-    
+    UITabBarController *tabBarController;
+    DocTableViewController *docTableViewController;
     
     WaitTimeImporter *importer;
     NSOperationQueue *operationQueue;
@@ -28,9 +30,11 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
 @property (nonatomic, retain) IBOutlet UINavigationController *myNavController;
 @property (nonatomic, retain) IBOutlet MapViewController *mapViewController;
 @property (nonatomic, retain) IBOutlet TableViewController *tableViewController;
+@property (nonatomic, retain) IBOutlet DocTableViewController *docTableViewController;
 
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;

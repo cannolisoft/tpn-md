@@ -11,6 +11,8 @@ enum
   WAITTIME_CELL,
   ADDRESS_CELL,
   TELEPHONE_CELL,
+
+  PHYSICIANS_SECTION,
     
   CELL_COUNT /* Must always be last entry */
 };
@@ -21,7 +23,7 @@ enum
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib
 - (void)viewDidLoad
 {
-    [super viewDidLoad];	
+    [super viewDidLoad];
 }
 
 
@@ -249,6 +251,14 @@ enum
             
             imagePath = @"phone.png";
         }
+        else if(section == PHYSICIANS_SECTION)
+        {                             
+            NSSortDescriptor *descrip = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+            NSArray *docs = [[office.physicians allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:descrip]];
+         
+            Physician *doc = [docs objectAtIndex:indexPath.row];
+            cell.textLabel.text = doc.name;
+        }
         else
         {
             cell.hidden = YES;
@@ -281,7 +291,27 @@ enum
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSInteger newSection = [self getTranslatedSection:section];
+    //wait time cell
+    if(newSection == PHYSICIANS_SECTION)
+    {
+        NSSet *docs = office.physicians;
+        NSInteger size = [docs count];
+        return size;
+    }
+    
     return 1;
+}
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSInteger newSection = [self getTranslatedSection:section];
+    if(newSection == PHYSICIANS_SECTION && office.physicians && [office.physicians count])
+    {
+        return @"Physicians";
+    }
+    return nil;
 }
 
 @end

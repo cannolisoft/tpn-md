@@ -39,10 +39,10 @@ enum
     //work around problem with translucent toolbar which caused each display
     //of the tableview to push the bottom content inset up by the height
     //of the row. This is a good thing but we only need it once.
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, self.tableView.rowHeight, 0);
+    //self.tableView.contentInset = UIEdgeInsetsMake(0, 0, self.tableView.rowHeight, 0);
     
     // Bring back the toolbar
-    [self.navigationController setToolbarHidden:NO animated:YES];
+    //[self.navigationController setToolbarHidden:NO animated:YES];
 }
 
 - (void)viewDidUnload {
@@ -82,6 +82,7 @@ enum
                                           sectionNameKeyPath:@"type"
                                                    cacheName:nil];
     self.fetchedResultsController = theFetchedResultsController;
+    //_fetchedResultsController.delegate = self;
     
     [groupSort release];
     [nameSort release];
@@ -96,6 +97,19 @@ enum
 #pragma mark UITableViewDelegate
 
 /**
+ * Handler for the UITableView, tells us when the table view is about to
+ * draw a cell for a particular row.
+ */
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    //setting background before this delegate method
+    //would get overridden by the tableview background
+    [cell setBackgroundColor:[UIColor whiteColor]];
+}
+
+
+/**
  * Handler for the UITableView, detect which office was selected and pass that
  * office onto the DetailView UI.
  */
@@ -104,7 +118,7 @@ enum
     Office *office = [_fetchedResultsController objectAtIndexPath:indexPath];
     
     // The detail view does not want a toolbar so hide it
-    [self.navigationController setToolbarHidden:YES animated:YES];
+    self.detailViewController.hidesBottomBarWhenPushed = YES;
     
     self.detailViewController.office = office;
     [self.navigationController pushViewController:self.detailViewController animated:YES];

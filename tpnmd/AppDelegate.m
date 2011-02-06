@@ -13,7 +13,9 @@ static NSString* REXURL = @"http://www.rexhealth.com/_images/flash/rex_homepage_
 
 @implementation AppDelegate
 
-@synthesize window, myNavController, mapViewController, tableViewController, importer;
+@synthesize window;
+@synthesize tabBarController, myNavController, mapViewController, tableViewController, docTableViewController;
+@synthesize importer;
 
 - (void)dealloc
 {
@@ -24,9 +26,10 @@ static NSString* REXURL = @"http://www.rexhealth.com/_images/flash/rex_homepage_
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
-{	
+{	    
     mapViewController.context = [self managedObjectContext];
     tableViewController.context = [self managedObjectContext];
+    docTableViewController.context = [self managedObjectContext];
     
     // create an importer object to retrieve, parse, and import into the CoreData store 
     self.importer = [[[WaitTimeImporter alloc] init] autorelease];
@@ -39,7 +42,7 @@ static NSString* REXURL = @"http://www.rexhealth.com/_images/flash/rex_homepage_
     [self.operationQueue addOperation:importer];
     
     // create window and set up table view controller
-    [window addSubview:myNavController.view];
+    [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
 }
 
