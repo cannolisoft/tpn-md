@@ -7,11 +7,10 @@
 
 #import "MapViewController.h"
 #import "DetailViewController.h"
-#import "OfficeAnnotation.h"
 
 @implementation MapViewController
 
-@synthesize mapView, detailViewController, officeModel;
+@synthesize mapView, detailViewController, context = _context ;
 
 
 #pragma mark -
@@ -78,25 +77,52 @@
     [self.mapView setRegion:newRegion animated:YES];
 }
 
+ 
+- (NSArray *)getOfficesOfType:(NSString *)type
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	[fetchRequest setEntity:[NSEntityDescription entityForName:@"Office" inManagedObjectContext:_context]];
+    if(type)
+    {
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"%K = %@", @"type", type]];
+    }
+    
+    NSError *error = nil;
+    NSArray *offices = [_context executeFetchRequest:fetchRequest error:&error];
+    if (!offices) {
+		NSLog(@"Unresolved error retrieving offices %@, %@", error, [error userInfo]);
+    }
+    
+    [fetchRequest release];
+    
+    return offices;
+}
+
 - (void)plotAll
 {
     [self.mapView removeAnnotations:self.mapView.annotations];
-    
-    [self.mapView addAnnotations:[self.officeModel getAllOffices]];
+
+    NSArray *offices = [self getOfficesOfType:nil];    
+    [self zoomToFitMapAnnotations:offices];
+    [self.mapView addAnnotations:offices];
 }
 
 - (void)plotUrgentCare
 {
     [self.mapView removeAnnotations:self.mapView.annotations];
     
-    
-    [self.mapView addAnnotations:self.officeModel.urgentCareOffices];
+    NSArray *offices = [self getOfficesOfType:@"Urgent Care"];
+    [self zoomToFitMapAnnotations:offices];
+    [self.mapView addAnnotations:offices];
 }
 
 - (void)plotPractices
 {
     [self.mapView removeAnnotations:self.mapView.annotations];
-    [self.mapView addAnnotations:self.officeModel.practiceOffices];
+    
+    NSArray *offices = [self getOfficesOfType:@"Practice"];
+    [self zoomToFitMapAnnotations:offices];
+    [self.mapView addAnnotations:offices];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -110,9 +136,6 @@
     self.mapView.mapType = MKMapTypeStandard;   // also MKMapTypeSatellite or MKMapTypeHybrid
     self.mapView.showsUserLocation = TRUE;
 
-    NSArray *offices = [self.officeModel getAllOffices];
-
-    [self zoomToFitMapAnnotations:offices];
     [self plotAll];
 }
 
@@ -126,7 +149,6 @@
 {
     [mapView release];
     [detailViewController release];
-    [officeModel release];
     
     [super dealloc];
 }
@@ -186,7 +208,7 @@
     
     // Handle our two custom annotations
     //
-    if ([annotation isKindOfClass:[OfficeAnnotation class]]) // for Golden Gate Bridge
+    if ([annotation isKindOfClass:[Office class]]) // for Golden Gate Bridge
     {
         // Try to dequeue an existing pin view first
         static NSString* BridgeAnnotationIdentifier = @"bridgeAnnotationIdentifier";
@@ -213,7 +235,7 @@
             pinView.rightCalloutAccessoryView = rightButton;
         }
 
-        OfficeAnnotation *office = annotation;
+        Office *office = annotation;
         if ([office.type isEqualToString:@"Urgent Care"])
         {
             pinView.pinColor = MKPinAnnotationColorRed;	
@@ -232,13 +254,14 @@
 {
 	
     // MKAnnotation annotation = view.annotation;
-    if ([view.annotation isKindOfClass:[OfficeAnnotation class]])
+    if ([view.annotation isKindOfClass:[Office class]])
     {
-        OfficeAnnotation *officeAnnotation = (OfficeAnnotation*)view.annotation;
+        Office *officeAnnotation = (Office *)view.annotation;
         
         // The detail view does not want a toolbar so hide it
         [self.navigationController setToolbarHidden:YES animated:YES];
-        self.detailViewController.annotation = officeAnnotation;
+        
+        self.detailViewController.office = officeAnnotation;
         [self.navigationController pushViewController:self.detailViewController animated:YES];
     }
 }

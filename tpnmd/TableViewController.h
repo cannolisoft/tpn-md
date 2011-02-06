@@ -8,14 +8,17 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "DetailViewController.h"
-#import "OfficeModel.h"
+
 
 @interface TableViewController : UITableViewController {
     DetailViewController *detailViewController;
     
-    OfficeModel *officeModel;
+    NSFetchedResultsController *_fetchedResultsController;
+    NSManagedObjectContext *_context;
 }
 @property (nonatomic, retain) IBOutlet DetailViewController *detailViewController;
-@property (nonatomic, retain) OfficeModel *officeModel;
+
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, retain) NSManagedObjectContext *context;
 
 @end

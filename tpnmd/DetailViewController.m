@@ -5,7 +5,6 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "DetailViewController.h"
-#import "OfficeAnnotation.h"
 
 enum
 {
@@ -17,7 +16,7 @@ enum
 };
 
 @implementation DetailViewController
-@synthesize table, headerLabel, headerImageView, annotation;
+@synthesize table, headerLabel, headerImageView, office;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib
 - (void)viewDidLoad
@@ -28,22 +27,22 @@ enum
 
 - (void)viewDidUnload
 {
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-	
+    [super viewDidUnload];	
 }
 
 -(void)viewWillAppear:(BOOL)animated
-{       
-    //UIImage *hospitalImage = [annotation getUIImage];
-    //[imageView setImage: hospitalImage];
-    //[imageView setNeedsDisplay];
+{           
+    [super viewWillAppear:animated];
     
-    self.headerLabel.text = [self.annotation title];
+    self.navigationItem.title = office.type;
     
-    //self.headerImageView.layer.masksToBounds = YES;
-    //self.headerImageView.layer.cornerRadius = 10.0;
-    [self.headerImageView setImage: [UIImage imageNamed:self.annotation.imagePath]];
+    self.headerLabel.text = self.office.name;
+    
+
+    [table reloadData];
+    
+    //TODO: add back in functionality
+    //[self.headerImageView setImage: [UIImage imageNamed:self.office.imagePath]];
     
     
     UIBarButtonItem *actionBtn = [[UIBarButtonItem alloc]
@@ -56,29 +55,25 @@ enum
 
 - (void)dealloc
 {
+    office = nil;
+    
     [super dealloc];
 }
 
+/*
 - (void)setAnnotation:(id <MKAnnotation>)newAnnotation
 {       
     annotation = newAnnotation;
-
+    
     [table reloadData];
     
-    
-    if(annotation.type)
-    {
-        self.navigationItem.title = annotation.type;
-    }else {
-        self.navigationItem.title = @"Practice";
-    }
-
+    self.navigationItem.title = office.type;
 }
-
+*/
 
 - (NSInteger)getTranslatedSection:(NSInteger)section
 {
-    if(!annotation.waitTime)
+    if(!office.waitTime)
     {
         return section + 1;
     }
@@ -86,14 +81,17 @@ enum
 }
 
 
-- (void) callCenter {
-    NSString* uri = [NSString stringWithFormat:@"tel:%@", [annotation phone]];
+- (void) callCenter
+{
+    NSString* uri = [NSString stringWithFormat:@"tel:%@", office.phone];
     NSURL *url = [NSURL URLWithString:uri];
     [[UIApplication sharedApplication] openURL:url];
 }
 
-- (void) directionsToCenter {
-    NSString* startAddr = [NSString stringWithFormat:@"%@,%@", [annotation address], [annotation address2]];
+
+- (void) directionsToCenter
+{
+    NSString* startAddr = [office fullAddress:NO];
     NSString* urlAddr = [NSString stringWithFormat:@"http://maps.google.com/maps?saddr=Current Location&daddr=%@", startAddr];
     NSURL* url = [NSURL URLWithString:[urlAddr stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
     [[UIApplication sharedApplication] openURL:url];
@@ -146,7 +144,8 @@ enum
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch ([self getTranslatedSection:indexPath.section]) {
+    switch ([self getTranslatedSection:indexPath.section])
+    {
         case ADDRESS_CELL:
         case TELEPHONE_CELL:
             return indexPath;
@@ -207,12 +206,13 @@ enum
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:SubtitleCellIdentifier] autorelease];
         }
         
-        if(annotation.waitTime)
+        if(office.waitTime)
         {
-            cell.textLabel.text = [annotation.waitTime waitMsg];
+            //TODO: put back
+            //cell.textLabel.text = [office.waitTime waitMsg];
             cell.textLabel.adjustsFontSizeToFitWidth = YES;
             
-            cell.detailTextLabel.text = [annotation.waitTime relativeDateString];
+            //cell.detailTextLabel.text = [office.waitTime relativeDateString];
             cell.detailTextLabel.font = [UIFont systemFontOfSize:[UIFont smallSystemFontSize]];
             
             imagePath = @"clock.png";
@@ -238,14 +238,14 @@ enum
         {
             cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
             cell.textLabel.numberOfLines = 5;
-            cell.textLabel.text = annotation.subtitle;
+            cell.textLabel.text = [office fullAddress:TRUE];
             
             imagePath = @"building.png"; 
         }
         //phone cell
         else if(section == TELEPHONE_CELL)
         {
-            cell.textLabel.text = annotation.phone;
+            cell.textLabel.text = office.phone;
             
             imagePath = @"phone.png";
         }
@@ -259,27 +259,20 @@ enum
     {
         [cell.imageView setImage: [UIImage imageNamed: imagePath]];
     }
+    else
+    {
+        [cell.imageView setImage: nil];
+    }
+
     return cell;
 	
 }
-
-/*
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
-{
-    NSInteger oSection = [self getTranslatedSection:section];
-    if(oSection == WAITTIME_CELL)
-    {
-        return [annotation.waitTime relativeDateString];
-    }
-    return nil;
-}
-*/
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Number of sections is based on the data
-    if(!annotation.waitTime)
+    if(!office.waitTime)
     {
         return CELL_COUNT-1;
     }

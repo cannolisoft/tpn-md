@@ -21,7 +21,10 @@
     WaitTimeImporter *importer;
     NSOperationQueue *operationQueue;
     
-    OfficeModel *officeModel;
+@private
+    NSManagedObjectContext *managedObjectContext_;
+    NSManagedObjectModel *managedObjectModel_;
+    NSPersistentStoreCoordinator *persistentStoreCoordinator_;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -29,11 +32,16 @@
 @property (nonatomic, retain) IBOutlet MapViewController *mapViewController;
 @property (nonatomic, retain) IBOutlet TableViewController *tableViewController;
 
+@property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
 // Properties for the importer and its background processing queue.
 @property (nonatomic, retain) WaitTimeImporter *importer;
 @property (nonatomic, retain, readonly) NSOperationQueue *operationQueue;
 
-@property (nonatomic, retain) OfficeModel *officeModel;
+
+- (NSURL *)applicationDocumentsDirectory;
 
 - (IBAction)listAction:(id)sender;
 - (IBAction)mapAction:(id)sender;

@@ -6,7 +6,8 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-#import "OfficeAnnotation.h"
+#import "Office.h"
+
 
 @interface DetailViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 {
@@ -15,7 +16,7 @@
   UILabel* headerLabel;
   UIImageView* headerImageView;
 
-  OfficeAnnotation* annotation;
+  Office* office;
 
 }
 
@@ -23,6 +24,6 @@
 @property (nonatomic, retain) IBOutlet UILabel* headerLabel;
 @property (nonatomic, retain) IBOutlet UIImageView* headerImageView;
 
-@property (nonatomic, retain) OfficeAnnotation* annotation;
+@property (nonatomic, retain) Office* office;
 
 @end

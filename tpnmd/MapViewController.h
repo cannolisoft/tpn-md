@@ -7,7 +7,6 @@
   
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "OfficeModel.h"
 
 @class DetailViewController;
 
@@ -15,17 +14,13 @@
 {
     MKMapView *mapView;
     DetailViewController *detailViewController;
-	
-    OfficeModel *officeModel;
+
+    NSManagedObjectContext *_context;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
 @property (nonatomic, retain) IBOutlet DetailViewController *detailViewController;
-
-@property (nonatomic, retain) OfficeModel *officeModel;
-
-+ (CGFloat)annotationPadding;
-+ (CGFloat)calloutHeight;
+@property (nonatomic, retain) IBOutlet NSManagedObjectContext *context;
 
 - (IBAction)filterAction:(id)sender;
 
