@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/mainlayout"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+		android:background="#FFFFFF">
+
+    <com.google.android.maps.MapView
+                 android:id="@+id/mapview"
+                 android:clickable="true"
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:apiKey="0kRxvrO3LhuiDp5SQ1Zplxv7irtuNbjsDxJUFiA"
+      />
+      
+	<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="60dip"
+        android:paddingLeft="2dip"
+        android:paddingRight="2dip"
+        android:paddingTop="5dip"
+		android:background="#333333"
+		android:stretchColumns="1">
+	    <TableRow>
+	    	<Button
+		     	android:layout_height="fill_parent"
+		     	android:layout_width="fill_parent"
+		     	android:text="test"
+		     	android:onClick="showMap" />
+	    </TableRow>
+    </TableLayout>
+</LinearLayout>
