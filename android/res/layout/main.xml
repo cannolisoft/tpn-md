@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:id="@+id/mainlayout"
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-		android:background="#FFFFFF">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+      android:id="@+id/home_container"  
+      android:layout_width="fill_parent" 
+      android:layout_height="fill_parent">
+
 
     <com.google.android.maps.MapView
                  android:id="@+id/mapview"
@@ -14,21 +13,33 @@
                  android:apiKey="0kRxvrO3LhuiDp5SQ1Zplxv7irtuNbjsDxJUFiA"
       />
       
-	<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="60dip"
+        android:layout_height="fill_parent"
         android:paddingLeft="2dip"
         android:paddingRight="2dip"
-        android:paddingTop="5dip"
-		android:background="#333333"
-		android:stretchColumns="1">
-	    <TableRow>
-	    	<Button
-		     	android:layout_height="fill_parent"
-		     	android:layout_width="fill_parent"
-		     	android:text="test"
-		     	android:onClick="showMap" />
-	    </TableRow>
-    </TableLayout>
-</LinearLayout>
+        android:paddingTop="5dip">
+		
+    <com.tpnmd.view.TransparentPanel
+        android:id="@+id/transparent_panel" 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5px"
+            android:paddingLeft="5px"
+        android:paddingBottom="5px"
+        android:paddingRight="5px">
+     
+        <Button android:id="@+id/filterButton"
+          android:layout_width="wrap_content" 
+          android:layout_height="wrap_content"
+          android:text="Filter"/>
+    
+        <Button android:id="@+id/listButton"
+          android:layout_width="wrap_content" 
+          android:layout_height="wrap_content"
+          android:text="List"/>
+          
+    </com.tpnmd.view.TransparentPanel>
+    </LinearLayout>
+</FrameLayout>

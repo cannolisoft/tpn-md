@@ -1,12 +1,17 @@
 package com.tpnmd;
 
 import android.graphics.drawable.Drawable;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 import com.google.android.maps.MyLocationOverlay;
+import com.tpnmd.view.OfficesListView;
 
 
 public class TpnMdActivity extends MapActivity {
@@ -32,6 +37,14 @@ public class TpnMdActivity extends MapActivity {
         pin.setBounds( 0, 0, pin.getIntrinsicWidth(), pin.getIntrinsicHeight() );
         
         mapView.getOverlays().add( new OfficesOverlay( pin, this));
+        
+        Button list = (Button) findViewById( R.id.listButton );
+        list.setOnClickListener( new View.OnClickListener() {
+    	    public void onClick(View view) {
+    	    	Intent intent = new Intent( view.getContext(), OfficesListView.class );
+    	    	startActivity( intent );
+	        }
+    	});
     }
     
     @Override

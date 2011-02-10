@@ -46,5 +46,9 @@ public class Office {
 	public String getImagePath() {
 		return imagePath;
 	}
+
+	public String getName() {
+		return name;
+	}
 	
 }
