@@ -14,32 +14,33 @@
       />
       
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:paddingLeft="2dip"
-        android:paddingRight="2dip"
-        android:paddingTop="5dip">
+        android:paddingLeft="0dip"
+        android:gravity="bottom"
+        android:paddingRight="0dip"
+        android:paddingTop="0dip">
 		
     <com.tpnmd.view.TransparentPanel
         android:id="@+id/transparent_panel" 
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="5px"
-            android:paddingLeft="5px"
-        android:paddingBottom="5px"
-        android:paddingRight="5px">
+            android:layout_height="fill_parent"
+            android:paddingTop="0px"
+            android:paddingLeft="0px"
+        android:paddingBottom="0px"
+        android:paddingRight="0px">
      
         <Button android:id="@+id/filterButton"
           android:layout_width="wrap_content" 
           android:layout_height="wrap_content"
-          android:gravity="left"
+          android:gravity="center"
           android:text="Filter"/>
     
         <Button android:id="@+id/listButton"
           android:layout_width="wrap_content" 
           android:layout_height="wrap_content"
-          android:gravity="right" 
+          android:gravity="center" 
           android:text="List"/>
           
     </com.tpnmd.view.TransparentPanel>

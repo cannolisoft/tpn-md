@@ -30,6 +30,10 @@ public class Office {
         return new OverlayItem( point, name, phone );	
 	}
 
+	public String getPhoneNumber() {
+		return phone;
+	}
+	
 	public void setAddress( String address, String address2 ) {
 		this.address = address;
 		this.address2 = address2;

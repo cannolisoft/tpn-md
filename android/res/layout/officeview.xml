@@ -1,11 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:orientation="vertical"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent" >
+<TableLayout android:id="@+id/TableLayout01"
+ android:layout_width="fill_parent"
+ android:layout_height="fill_parent"
+ android:stretchColumns="1"
+ xmlns:android="http://schemas.android.com/apk/res/android">
 
-<ImageView android:id="@+id/officeImage"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"/>
-
-</LinearLayout>
+  <!--
+  <TableRow android:id="@+id/TableRowImg" android:padding="3dip" >
+   <ImageView android:id="@+id/officeImage"
+   android:layout_height="fill_parent"
+   android:layout_width="fill_parent"/>
+  </TableRow>
+  -->
+ 
+  <TableRow android:id="@+id/phoneRow"
+   android:layout_width="wrap_content"
+   android:layout_height="wrap_content"
+   android:background="@drawable/tablebg">
+   
+    <TextView android:gravity="left"
+     android:id="@+id/phoneNumberLabel"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:textSize="20sp"
+     android:textStyle="bold"
+     android:text="Phone Number:">
+    </TextView>
+    
+    <TextView android:gravity="center"
+     android:id="@+id/phoneNumberTextView"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:textSize="18sp"
+     android:phoneNumber="true"
+     android:text="textfield 1-2">
+    </TextView>
+ 
+  </TableRow>
+ 
+  <TableRow android:id="@+id/addressRow"
+   android:background="@drawable/tablebg"
+   android:layout_width="wrap_content"
+   android:layout_height="wrap_content">
+ 
+    <TextView android:id="@+id/addressLabel"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:textSize="20sp"
+     android:textStyle="bold"
+     android:text="Address:"></TextView>
+     
+    <TextView android:id="@+id/addressTextView"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:textSize="18sp"
+     android:text="textfield 2-2">
+    </TextView>
+ 
+  </TableRow>
+ 
+</TableLayout>

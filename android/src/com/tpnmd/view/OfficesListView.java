@@ -32,6 +32,7 @@ public class OfficesListView extends ListActivity {
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				OfficeModel.setSelected(position);
 				Intent intent = new Intent(view.getContext(), OfficeView.class);
 				startActivity(intent);
 			}

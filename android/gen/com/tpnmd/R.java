@@ -14,13 +14,20 @@ public final class R {
         public static final int defaultimg=0x7f020000;
         public static final int hospitals=0x7f020001;
         public static final int icon=0x7f020002;
+        public static final int tablebg=0x7f020003;
     }
     public static final class id {
+        public static final int TableLayout01=0x7f050005;
+        public static final int addressLabel=0x7f05000a;
+        public static final int addressRow=0x7f050009;
+        public static final int addressTextView=0x7f05000b;
         public static final int filterButton=0x7f050003;
         public static final int home_container=0x7f050000;
         public static final int listButton=0x7f050004;
         public static final int mapview=0x7f050001;
-        public static final int officeImage=0x7f050005;
+        public static final int phoneNumberLabel=0x7f050007;
+        public static final int phoneNumberTextView=0x7f050008;
+        public static final int phoneRow=0x7f050006;
         public static final int transparent_panel=0x7f050002;
     }
     public static final class layout {
