@@ -1,4 +1,4 @@
-package com.tpnmd;
+package com.tpnmd.office;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.OverlayItem;

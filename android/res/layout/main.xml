@@ -33,11 +33,13 @@
         <Button android:id="@+id/filterButton"
           android:layout_width="wrap_content" 
           android:layout_height="wrap_content"
+          android:gravity="left"
           android:text="Filter"/>
     
         <Button android:id="@+id/listButton"
           android:layout_width="wrap_content" 
           android:layout_height="wrap_content"
+          android:gravity="right" 
           android:text="List"/>
           
     </com.tpnmd.view.TransparentPanel>
