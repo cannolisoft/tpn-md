@@ -1,9 +1,12 @@
 package com.tpnmd.office;
 
+import java.io.Serializable;
+
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.OverlayItem;
 
-public class Office {
+public class Office implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private String name;
 	private String address;
@@ -12,7 +15,8 @@ public class Office {
 	private String phone;
 	private String imagePath;
 	
-	private GeoPoint point;
+	private double lat;
+	private double lon;
 	
 	public Office( String type, String name, 
 			       String address, String address2,
@@ -23,11 +27,12 @@ public class Office {
 		this.setAddress(address,address2);
 		this.phone = phone;
 		this.setImagePath(imagePath);
-		this.point = new GeoPoint( (int)(lat*1E6), (int)(lon*1E6) );
+		this.lat = lat;
+		this.lon = lon;
 	}
 
 	public OverlayItem getOverlayItem() {
-        return new OverlayItem( point, name, phone );	
+        return new OverlayItem( new GeoPoint( (int)(lat*1E6), (int)(lon*1E6) ), name, phone );	
 	}
 
 	public String getPhoneNumber() {
@@ -55,4 +60,7 @@ public class Office {
 		return name;
 	}
 	
+	public String toString() {
+		return name;
+	}
 }

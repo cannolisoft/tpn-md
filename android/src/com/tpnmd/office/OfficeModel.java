@@ -5,7 +5,6 @@ import java.util.List;
 
 public class OfficeModel {
 
-   private static Office selected = null;
    private static ArrayList<Office> all = null;
    private static ArrayList<Office> urgentCare = null;
    private static ArrayList<Office> practices = null;
@@ -133,15 +132,4 @@ public class OfficeModel {
      return practices;
    }
    
-   public static void setSelected( int index ) {
-	   selected = all.get(index);
-   
-   }
-   
-   public static Office getSelected() {
-	   return selected;
-   }
-
-
-
 }

@@ -1,6 +1,7 @@
 package com.tpnmd.view;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.R;
 import android.app.ListActivity;
@@ -9,7 +10,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.tpnmd.office.Office;
@@ -22,30 +22,34 @@ public class OfficesListView extends ListActivity {
 
 		super.onCreate(savedInstance);
 
-		String names[] = getOfficeNames();
-		setListAdapter(new ArrayAdapter<String>(this,
-				R.layout.simple_list_item_1, names));
+		List<Object> items = getListItems();
+		setListAdapter(new OfficesListAdapter(this, R.layout.simple_list_item_1, items));
 
 		ListView lv = getListView();
 		lv.setTextFilterEnabled(true);
 
 		lv.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				OfficeModel.setSelected(position);
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Office office = (Office) getListAdapter().getItem(position);
+				
 				Intent intent = new Intent(view.getContext(), OfficeView.class);
+				intent.putExtra(Office.class.getName(), office);
 				startActivity(intent);
 			}
 		});
 	}
+	
+	private List<Object> getListItems() {
+		ArrayList<Object> names = new ArrayList<Object>();
 
-	private String[] getOfficeNames() {
-		ArrayList<String> names = new ArrayList<String>();
-		for (Office cur : OfficeModel.getAll()) {
-			names.add(cur.getName());
-		}
-		String[] namesArray = new String[names.size()];
-		return names.toArray(namesArray);
+		names.add("Urgent Care");
+		names.addAll(OfficeModel.getUrgentCare());
+
+		names.add("Practices");
+		names.addAll(OfficeModel.getPractices());
+
+		return names;
 	}
+
 
 }

@@ -1,14 +1,11 @@
 package com.tpnmd.view;
 
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tpnmd.R;
 import com.tpnmd.office.Office;
-import com.tpnmd.office.OfficeModel;
 
 public class OfficeView extends Activity {
 
@@ -17,7 +14,7 @@ public class OfficeView extends Activity {
 		super.onCreate(savedInstance);
 		this.setContentView(R.layout.officeview);
 		
-		Office curOffice = OfficeModel.getSelected();
+		Office curOffice = (Office)getIntent().getSerializableExtra(Office.class.getName());
 		
 		
 		TextView phoneNumber = (TextView) findViewById( R.id.phoneNumberTextView );
