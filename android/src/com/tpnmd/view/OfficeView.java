@@ -16,11 +16,11 @@ public class OfficeView extends Activity {
 		
 		Office curOffice = (Office)getIntent().getSerializableExtra(Office.class.getName());
 		
-		
+		TextView title = (TextView) findViewById( R.id.title );
 		TextView phoneNumber = (TextView) findViewById( R.id.phoneNumberTextView );
 		TextView address = (TextView) findViewById( R.id.addressTextView );
 		
-		
+		title.setText(curOffice.getName());
 		phoneNumber.setText(curOffice.getPhoneNumber());
 		address.setText(curOffice.getAddress());
 		
