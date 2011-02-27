@@ -59,8 +59,12 @@ public class Office implements Serializable {
 		this.address2 = address2;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getFullAddress(boolean newLines) {
+		return new StringBuilder()
+			.append(address)
+			.append( newLines?"\n":"" )
+			.append(address2)
+			.toString();
 	}
 
 	public void setImagePath(String imagePath) {

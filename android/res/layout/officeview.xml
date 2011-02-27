@@ -24,6 +24,7 @@
 			android:orientation="horizontal"
 			android:layout_height="wrap_content"
 			android:layout_width="fill_parent"
+ 			android:gravity="center_vertical"
 			android:background="@drawable/dtl_frame_bg">
 			<ImageView
 				android:id="@+id/imageView1"
@@ -34,7 +35,7 @@
 			<TextView
 				android:id="@+id/addressTextView"
 				android:layout_width="fill_parent"
-				android:layout_height="fill_parent"
+				android:layout_height="wrap_content"
 				android:gravity="center_vertical"
 				android:text="Address" />
 		</LinearLayout>
@@ -42,6 +43,7 @@
 			android:orientation="horizontal"
 			android:layout_height="wrap_content"
 			android:layout_width="fill_parent"
+ 			android:gravity="center_vertical"
 			android:background="@drawable/dtl_frame_bg">
 			<ImageView
 				android:id="@+id/imageView2"

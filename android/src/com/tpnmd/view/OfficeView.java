@@ -32,7 +32,7 @@ public class OfficeView extends Activity {
 		this.setTitle("TPN MD - " + curOffice.getName());
 		title.setText(curOffice.getName());
 		phoneNumber.setText(curOffice.getPhoneNumber());
-		address.setText(curOffice.getAddress());
+		address.setText(curOffice.getFullAddress(true));
 		
 		        
 		ImageView addyImg = (ImageView) findViewById( R.id.imageView1 );
@@ -40,7 +40,7 @@ public class OfficeView extends Activity {
 		
 		OnClickListener addressListener = new OnClickListener() {
 			public void onClick(View view) {
-				String addy = curOffice.getAddress();
+				String addy = curOffice.getFullAddress(false);
 				navigate( addy, view.getContext() );
 			}
 		};
