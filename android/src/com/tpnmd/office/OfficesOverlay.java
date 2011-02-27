@@ -25,13 +25,13 @@ public class OfficesOverlay extends ItemizedOverlay<OverlayItem> {
 	private ArrayList<OverlayItem> overlays;
 	private MapFilter curFilter;
 	
-	public OfficesOverlay( Drawable defaultMarker, Context ctx, MapFilter filter ) {
-		this( defaultMarker, filter );
+	public OfficesOverlay( Drawable defaultMarker, Context ctx, MapFilter filter, Drawable drawables[] ) {
+		this( defaultMarker, filter, drawables );
 		this.context = ctx;	
 		populate();
 	}
 	
-	public OfficesOverlay( Drawable defaultMarker, MapFilter filter ) {
+	public OfficesOverlay( Drawable defaultMarker, MapFilter filter, Drawable drawables[] ) {
 		super( boundCenterBottom( defaultMarker ) );
 		curFilter = filter;
 		overlays = new ArrayList<OverlayItem>();
@@ -47,7 +47,7 @@ public class OfficesOverlay extends ItemizedOverlay<OverlayItem> {
 		}
 		
 		for ( Office curOffice: offices ) {
-			overlays.add( curOffice.getOverlayItem() );
+			overlays.add( curOffice.getOverlayItem(drawables) );
 		}
 		populate();
 	}

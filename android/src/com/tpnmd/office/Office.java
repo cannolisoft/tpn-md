@@ -2,6 +2,8 @@ package com.tpnmd.office;
 
 import java.io.Serializable;
 
+import android.graphics.drawable.Drawable;
+
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.OverlayItem;
 
@@ -14,6 +16,7 @@ public class Office implements Serializable {
 	private String address2;
 	private String phone;
 	private String imagePath;
+	private String type;
 	
 	private double lat;
 	private double lon;
@@ -29,10 +32,22 @@ public class Office implements Serializable {
 		this.setImagePath(imagePath);
 		this.lat = lat;
 		this.lon = lon;
+		this.type = type;
 	}
 
-	public OverlayItem getOverlayItem() {
-        return new OverlayItem( new GeoPoint( (int)(lat*1E6), (int)(lon*1E6) ), name, phone );	
+	public OverlayItem getOverlayItem( Drawable drawables[] ) {
+	    Drawable icon = null;
+	    if ( this.type == "Urgent Care") {
+	        icon = drawables[0];
+	    } else {
+	        icon = drawables[1];
+	    }
+	    
+	    icon.setBounds(0, 0, icon.getIntrinsicWidth(), icon.getIntrinsicHeight());
+	    
+	    OverlayItem oi = new OverlayItem( new GeoPoint( (int)(lat*1E6), (int)(lon*1E6) ), name, phone );
+	    oi.setMarker(icon);
+        return oi;
 	}
 
 	public String getPhoneNumber() {

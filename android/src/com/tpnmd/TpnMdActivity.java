@@ -25,6 +25,7 @@ public class TpnMdActivity extends MapActivity {
 
 	private MapView mapView;
 	private MyLocationOverlay location;
+	private Drawable drawables[];
 
 	/** Called when the activity is first created. */
 	@Override
@@ -77,7 +78,7 @@ public class TpnMdActivity extends MapActivity {
 	
 	private void updateMap( MapFilter filter ) {
 	    mapView.getOverlays().clear();
-	    mapView.getOverlays().add(new OfficesOverlay(getMapPin(), this, filter));
+	    mapView.getOverlays().add(new OfficesOverlay(getMapPin(), this, filter, drawables));
 	    mapView.postInvalidate();
 	}
 	
@@ -85,12 +86,16 @@ public class TpnMdActivity extends MapActivity {
 	 * Initialize Map View to zoom in on center, and draw all offices.
 	 */
 	private void initMap() {
+	    drawables = new Drawable[2];
+	    drawables[0] = this.getResources().getDrawable(R.drawable.hospitals);
+	    drawables[1] = this.getResources().getDrawable(R.drawable.pin);
+	    
 		mapView = (MapView) findViewById(R.id.mapview);
 		mapView.preLoad();
 		mapView.setBuiltInZoomControls(true);
 		mapView.getController().animateTo(new GeoPoint(CENTER_LAT, CENTER_LON));
 		mapView.getController().setZoom(CENTER_ZOOM);
-		OfficesOverlay overlay = new OfficesOverlay(getMapPin(), this, MapFilter.ALL);
+		OfficesOverlay overlay = new OfficesOverlay(getMapPin(), this, MapFilter.ALL, drawables);
 		mapView.getOverlays().add(overlay);
 	}
 
