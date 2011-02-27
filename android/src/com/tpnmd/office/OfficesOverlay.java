@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.OverlayItem;
+import com.tpnmd.view.OfficeView;
 
 
 
@@ -22,6 +23,7 @@ public class OfficesOverlay extends ItemizedOverlay<OverlayItem> {
     
 	private Context context;
 	private ArrayList<OverlayItem> overlays;
+	private MapFilter curFilter;
 	
 	public OfficesOverlay( Drawable defaultMarker, Context ctx, MapFilter filter ) {
 		this( defaultMarker, filter );
@@ -31,6 +33,7 @@ public class OfficesOverlay extends ItemizedOverlay<OverlayItem> {
 	
 	public OfficesOverlay( Drawable defaultMarker, MapFilter filter ) {
 		super( boundCenterBottom( defaultMarker ) );
+		curFilter = filter;
 		overlays = new ArrayList<OverlayItem>();
 		
 		List<Office> offices = null;
@@ -61,12 +64,18 @@ public class OfficesOverlay extends ItemizedOverlay<OverlayItem> {
 	
 	@Override
 	protected boolean onTap(int index) {
-	  OverlayItem item = overlays.get(index);
-	  AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-	  dialog.setTitle(item.getTitle());
-	  dialog.setMessage(item.getSnippet());
-	  dialog.show();
-	  return true;
+	    Office office = null;
+	    if ( curFilter == MapFilter.ALL ) {
+	        office = OfficeModel.getAll().get(index);
+	    } else if ( curFilter == MapFilter.URGENT ) {
+	        office = OfficeModel.getUrgentCare().get(index);
+	    } else {
+	        office = OfficeModel.getPractices().get(index);
+	    }
+	    Intent intent = new Intent(context, OfficeView.class);
+	    intent.putExtra(Office.class.getName(), office);
+	    context.startActivity(intent);
+	    return true;
 	}
 
 }
