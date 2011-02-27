@@ -64,7 +64,9 @@ public class TpnMdActivity extends MapActivity {
                                 updateMap(MapFilter.PRACTICES);
                                 break;
                         }
+                        dialog.dismiss();
                     }
+                    
                 });
                 AlertDialog alert = builder.create();
                 alert.show();
