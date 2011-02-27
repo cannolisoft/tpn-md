@@ -1,5 +1,8 @@
 package com.tpnmd;
 
+import android.app.AlertDialog;
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -11,6 +14,7 @@ import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 import com.google.android.maps.MyLocationOverlay;
 import com.tpnmd.office.OfficesOverlay;
+import com.tpnmd.office.OfficesOverlay.MapFilter;
 import com.tpnmd.view.OfficesListView;
 
 public class TpnMdActivity extends MapActivity {
@@ -37,8 +41,44 @@ public class TpnMdActivity extends MapActivity {
 				startActivity(intent);
 			}
 		});
+		
+		
+		Button filter = (Button) findViewById(R.id.filterButton);
+		filter.setOnClickListener(new View.OnClickListener() {
+            
+            public void onClick(View v) {
+                final CharSequence[] items = {"All", "Urgent Care", "Practices"};
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setTitle("Choose care centers to display:");
+                builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int item) {
+                        switch (item) {
+                            case 0:
+                                updateMap(MapFilter.ALL);
+                                break;
+                            case 1:
+                                updateMap(MapFilter.URGENT);
+                                break;
+                            case 2:
+                                updateMap(MapFilter.PRACTICES);
+                                break;
+                        }
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
 	}
 
+	
+	private void updateMap( MapFilter filter ) {
+	    mapView.getOverlays().clear();
+	    mapView.getOverlays().add(new OfficesOverlay(getMapPin(), this, filter));
+	    mapView.postInvalidate();
+	}
+	
 	/**
 	 * Initialize Map View to zoom in on center, and draw all offices.
 	 */
@@ -48,7 +88,8 @@ public class TpnMdActivity extends MapActivity {
 		mapView.setBuiltInZoomControls(true);
 		mapView.getController().animateTo(new GeoPoint(CENTER_LAT, CENTER_LON));
 		mapView.getController().setZoom(CENTER_ZOOM);
-		mapView.getOverlays().add(new OfficesOverlay(getMapPin(), this));
+		OfficesOverlay overlay = new OfficesOverlay(getMapPin(), this, MapFilter.ALL);
+		mapView.getOverlays().add(overlay);
 	}
 
 	/**
