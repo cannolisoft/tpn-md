@@ -33,6 +33,7 @@ public class OfficesOverlay extends ItemizedOverlay<OverlayItem> {
 	
 	public OfficesOverlay( Drawable defaultMarker, MapFilter filter, Drawable drawables[] ) {
 		super( boundCenterBottom( defaultMarker ) );
+		boundCenterBottom(drawables);
 		curFilter = filter;
 		overlays = new ArrayList<OverlayItem>();
 		
@@ -52,6 +53,12 @@ public class OfficesOverlay extends ItemizedOverlay<OverlayItem> {
 		populate();
 	}
 
+	private void boundCenterBottom(Drawable drawables[]) {
+		for(Drawable drawable : drawables){
+			boundCenterBottom(drawable);
+		}
+	}
+	
 	@Override
 	protected OverlayItem createItem(int num) {
 		return overlays.get( num );

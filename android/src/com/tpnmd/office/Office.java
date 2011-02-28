@@ -43,8 +43,6 @@ public class Office implements Serializable {
 	        icon = drawables[1];
 	    }
 	    
-	    icon.setBounds(0, 0, icon.getIntrinsicWidth(), icon.getIntrinsicHeight());
-	    
 	    OverlayItem oi = new OverlayItem( new GeoPoint( (int)(lat*1E6), (int)(lon*1E6) ), name, phone );
 	    oi.setMarker(icon);
         return oi;
