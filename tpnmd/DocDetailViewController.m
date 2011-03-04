@@ -5,6 +5,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "DocDetailViewController.h"
+#import "DetailViewController.h"
 
 enum
 {
@@ -22,41 +23,6 @@ enum
 
 @synthesize table, headerLabel, doc;
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];	
-}
-
--(void)viewWillAppear:(BOOL)animated
-{           
-    [super viewWillAppear:animated];
-    
-    self.navigationItem.title = @"Physician";
-    
-    self.headerLabel.text = self.doc.name;
-    
-    [table reloadData];
-}
-
-
-- (void)dealloc
-{
-    doc = nil;
-    
-    [super dealloc];
-}
-
-- (NSInteger)getTranslatedSection:(NSInteger)section
-{
-    return section;
-}
 
 - (NSString *)getSectionLabel:(NSInteger)section
 {
@@ -82,12 +48,14 @@ enum
 - (NSString *)getSectionText:(NSIndexPath *)indexPath
 {
     //NSArray *specialties = [[doc.specialty allObjects] valueForKeyPath:@"@unionOfObjects.name"];
-    Specialty *special = [[doc.specialty allObjects] objectAtIndex:indexPath.row];
+    //Specialty *special = [[doc.specialty allObjects] objectAtIndex:indexPath.row];
     switch (indexPath.section)
     {
         case SPECIALTY_CELL:
-
+        {
+            Specialty* special = [[doc.specialty allObjects] objectAtIndex:indexPath.row];
             return special.name;
+        }
         case OFFICE_CELL:
             return doc.office.name;
         case CERT_CELL:
@@ -104,12 +72,82 @@ enum
 }
 
 
+- (BOOL)hasSectionText:(NSInteger)section
+{
+    NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:section];
+    NSString *str = [self getSectionText:path];
+    return str && [str length];
+}
+
+- (NSIndexPath *)getTranslatedIndexPath:(NSIndexPath *)indexPath
+{
+    NSNumber* section = [sections objectAtIndex:indexPath.section];
+    return [NSIndexPath indexPathForRow:indexPath.row inSection:[section integerValue]];
+}
+
+- (NSInteger)getTranslatedSection:(NSInteger)section
+{
+    NSNumber* translatedSection = [sections objectAtIndex:section];
+    return [translatedSection integerValue];
+}
+
+
+- (void)dealloc
+{
+    [sections release];
+    sections = nil;
+    doc = nil;
+    
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark UIViewController
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    
+    sections = [[NSMutableArray arrayWithCapacity:CELL_COUNT] retain];
+    for (int i=0; i<CELL_COUNT; i++)
+    {
+        if( [self hasSectionText:i] )
+        {
+            [sections addObject:[NSNumber numberWithInt:i]];
+        }
+    }
+}
+
+
+- (void)viewDidUnload
+{
+    [sections release];
+    
+    [super viewDidUnload];	
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{           
+    [super viewWillAppear:animated];
+    
+    self.navigationItem.title = @"Physician";
+    
+    self.headerLabel.text = self.doc.name;
+    
+    [table reloadData];
+}
+
+
+
+
 #pragma mark -
 #pragma mark UITableViewDelegate
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch ([self getTranslatedSection:indexPath.section])
+    NSIndexPath* translatedPath = [self getTranslatedIndexPath:indexPath];
+    switch ( translatedPath.section )
     {
         case OFFICE_CELL:
             return indexPath;
@@ -125,42 +163,32 @@ enum
 {
     // Deselect the chosen row, making it more like a button
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-          
-    NSInteger section = [self getTranslatedSection:indexPath.section];
-    if ( section == OFFICE_CELL )
+    
+    NSIndexPath* translatedPath = [self getTranslatedIndexPath:indexPath];
+    if ( translatedPath.section == OFFICE_CELL )
     {
         //TODO: open office detail
+        
+        
+        DetailViewController *detail = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
+        
+        
+        // The detail view does not want a toolbar so hide it
+        //detail.hidesBottomBarWhenPushed = YES;
+        
+        detail.office = doc.office;
+        [self.navigationController pushViewController:detail animated:YES];
+        [detail release];
+        
 	 
     }
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString *text = [self getSectionText:indexPath];
-    if(!text || ![text length])
-    {
-        return 0;
-    }
-
-
-    
-    CGSize constraintSize = CGSizeMake(200 , MAXFLOAT);
-    CGSize labelSize = [text sizeWithFont:[UIFont systemFontOfSize:[UIFont systemFontSize]]
-                            constrainedToSize:constraintSize
-                                lineBreakMode:UILineBreakModeWordWrap];
-    
-    return labelSize.height + 20;
-    
-    
-    //return [tableView rowHeight];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     cell.backgroundColor = [UIColor whiteColor];
-    //cell.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 }
+
 
 #pragma mark -
 #pragma mark UITableViewDataSource
@@ -173,20 +201,17 @@ enum
     if (cell == nil)
     {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:DefaultCellIdentifier] autorelease];
-        //cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
         cell.detailTextLabel.numberOfLines = 0;
-            cell.backgroundColor = [UIColor whiteColor];
-        //cell.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-        
+        cell.backgroundColor = [UIColor whiteColor];
     }
     
-    //NSInteger section = [self getTranslatedSection:indexPath.section];
-    //cell.textLabel.text = [self getSectionLabel:section];
-    cell.detailTextLabel.text = [self getSectionText:indexPath];
     
-    if(!cell.detailTextLabel.text || ![cell.detailTextLabel.text length])
+    NSIndexPath* translatedPath = [self getTranslatedIndexPath:indexPath];
+    cell.detailTextLabel.text = [self getSectionText:translatedPath];
+    
+    if(translatedPath.section == OFFICE_CELL)
     {
-        cell.hidden = YES;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     return cell;
@@ -197,13 +222,13 @@ enum
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Number of sections is based on the data
-    return CELL_COUNT;
+    return [sections count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger newsection = [self getTranslatedSection:section];
-    if(newsection == SPECIALTY_CELL)
+    NSInteger translatedSection = [self getTranslatedSection:section];
+    if( translatedSection == SPECIALTY_CELL )
     {
         return [doc.specialty count];
     }
@@ -215,9 +240,8 @@ enum
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    NSInteger newsection = [self getTranslatedSection:section];
-    return [self getSectionLabel:newsection];
-    //return nil;
+    NSInteger translatedSection = [self getTranslatedSection:section];
+    return [self getSectionLabel:translatedSection];
 }
 
 @end

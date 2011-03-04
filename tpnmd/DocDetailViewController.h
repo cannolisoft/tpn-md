@@ -19,6 +19,8 @@
 
   Physician* doc;
 
+@private
+  NSMutableArray* sections;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* table;
