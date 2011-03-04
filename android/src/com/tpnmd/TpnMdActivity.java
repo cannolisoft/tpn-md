@@ -33,7 +33,7 @@ public class TpnMdActivity extends MapActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		initMap();
-		location = new MyLocationOverlay(this, mapView);
+
 		Button list = (Button) findViewById(R.id.listButton);
 		list.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
@@ -95,8 +95,12 @@ public class TpnMdActivity extends MapActivity {
 		mapView.setBuiltInZoomControls(true);
 		mapView.getController().animateTo(new GeoPoint(CENTER_LAT, CENTER_LON));
 		mapView.getController().setZoom(CENTER_ZOOM);
+		
 		OfficesOverlay overlay = new OfficesOverlay(getMapPin(), this, MapFilter.ALL, drawables);
 		mapView.getOverlays().add(overlay);
+		
+		location = new MyLocationOverlay(this, mapView);
+		mapView.getOverlays().add(location);
 	}
 
 	/**
