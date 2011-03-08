@@ -97,6 +97,11 @@ public class TpnMdActivity extends MapActivity {
 		mapView.getController().setZoom(CENTER_ZOOM);
 		OfficesOverlay overlay = new OfficesOverlay(getMapPin(), this, MapFilter.ALL, drawables);
 		mapView.getOverlays().add(overlay);
+		mapView.getZoomButtonsController().setAutoDismissed(false);
+		mapView.displayZoomControls(true);
+		mapView.getZoomButtonsController().setVisible(true);
+		mapView.getZoomButtonsController().getZoomControls().postInvalidate();
+		mapView.performLongClick();
 	}
 
 	/**

@@ -12,7 +12,6 @@ public class Office implements Serializable {
 	
 	private String name;
 	private String address;
-	@SuppressWarnings("unused")
 	private String address2;
 	private String phone;
 	private String imagePath;
