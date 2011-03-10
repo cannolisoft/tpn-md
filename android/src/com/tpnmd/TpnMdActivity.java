@@ -16,6 +16,7 @@ import com.google.android.maps.MyLocationOverlay;
 import com.tpnmd.office.OfficesOverlay;
 import com.tpnmd.office.OfficesOverlay.MapFilter;
 import com.tpnmd.view.OfficesListView;
+import com.tpnmd.view.PhysicianList;
 
 public class TpnMdActivity extends MapActivity {
 
@@ -39,6 +40,15 @@ public class TpnMdActivity extends MapActivity {
 			public void onClick(View view) {
 				Intent intent = new Intent(view.getContext(),
 						OfficesListView.class);
+				startActivity(intent);
+			}
+		});
+		
+		Button doc = (Button) findViewById(R.id.docButton);
+		doc.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				Intent intent = new Intent(view.getContext(),
+						PhysicianList.class);
 				startActivity(intent);
 			}
 		});
