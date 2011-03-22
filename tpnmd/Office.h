@@ -9,6 +9,8 @@
 #import <CoreData/CoreData.h>
 #import <MapKit/MapKit.h>
 
+#import "WaitTime.h"
+
 @class Physician;
 
 @interface Office :  NSManagedObject <MKAnnotation>
@@ -24,8 +26,8 @@
 @property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSString * state;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSManagedObject * waitTime;
 @property (nonatomic, retain) NSSet* physicians;
+@property (nonatomic, retain) WaitTime * waitTime;
 
 - (NSString *)cityAndState;
 - (NSString *)fullAddress:(BOOL)separated;

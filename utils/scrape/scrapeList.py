@@ -56,78 +56,76 @@ def getOfficeId(officeInfo):
 
     print "No Office found with name: {0} or address: {1} for doc: {2}".format(officeName, address,  officeInfo['name'])
     return None
-    # ZOFFICE table : Z_PK|Z_ENT|Z_OPT|ZWAITTIME|ZLATITUDE|ZLONGITUDE|ZADDRESS|ZCITY|ZNAME|ZPHONE|ZSTATE
+    # ZOFFICE table : Z_PK|Z_ENT|Z_OPT|ZLATITUDE|ZLONGITUDE|ZADDRESS|ZCITY|ZNAME|ZPHONE|ZSTATE
 
 
+def addAndroidTables():
+        dbConn.execute('DROP TABLE IF EXISTS "android_metadata"')
+        dbConn.execute('CREATE TABLE IF NOT EXISTS "android_metadata" ("locale" TEXT DEFAULT "en_US")')
+        dbConn.execute('INSERT INTO "android_metadata" VALUES ("en_US")')
 
 
 dbConn = sqlite3.connect('tpnmd.sqlite')
 dbCursor = dbConn.cursor()
 
+addAndroidTables()
 dbConn.execute('delete from zphysician')
 dbConn.execute('delete from zspecialty')
 dbConn.execute('delete from z_2specialty')
 
 listurl="http://tpnmd.com/body.cfm?id=12&action=list"
-while True:
-    scrape = scrapemark.scrape("""
-                    {* <a class='' href='{{next}}'>Next</a> *}
-                    {* <tr class='metalist'><td><a href='{{[details]}}'></a></td></tr> *}
-                """,
-                url=listurl)
-    listurl = scrape['next']
-
-    if not listurl:
-        break
-
-    #print listurl
-
-
-    detailurls = scrape['details']
-    for detailurl in detailurls:
-
-        #print detailurl
-
-        detailScrape = scrapemark.scrape("""
-                {* <tr><td><font>{{ name }}</font></td></tr>  *}
-                {* <tr><th>Specialty</th><td>{{ specialty }}</td></tr>  *}
-                {* <tr><th>Facility</th><td>{{ facility }}</td></tr>  *}
-                {* <tr><th>Address</th><td>{{ address }}</td></tr>  *}
-                {* <tr><th>Phone</th><td>{{ phone }}</td></tr>  *}
-                {* <tr><th>Certification</th><td>{{ certification }}</td></tr>  *}
-                {* <tr><th>Medical School</th><td>{{ school }}</td></tr>  *}
-                {* <tr><th>Residency</th><td>{{ residence }}</td></tr>  *}
-                {* <tr><th>Gender</th><td>{{ gender }}</td></tr>  *}
+scrape = scrapemark.scrape("""
+                {* <tr class='metalist'><td><a href='{{[details]}}'></a></td></tr> *}
             """,
-            url = detailurl)
+            url=listurl)
 
 
-        #if detailScrape['specialty']:
-        #    specialties = detailScrape['specialty'].split(';')
-        #    detailScrape['specialty'] = ','.join(specialties)
 
-        #print detailScrape
+detailurls = scrape['details']
+for detailurl in detailurls:
 
-        officeId = getOfficeId(detailScrape)
+    print detailurl
 
-        # ZPHYSICIAN table : Z_PK|Z_ENT|Z_OPT|ZOFFICE|ZCERTIFICATION|ZGENDER|ZNAME|ZRESIDENCY|ZSCHOOL
-        vals = []
-        vals.append(None) # Z_PK
-        vals.append(2) # Z_ENT
-        vals.append(1) # Z_OPT
-        vals.append(officeId) # ZOFFICE
-        vals.append(detailScrape['certification']) # ZCERTIFICATION
-        vals.append(detailScrape['gender']) # ZGENDER
-        vals.append(detailScrape['name']) # ZNAME
-        vals.append(detailScrape['residence']) # ZRESIDENCY
-        vals.append(detailScrape['school']) # ZSCHOOL
-        #vals.append(detailScrape['specialty']) # ZSPECIALTY
-        dbCursor.execute("insert into ZPHYSICIAN values(?, ?, ?, ?, ?, ?, ?, ?, ?)", vals)
-        physicianId = dbCursor.lastrowid
+    detailScrape = scrapemark.scrape("""
+            {* <tr><td><font>{{ name }}</font></td></tr>  *}
+            {* <tr><th>Specialty</th><td>{{ specialty }}</td></tr>  *}
+            {* <tr><th>Facility</th><td>{{ facility }}</td></tr>  *}
+            {* <tr><th>Address</th><td>{{ address }}</td></tr>  *}
+            {* <tr><th>Phone</th><td>{{ phone }}</td></tr>  *}
+            {* <tr><th>Certification</th><td>{{ certification }}</td></tr>  *}
+            {* <tr><th>Medical School</th><td>{{ school }}</td></tr>  *}
+            {* <tr><th>Residency</th><td>{{ residence }}</td></tr>  *}
+            {* <tr><th>Gender</th><td>{{ gender }}</td></tr>  *}
+        """,
+        url = detailurl)
 
 
-        specialtyIds = getAddSpecialtyIds(detailScrape)
-        addPhysicianSpecialtyRelation(physicianId, specialtyIds)
+    #if detailScrape['specialty']:
+    #    specialties = detailScrape['specialty'].split(';')
+    #    detailScrape['specialty'] = ','.join(specialties)
+
+    #print detailScrape
+
+    officeId = getOfficeId(detailScrape)
+
+    # ZPHYSICIAN table : Z_PK|Z_ENT|Z_OPT|ZOFFICE|ZCERTIFICATION|ZGENDER|ZNAME|ZRESIDENCY|ZSCHOOL
+    vals = []
+    vals.append(None) # Z_PK
+    vals.append(2) # Z_ENT
+    vals.append(1) # Z_OPT
+    vals.append(officeId) # ZOFFICE
+    vals.append(detailScrape['certification']) # ZCERTIFICATION
+    vals.append(detailScrape['gender']) # ZGENDER
+    vals.append(detailScrape['name']) # ZNAME
+    vals.append(detailScrape['residence']) # ZRESIDENCY
+    vals.append(detailScrape['school']) # ZSCHOOL
+    #vals.append(detailScrape['specialty']) # ZSPECIALTY
+    dbCursor.execute("insert into ZPHYSICIAN values(?, ?, ?, ?, ?, ?, ?, ?, ?)", vals)
+    physicianId = dbCursor.lastrowid
+
+
+    specialtyIds = getAddSpecialtyIds(detailScrape)
+    addPhysicianSpecialtyRelation(physicianId, specialtyIds)
 
 dbConn.commit()
 

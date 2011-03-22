@@ -95,8 +95,24 @@ static NSString* REXURL = @"http://www.rexhealth.com/rexwaitsettings.xml";
 
 - (void)handleImportData:(WaitTime *)waitTime
 {
-    //TODO: reimplement
-    //[officeModel addWaitTimeData:waitTime];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity =
+        [NSEntityDescription entityForName:@"Office"
+                    inManagedObjectContext:[self managedObjectContext]];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate *predicate =
+        [NSPredicate predicateWithFormat:@"name contains %@ and type = %@",
+            [waitTime name], @"Urgent Care"];
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects != nil && [fetchedObjects count]) {
+        Office *office = [fetchedObjects objectAtIndex:0];
+        office.waitTime = waitTime;
+    }
+    [fetchRequest release];
 }
 
 // Helper method for main-thread processing of import completion.

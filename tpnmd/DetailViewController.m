@@ -210,11 +210,10 @@ enum
         
         if(office.waitTime)
         {
-            //TODO: put back
-            //cell.textLabel.text = [office.waitTime waitMsg];
+            cell.textLabel.text = [office.waitTime waitMsg];
             cell.textLabel.adjustsFontSizeToFitWidth = YES;
             
-            //cell.detailTextLabel.text = [office.waitTime relativeDateString];
+            cell.detailTextLabel.text = [office.waitTime relativeDateString];
             cell.detailTextLabel.font = [UIFont systemFontOfSize:[UIFont smallSystemFontSize]];
             
             imagePath = @"clock.png";
