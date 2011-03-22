@@ -8,7 +8,7 @@
 #import "MapViewController.h"
 #import "WaitTimeImporter.h"
 
-static NSString* REXURL = @"http://www.rexhealth.com/_images/flash/rex_homepage_waittimes/rexwaitsettings.xml";
+static NSString* REXURL = @"http://www.rexhealth.com/rexwaitsettings.xml";
 
 @implementation AppDelegate
 
