@@ -44,9 +44,8 @@ static xmlSAXHandler simpleSAXHandlerStruct;
     done = NO;
 	
     self.dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-    [dateFormatter setDateFormat: @"eee MMM dd yyyy hh:mm:ss a" ];
-    //[dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"EST"]];
-    [dateFormatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"US"] autorelease]];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
 	
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:xmlURL];
 
@@ -117,7 +116,7 @@ static NSString *kName_Name = @"name";
 static NSString *kName_Type = @"type";
 static NSString *kName_Message = @"message";
 static NSString *kName_Time = @"time";
-static NSString *kName_Update = @"update";
+static NSString *kName_Update = @"prettyDate";
 
 
 /*
