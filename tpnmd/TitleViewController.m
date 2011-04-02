@@ -210,7 +210,7 @@ enum
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIViewController<DataViewController> *viewController;
+    UIViewController<DataViewController> *viewController = nil;
     
     switch (indexPath.section) {
         case OFFICES_SECTION:
@@ -243,11 +243,14 @@ enum
         }
     }
     
-    viewController.context = self.context;
+    if(viewController != nil)
+    {
+        viewController.context = self.context;
 
-    [self.navigationController pushViewController:viewController animated:YES];
-    [self.navigationController setNavigationBarHidden:false animated:true];
-    [viewController release];
+        [self.navigationController pushViewController:viewController animated:YES];
+        [self.navigationController setNavigationBarHidden:false animated:true];
+        [viewController release];
+    }
 }
 
 @end
