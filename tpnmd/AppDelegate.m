@@ -14,12 +14,12 @@ static NSString* REXURL = @"http://www.rexhealth.com/rexwaitsettings.xml";
 @implementation AppDelegate
 
 @synthesize window;
-@synthesize tabBarController, myNavController, mapViewController, tableViewController, docTableViewController;
+@synthesize navigationController, titleViewController;
 @synthesize importer;
 
 - (void)dealloc
 {
-    [myNavController release];
+    [titleViewController release];
     [window release];
 	
     [super dealloc];
@@ -27,10 +27,6 @@ static NSString* REXURL = @"http://www.rexhealth.com/rexwaitsettings.xml";
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {	    
-    mapViewController.context = [self managedObjectContext];
-    tableViewController.context = [self managedObjectContext];
-    docTableViewController.context = [self managedObjectContext];
-    
     // create an importer object to retrieve, parse, and import into the CoreData store 
     self.importer = [[[WaitTimeImporter alloc] init] autorelease];
     importer.delegate = self;
@@ -41,8 +37,10 @@ static NSString* REXURL = @"http://www.rexhealth.com/rexwaitsettings.xml";
     // add the importer to an operation queue for background processing
     [self.operationQueue addOperation:importer];
     
+    titleViewController.context = [self managedObjectContext];
+    
     // create window and set up table view controller
-    [window addSubview:tabBarController.view];
+    [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
 }
 
@@ -52,39 +50,6 @@ static NSString* REXURL = @"http://www.rexhealth.com/rexwaitsettings.xml";
     }
     return operationQueue;
 }
-
-
-#pragma mark -
-#pragma mark ButtonActions
-
-- (IBAction)listAction:(id)sender
-{
-    [UIView transitionFromView:mapViewController.view
-                        toView:tableViewController.view
-                      duration:1.0
-                       options:UIViewAnimationOptionTransitionFlipFromLeft
-                    completion:^(BOOL finished){
-                        [myNavController 
-                         setViewControllers:[NSArray arrayWithObject:tableViewController]
-                         animated:NO];
-                    }
-     ];
-}
-
-- (IBAction)mapAction:(id)sender
-{
-    [UIView transitionFromView:tableViewController.view
-                        toView:mapViewController.view
-                      duration:1.0
-                       options:UIViewAnimationOptionTransitionFlipFromRight
-                    completion:^(BOOL finished){
-                        [myNavController 
-                         setViewControllers:[NSArray arrayWithObject:mapViewController]
-                         animated:NO];
-                    }
-     ];
-}
-
 
 #pragma mark <WaitTimeImporterDelegate> Implementation
 

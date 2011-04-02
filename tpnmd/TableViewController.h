@@ -7,15 +7,17 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import "DataViewController.h"
 #import "DetailViewController.h"
 
 
-@interface TableViewController : UITableViewController {
+@interface TableViewController : UITableViewController<DataViewController> {
     DetailViewController *detailViewController;
     
     NSFetchedResultsController *_fetchedResultsController;
     NSManagedObjectContext *_context;
 }
+@property (nonatomic, retain) IBOutlet UINavigationItem *navigationItem;
 @property (nonatomic, retain) IBOutlet DetailViewController *detailViewController;
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;

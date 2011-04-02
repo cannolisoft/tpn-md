@@ -17,7 +17,7 @@ enum
 
 @implementation TableViewController
 
-@synthesize detailViewController;
+@synthesize detailViewController, navigationItem;
 @synthesize fetchedResultsController = _fetchedResultsController, context = _context;
 
 

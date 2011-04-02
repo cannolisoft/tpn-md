@@ -10,7 +10,7 @@
 
 @implementation MapViewController
 
-@synthesize mapView, detailViewController, context = _context ;
+@synthesize mapView, detailViewController, context = _context, navigationItem;
 
 
 // Zoom in on the annotations, use best zoom level while still showing all the data.
@@ -140,9 +140,7 @@
                                                         nil, nil];
     
     filterAlert.actionSheetStyle = self.parentViewController.navigationController.navigationBar.barStyle;
-    //[filterAlert showInView: self.mapView.superview];
-    
-    [filterAlert showFromTabBar: self.tabBarController.tabBar];
+    [filterAlert showInView: self.mapView.superview];
     [filterAlert release];
 }
 

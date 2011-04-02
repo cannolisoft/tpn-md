@@ -7,18 +7,15 @@
 #import <UIKit/UIKit.h>
 #import "MapViewController.h"
 #import "TableViewController.h"
+#import "TitleViewController.h"
 #import "DocTableViewController.h"
 #import "WaitTimeImporter.h"
 
 @interface AppDelegate : NSObject <UIApplicationDelegate, WaitTimeImporterDelegate>
 {
     UIWindow *window;
-    
-    UINavigationController *myNavController;
-    MapViewController *mapViewController;
-    TableViewController *tableViewController;
-    UITabBarController *tabBarController;
-    DocTableViewController *docTableViewController;
+    UINavigationController *navigationController;
+    TitleViewController *titleViewController;
     
     WaitTimeImporter *importer;
     NSOperationQueue *operationQueue;
@@ -30,11 +27,9 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, retain) IBOutlet UINavigationController *myNavController;
-@property (nonatomic, retain) IBOutlet MapViewController *mapViewController;
-@property (nonatomic, retain) IBOutlet TableViewController *tableViewController;
-@property (nonatomic, retain) IBOutlet DocTableViewController *docTableViewController;
+@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, retain) IBOutlet TitleViewController *titleViewController;
+
 
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
@@ -46,8 +41,5 @@
 
 
 - (NSURL *)applicationDocumentsDirectory;
-
-- (IBAction)listAction:(id)sender;
-- (IBAction)mapAction:(id)sender;
 
 @end

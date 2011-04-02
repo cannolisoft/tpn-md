@@ -7,17 +7,18 @@
   
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "DataViewController.h"
 
 @class DetailViewController;
 
-@interface MapViewController : UIViewController <MKMapViewDelegate, UIActionSheetDelegate>
+@interface MapViewController : UIViewController <DataViewController, MKMapViewDelegate, UIActionSheetDelegate>
 {
     MKMapView *mapView;
     DetailViewController *detailViewController;
 
     NSManagedObjectContext *_context;
 }
-
+@property (nonatomic, retain) IBOutlet UINavigationItem *navigationItem;
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
 @property (nonatomic, retain) IBOutlet DetailViewController *detailViewController;
 @property (nonatomic, retain) IBOutlet NSManagedObjectContext *context;

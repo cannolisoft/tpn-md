@@ -14,7 +14,7 @@
 
 @implementation DocTableViewController
 
-@synthesize detailViewController;
+@synthesize detailViewController, navigationItem;
 @synthesize fetchedResultsController = _fetchedResultsController, context = _context;
 
 #pragma mark -
