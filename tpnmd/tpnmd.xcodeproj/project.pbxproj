@@ -33,6 +33,7 @@
 		C60E42B712FEFDDD004ACC8F /* tpnmd.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = C60E42B612FEFDDD004ACC8F /* tpnmd.sqlite */; };
 		C61B9E2F133C28F300FA3F1D /* TitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C61B9E2D133C28F300FA3F1D /* TitleViewController.m */; };
 		C61B9E30133C28F300FA3F1D /* TitleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C61B9E2E133C28F300FA3F1D /* TitleViewController.xib */; };
+		C6730E541346DA0B00681CA3 /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = C6730E531346DA0B00681CA3 /* launch.png */; };
 		C693F88B12CBF4D90062919D /* WaitTime.m in Sources */ = {isa = PBXBuildFile; fileRef = C693F88A12CBF4D90062919D /* WaitTime.m */; };
 		C6A9CEE112FF1BB1005C4F2B /* DocDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A9CEDE12FF1BB1005C4F2B /* DocDetailViewController.m */; };
 		C6A9CEE212FF1BB1005C4F2B /* DocTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A9CEE012FF1BB1005C4F2B /* DocTableViewController.m */; };
@@ -102,6 +103,7 @@
 		C61B9E2C133C28F300FA3F1D /* TitleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleViewController.h; sourceTree = "<group>"; };
 		C61B9E2D133C28F300FA3F1D /* TitleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleViewController.m; sourceTree = "<group>"; };
 		C61B9E2E133C28F300FA3F1D /* TitleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TitleViewController.xib; sourceTree = "<group>"; };
+		C6730E531346DA0B00681CA3 /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		C693F88912CBF4D90062919D /* WaitTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitTime.h; sourceTree = "<group>"; };
 		C693F88A12CBF4D90062919D /* WaitTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitTime.m; sourceTree = "<group>"; };
 		C6A9CEDD12FF1BB1005C4F2B /* DocDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocDetailViewController.h; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				C0F92A7C12CC81BC005B976C /* images */,
+				C6730E531346DA0B00681CA3 /* launch.png */,
 				C098272212C72CCA00306F3B /* logo.png */,
 				5321F1900F7AE5BE00EC9E3A /* Info.plist */,
 				C60E42B612FEFDDD004ACC8F /* tpnmd.sqlite */,
@@ -386,6 +389,7 @@
 				C6A9CF0612FF1C53005C4F2B /* DocTableViewController.xib in Resources */,
 				C6F9F381133B093D005BD493 /* tpnLogo.gif in Resources */,
 				C61B9E30133C28F300FA3F1D /* TitleViewController.xib in Resources */,
+				C6730E541346DA0B00681CA3 /* launch.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
