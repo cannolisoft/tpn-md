@@ -149,6 +149,7 @@ enum
                 case OFFICES_HEAD_ITEM:
                 {
                     cell.textLabel.text = @"Care Centers";
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
                     [cell.imageView setImage: [UIImage imageNamed: @"house.png"]];
                     //cell.backgroundColor = [UIColor colorWithRed:86/255.0 green:159/255.0 blue:211/255.0 alpha:1];
                     break;
@@ -156,6 +157,7 @@ enum
                 case OFFICES_MAP_ITEM:
                 {
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
                     cell.indentationLevel = 2;
                     cell.textLabel.text = @"Map";
                     break;
@@ -163,6 +165,7 @@ enum
                 case OFFICES_LIST_ITEM:
                 {
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
                     cell.indentationLevel = 2;
                     cell.textLabel.text = @"List";
                     break;
@@ -177,6 +180,7 @@ enum
                 case PHYSICIANS_HEAD_ITEM:
                 {
                     cell.textLabel.text = @"Physicians";
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
                     [cell.imageView setImage: [UIImage imageNamed: @"group.png"]];
                     //cell.backgroundColor = [UIColor colorWithRed:86/255.0 green:159/255.0 blue:211/255.0 alpha:1];
                     break;
@@ -184,6 +188,7 @@ enum
                 case PHYSICIANS_LIST_ITEM:
                 {
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
                     cell.indentationLevel = 2;
                     cell.textLabel.text = @"List";
                     break;
@@ -204,7 +209,7 @@ enum
     if (indexPath.row == OFFICES_HEAD_ITEM
         || indexPath.row == PHYSICIANS_HEAD_ITEM)
     {
-        return NULL;
+        return nil;
     }
     return indexPath;
 }
