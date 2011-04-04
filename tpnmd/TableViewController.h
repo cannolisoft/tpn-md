@@ -11,7 +11,9 @@
 #import "DetailViewController.h"
 
 
-@interface TableViewController : UITableViewController<DataViewController> {
+@interface TableViewController : UITableViewController<DataViewController>
+{
+    UINavigationItem *navigationItem;
     DetailViewController *detailViewController;
     
     NSFetchedResultsController *_fetchedResultsController;

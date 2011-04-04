@@ -11,21 +11,19 @@
 #import "Specialty.h"
 
 
-@interface DocDetailViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface DocDetailViewController : UITableViewController
 {
+  UITableView *table;
+  UILabel *headerLabel;
 
-  UITableView* table;
-  UILabel* headerLabel;
+  Physician *doc;
 
-  Physician* doc;
-
-@private
-  NSMutableArray* sections;
+  NSMutableArray *sections;
 }
 
-@property (nonatomic, retain) IBOutlet UITableView* table;
-@property (nonatomic, retain) IBOutlet UILabel* headerLabel;
+@property (nonatomic, retain) IBOutlet UITableView *table;
+@property (nonatomic, retain) IBOutlet UILabel *headerLabel;
 
-@property (nonatomic, retain) Physician* doc;
+@property (nonatomic, retain) Physician *doc;
 
 @end

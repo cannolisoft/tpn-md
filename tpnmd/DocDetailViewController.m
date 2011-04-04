@@ -94,9 +94,10 @@ enum
 
 - (void)dealloc
 {
+    [table release];
+    [headerLabel release];
+    [doc release];
     [sections release];
-    sections = nil;
-    doc = nil;
     
     [super dealloc];
 }

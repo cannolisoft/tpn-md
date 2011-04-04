@@ -14,12 +14,14 @@
 @interface MapViewController : UIViewController <DataViewController, MKMapViewDelegate, UIActionSheetDelegate>
 {
     MKMapView *mapView;
+    UINavigationItem *navigationItem;
     DetailViewController *detailViewController;
 
     NSManagedObjectContext *_context;
 }
-@property (nonatomic, retain) IBOutlet UINavigationItem *navigationItem;
+
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
+@property (nonatomic, retain) IBOutlet UINavigationItem *navigationItem;
 @property (nonatomic, retain) IBOutlet DetailViewController *detailViewController;
 @property (nonatomic, retain) IBOutlet NSManagedObjectContext *context;
 

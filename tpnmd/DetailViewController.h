@@ -10,21 +10,17 @@
 #import "Physician.h"
 
 
-@interface DetailViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
+@interface DetailViewController : UITableViewController<UIActionSheetDelegate>
 {
+  UILabel *headerLabel;
+  UIImageView *headerImageView;
 
-  UITableView* table;
-  UILabel* headerLabel;
-  UIImageView* headerImageView;
-
-  Office* office;
-
+  Office *office;
 }
 
-@property (nonatomic, retain) IBOutlet UITableView* table;
-@property (nonatomic, retain) IBOutlet UILabel* headerLabel;
-@property (nonatomic, retain) IBOutlet UIImageView* headerImageView;
+@property (nonatomic, retain) IBOutlet UILabel *headerLabel;
+@property (nonatomic, retain) IBOutlet UIImageView *headerImageView;
 
-@property (nonatomic, retain) Office* office;
+@property (nonatomic, retain) Office *office;
 
 @end

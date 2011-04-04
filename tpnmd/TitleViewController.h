@@ -11,6 +11,7 @@
 
 @interface TitleViewController : UITableViewController<DataViewController>
 {
+@private
     NSManagedObjectContext *_context;
 }
 

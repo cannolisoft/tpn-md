@@ -18,7 +18,7 @@ enum
 };
 
 @implementation DetailViewController
-@synthesize table, headerLabel, headerImageView, office;
+@synthesize headerLabel, headerImageView, office;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib
 - (void)viewDidLoad
@@ -40,8 +40,7 @@ enum
     
     self.headerLabel.text = self.office.name;
     
-
-    [table reloadData];
+    [self.tableView reloadData];
     
     //TODO: add back in functionality
     //[self.headerImageView setImage: [UIImage imageNamed:self.office.imagePath]];
@@ -57,21 +56,15 @@ enum
 
 - (void)dealloc
 {
-    office = nil;
+
+    [headerLabel release];
+    [headerImageView release];
+    
+    [office release];
     
     [super dealloc];
 }
 
-/*
-- (void)setAnnotation:(id <MKAnnotation>)newAnnotation
-{       
-    annotation = newAnnotation;
-    
-    [table reloadData];
-    
-    self.navigationItem.title = office.type;
-}
-*/
 
 - (NSInteger)getTranslatedSection:(NSInteger)section
 {

@@ -10,7 +10,9 @@
 #import "DataViewController.h"
 #import "DocDetailViewController.h"
 
-@interface DocTableViewController : UITableViewController<DataViewController,NSFetchedResultsControllerDelegate> {
+@interface DocTableViewController : UITableViewController<DataViewController, NSFetchedResultsControllerDelegate>
+{
+    UINavigationItem *navigationItem;
     DocDetailViewController *detailViewController;
     
     NSFetchedResultsController *_fetchedResultsController;

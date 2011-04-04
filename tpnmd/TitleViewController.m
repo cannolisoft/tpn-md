@@ -52,6 +52,8 @@ enum
 
 - (void)dealloc
 {
+    [_context release];
+    
     [super dealloc];
 }
 

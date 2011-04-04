@@ -120,7 +120,9 @@
 - (void)dealloc 
 {
     [mapView release];
+    [navigationItem release];
     [detailViewController release];
+    [_context release];
     
     [super dealloc];
 }

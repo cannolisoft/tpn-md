@@ -36,25 +36,22 @@ enum
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    //work around problem with translucent toolbar which caused each display
-    //of the tableview to push the bottom content inset up by the height
-    //of the row. This is a good thing but we only need it once.
-    //self.tableView.contentInset = UIEdgeInsetsMake(0, 0, self.tableView.rowHeight, 0);
-    
-    // Bring back the toolbar
-    //[self.navigationController setToolbarHidden:NO animated:YES];
+
 }
 
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
-    
+
     self.fetchedResultsController = nil;
 }
 
 
 - (void)dealloc {
-    self.fetchedResultsController = nil;
+    [navigationItem release];
+    [detailViewController release];
+     
+    [_fetchedResultsController release];
+    [_context release];
     
     [super dealloc];
 }
@@ -121,7 +118,7 @@ enum
     self.detailViewController.hidesBottomBarWhenPushed = YES;
     
     self.detailViewController.office = office;
-    [self.navigationController pushViewController:self.detailViewController animated:YES];
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 
