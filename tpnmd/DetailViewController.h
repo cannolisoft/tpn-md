@@ -12,14 +12,14 @@
 
 @interface DetailViewController : UITableViewController<UIActionSheetDelegate>
 {
-  UILabel *headerLabel;
-  UIImageView *headerImageView;
-
-  Office *office;
+    Office *office;
+    
+    @private
+    UILabel *headerLabel;
+    UIImageView *headerImageView;
+    
+    NSArray *docs;
 }
-
-@property (nonatomic, retain) IBOutlet UILabel *headerLabel;
-@property (nonatomic, retain) IBOutlet UIImageView *headerImageView;
 
 @property (nonatomic, retain) Office *office;
 

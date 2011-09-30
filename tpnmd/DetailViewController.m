@@ -5,6 +5,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "DetailViewController.h"
+#import "DocDetailViewController.h"
 
 enum
 {
@@ -17,8 +18,15 @@ enum
   CELL_COUNT /* Must always be last entry */
 };
 
+@interface DetailViewController()
+    @property (nonatomic, retain) IBOutlet UILabel *headerLabel;
+    @property (nonatomic, retain) IBOutlet UIImageView *headerImageView;
+    @property (nonatomic, retain) NSArray *docs;
+@end
+
+
 @implementation DetailViewController
-@synthesize headerLabel, headerImageView, office;
+@synthesize headerLabel, headerImageView, office, docs;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib
 - (void)viewDidLoad
@@ -40,11 +48,18 @@ enum
     
     self.headerLabel.text = self.office.name;
     
+    NSSortDescriptor *descrip = [NSSortDescriptor
+                                 sortDescriptorWithKey:@"name"
+                                 ascending:YES];
+    
+    self.docs = [[office.physicians allObjects]
+                        sortedArrayUsingDescriptors:
+                            [NSArray arrayWithObject:descrip]];
+    
     [self.tableView reloadData];
     
     //TODO: add back in functionality
     //[self.headerImageView setImage: [UIImage imageNamed:self.office.imagePath]];
-    
     
     UIBarButtonItem *actionBtn = [[UIBarButtonItem alloc]
                           initWithBarButtonSystemItem:UIBarButtonSystemItemAction 
@@ -61,6 +76,7 @@ enum
     [headerImageView release];
     
     [office release];
+    [docs release];
     
     [super dealloc];
 }
@@ -143,6 +159,7 @@ enum
     {
         case ADDRESS_CELL:
         case TELEPHONE_CELL:
+        case PHYSICIANS_SECTION:
             return indexPath;
             break;
         default:
@@ -166,6 +183,17 @@ enum
     else if ( section == ADDRESS_CELL )
     {
         [self directionsToCenter];
+    }
+    else if ( section == PHYSICIANS_SECTION )
+    {        
+        Physician *doc = [self.docs objectAtIndex:indexPath.row];
+
+        DocDetailViewController *detailViewController =
+            [[[DocDetailViewController alloc]
+                initWithNibName:@"DocDetailViewController" bundle:nil] autorelease];
+        
+        detailViewController.doc = doc;
+        [self.navigationController pushViewController:detailViewController animated:YES];
     }
 }
 
@@ -244,12 +272,11 @@ enum
             imagePath = @"phone.png";
         }
         else if(section == PHYSICIANS_SECTION)
-        {                             
-            NSSortDescriptor *descrip = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-            NSArray *docs = [[office.physicians allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:descrip]];
-         
-            Physician *doc = [docs objectAtIndex:indexPath.row];
+        {                                      
+            Physician *doc = [self.docs objectAtIndex:indexPath.row];
             cell.textLabel.text = doc.name;
+            
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         else
         {
@@ -287,8 +314,7 @@ enum
     //wait time cell
     if(newSection == PHYSICIANS_SECTION)
     {
-        NSSet *docs = office.physicians;
-        NSInteger size = [docs count];
+        NSInteger size = [self.docs count];
         return size;
     }
     
@@ -299,7 +325,7 @@ enum
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSInteger newSection = [self getTranslatedSection:section];
-    if(newSection == PHYSICIANS_SECTION && office.physicians && [office.physicians count])
+    if(newSection == PHYSICIANS_SECTION && [self.docs count])
     {
         return @"Physicians";
     }
