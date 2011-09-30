@@ -135,12 +135,11 @@
     
     Physician *doc = [docs objectAtIndex:indexPath.row];
 
-    DocDetailViewController *detail = [[DocDetailViewController alloc] initWithNibName:@"DocDetailViewController" bundle:nil];
+    DocDetailViewController *detail = [[DocDetailViewController alloc] initWithPhysician:doc];
     
     // The detail view does not want a toolbar so hide it
     detail.hidesBottomBarWhenPushed = YES;
     
-    detail.doc = doc;
     [self.navigationController pushViewController:detail animated:YES];
     [detail release];
 
