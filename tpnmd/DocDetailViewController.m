@@ -23,6 +23,15 @@ enum
 
 @synthesize table, headerLabel, doc;
 
+- (id)initWithPhysician: (Physician *)physician
+{
+    self = [self initWithNibName:@"DocDetailViewController" bundle:nil];
+    if (self) {
+        self.doc = physician;
+    }
+    return self;
+}
+
 
 - (NSString *)getSectionLabel:(NSInteger)section
 {
@@ -171,13 +180,11 @@ enum
         //TODO: open office detail
         
         
-        DetailViewController *detail = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
-        
+        DetailViewController *detail = [[DetailViewController alloc] initWithOffice: doc.office];
         
         // The detail view does not want a toolbar so hide it
         //detail.hidesBottomBarWhenPushed = YES;
         
-        detail.office = doc.office;
         [self.navigationController pushViewController:detail animated:YES];
         [detail release];
         

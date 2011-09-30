@@ -28,6 +28,16 @@ enum
 @implementation DetailViewController
 @synthesize headerLabel, headerImageView, office, docs;
 
+
+- (id)initWithOffice:(Office *)theOffice
+{
+    self = [self initWithNibName:@"DetailViewController" bundle:nil];
+    if (self) {
+        self.office = theOffice;
+    }
+    return self;
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib
 - (void)viewDidLoad
 {
@@ -188,12 +198,9 @@ enum
     {        
         Physician *doc = [self.docs objectAtIndex:indexPath.row];
 
-        DocDetailViewController *detailViewController =
-            [[[DocDetailViewController alloc]
-                initWithNibName:@"DocDetailViewController" bundle:nil] autorelease];
-        
-        detailViewController.doc = doc;
-        [self.navigationController pushViewController:detailViewController animated:YES];
+        DocDetailViewController *detail = [[DocDetailViewController alloc] initWithPhysician:doc];
+        [self.navigationController pushViewController:detail animated:YES];
+        [detail release];
     }
 }
 

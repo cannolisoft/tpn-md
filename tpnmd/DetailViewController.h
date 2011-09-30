@@ -23,4 +23,6 @@
 
 @property (nonatomic, retain) Office *office;
 
+- (id)initWithOffice:(Office *)theOffice;
+
 @end

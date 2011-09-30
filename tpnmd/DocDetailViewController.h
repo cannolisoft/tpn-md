@@ -26,4 +26,5 @@
 
 @property (nonatomic, retain) Physician *doc;
 
+- (id)initWithPhysician:(Physician *)physician;
 @end
