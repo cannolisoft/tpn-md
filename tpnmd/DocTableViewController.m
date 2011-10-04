@@ -8,14 +8,24 @@
 
 #import "DocTableViewController.h"
 
+#import "ActionSheetPicker.h"
+
 #import "Physician.h"
 #import "Office.h"
 #import "Specialty.h"
+
+@interface DocTableViewController()
+    @property (nonatomic, retain) NSArray* sectionNames;
+    @property (nonatomic) int filteredSectionIdx;
+
+- (NSArray *)buildSectionNames;
+@end
 
 @implementation DocTableViewController
 
 @synthesize detailViewController, navigationItem;
 @synthesize fetchedResultsController = _fetchedResultsController, context = _context;
+@synthesize sectionNames, filteredSectionIdx;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -24,13 +34,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //trick to keep entra separators from appearing in a non-empty table
+    self.tableView.tableFooterView = [[[UIView alloc] init] autorelease];
+
+    
     NSError *error;
 	if (![[self fetchedResultsController] performFetch:&error]) {
 		// Update to handle the error appropriately.
 		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		exit(-1);  // Fail
 	}
-
+    
+    self.filteredSectionIdx = 0;
+    self.sectionNames = [self buildSectionNames];
 }
 
 - (NSFetchedResultsController *)fetchedResultsController {
@@ -62,6 +78,20 @@
     
 }
 
+- (NSArray *)buildSectionNames
+{
+    NSArray* sections = [[self fetchedResultsController] sections];
+    
+    NSMutableArray* names = [[NSMutableArray alloc] initWithCapacity: [sections count]];
+    [names addObject:@"All"];
+    for(id<NSFetchedResultsSectionInfo> section in sections)
+    {
+        [names addObject: [section name]];
+        
+    }
+    
+    return names;
+}
 
 #pragma mark -
 #pragma mark Table view data source
@@ -145,6 +175,42 @@
 
 }
 
+#pragma mark -
+#pragma mark ButtonActions
+
+- (IBAction)filterAction:(id)sender
+{
+    //Display the ActionSheetPicker
+	[ActionSheetPicker displayActionPickerWithView:self.view data:[self sectionNames] selectedIndex:self.filteredSectionIdx target:self action:@selector(itemWasSelected::) title:@"Select Specialty"];
+    
+}
+
+#pragma mark -
+#pragma mark ActionSheetPicker action
+
+- (void)itemWasSelected:(NSNumber *)selectedIndex:(id)element {
+	//Selection was made
+    int idx = self.filteredSectionIdx = [selectedIndex intValue];
+    
+    NSPredicate *filterPredicate;
+    if(idx != 0){
+        NSString* sectionName = [[self sectionNames] objectAtIndex:idx];
+        filterPredicate = [NSPredicate predicateWithFormat:@"name = %@", sectionName];
+    }else{
+        filterPredicate = [NSPredicate predicateWithValue:TRUE];
+    }
+    
+    [self.fetchedResultsController.fetchRequest setPredicate: filterPredicate];
+    
+    NSError *error;
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        // Update to handle the error appropriately.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);  // Fail
+    }
+
+    [self.tableView reloadData];
+}
 
 #pragma mark -
 #pragma mark Memory management

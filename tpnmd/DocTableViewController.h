@@ -24,5 +24,7 @@
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *context;
 
+- (IBAction)filterAction:(id)sender;
+- (void)itemWasSelected:(NSNumber *)selectedIndex:(id)element;
 
 @end
