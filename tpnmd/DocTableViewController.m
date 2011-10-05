@@ -8,6 +8,7 @@
 
 #import "DocTableViewController.h"
 
+#import "DocSearchViewController.h"
 #import "Physician.h"
 #import "Office.h"
 #import "Specialty.h"
@@ -23,6 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.searchDisplayController.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     
     NSError *error;
 	if (![[self fetchedResultsController] performFetch:&error]) {
@@ -73,21 +76,44 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    Specialty *special = [_fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
-    return [special.physicians count];
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        id<NSFetchedResultsSectionInfo> info = [[_fetchedResultsController sections] objectAtIndex:0];
+        return info.numberOfObjects;
+    }
+    else
+    {
+        Specialty *special = [_fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
+        return [special.physicians count];
+    }
 }
 
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    Specialty *specialty = [_fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:indexPath.section]];
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath inTable: (UITableView *)tableView {
+    Physician *doc;
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        doc = [_fetchedResultsController objectAtIndexPath:indexPath];
+        
+        NSString *txt = self.searchDisplayController.searchBar.text;
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"name contains[cd] %@", txt];
+        NSArray *specialties = [doc.specialty allObjects];
+        NSArray *matches = [specialties filteredArrayUsingPredicate:pred];
+        
+        NSString *result = [[matches valueForKey:@"name"] componentsJoinedByString:@", "];
+        cell.detailTextLabel.text = result;
+    }
+    else
+    {
+        Specialty *specialty = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:indexPath.section]];
+        
+        NSSortDescriptor *descrip = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+        NSArray *docs = [[specialty.physicians allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:descrip]];
+        
+        doc = [docs objectAtIndex:indexPath.row];
+    }
     
-    NSSortDescriptor *descrip = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-    NSArray *docs = [[specialty.physicians allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:descrip]];
-    
-    Physician *doc = [docs objectAtIndex:indexPath.row];
-    
-    cell.textLabel.text = doc.name;    
+    cell.textLabel.text = doc.name;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
@@ -104,7 +130,7 @@
     }
     
     // Configure the cell...
-    [self configureCell:cell atIndexPath:indexPath];
+    [self configureCell:cell atIndexPath:indexPath inTable:tableView];
     
     return cell;
 }
@@ -129,11 +155,18 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Specialty *specialty = [_fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:indexPath.section]];
-    NSSortDescriptor *descrip = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-    NSArray *docs = [[specialty.physicians allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:descrip]];
-    
-    Physician *doc = [docs objectAtIndex:indexPath.row];
+    Physician *doc;
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        doc = [_fetchedResultsController objectAtIndexPath:indexPath];
+    }
+    else
+    {
+        Specialty *specialty = [_fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:indexPath.section]];
+        NSSortDescriptor *descrip = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+        NSArray *docs = [[specialty.physicians allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:descrip]];
+        doc = [docs objectAtIndex:indexPath.row];
+    }
 
     DocDetailViewController *detail = [[DocDetailViewController alloc] initWithPhysician:doc];
     
@@ -144,6 +177,95 @@
     [detail release];
 
 }
+
+
+#pragma mark -
+#pragma mark Content Filtering
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSInteger
+                                                                )scope
+{
+
+    NSPredicate *filterPredicate;
+    
+    //Specialty
+    if(scope == 0){
+        filterPredicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", searchText];
+    }
+    else
+    {
+        filterPredicate = [NSPredicate predicateWithFormat:@"ANY specialty.name CONTAINS[cd] %@", searchText];        
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    [fetchRequest setPredicate: filterPredicate];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Physician" inManagedObjectContext:_context];
+    [fetchRequest setEntity:entity];
+    
+    NSSortDescriptor *officeGroupSort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:officeGroupSort, nil]];    
+    [fetchRequest setFetchBatchSize:20];
+    
+    NSFetchedResultsController *theFetchedResultsController = 
+    [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
+                                        managedObjectContext:_context sectionNameKeyPath:nil 
+                                                   cacheName:nil];
+    self.fetchedResultsController = theFetchedResultsController;
+    
+    [officeGroupSort release];
+    [fetchRequest release];
+    [theFetchedResultsController release];
+    
+    
+    NSError *error;
+    if (![[self fetchedResultsController] performFetch:&error]) {
+		// Update to handle the error appropriately.
+		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		exit(-1);  // Fail
+	}
+    
+}
+
+#pragma mark -
+#pragma mark UISearchDisplayController Delegate Methods
+- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
+{
+    self.fetchedResultsController = nil;
+    NSError *error;
+	if (![[self fetchedResultsController] performFetch:&error]) {
+		// Update to handle the error appropriately.
+		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		exit(-1);  // Fail
+	}
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    NSInteger searchOption = [controller.searchBar selectedScopeButtonIndex];
+    
+    [self filterContentForSearchText: searchString scope: searchOption];
+
+    
+    
+    
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    NSString *searchString = [controller.searchBar text];
+    
+    [self filterContentForSearchText: searchString scope: searchOption];
+    
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
 
 
 #pragma mark -
